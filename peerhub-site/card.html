@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Dollar Card — PeerHub</title>
+    <meta
+      name="description"
+      content="Get a virtual dollar card funded instantly from your PeerHub balance. Spend online anywhere Visa is accepted."
+    />
+    <meta name="theme-color" content="#1C1969" />
+    <link rel="icon" type="image/png" href="assets/logo/favicon-32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/logo/favicon-192.png"
+    />
+    <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body id="top">
+    <!-- ================= NAV ================= -->
+    <div class="nav-outer" id="navOuter">
+      <nav class="nav">
+        <a class="logo" href="index.html" aria-label="PeerHub — home">
+          <img
+            class="logo-mark"
+            src="assets/logo/peerhub-mark-colour.png"
+            alt=""
+          />
+          <span class="wm">PeerHub</span>
+        </a>
+        <div class="nav-links">
+          <a href="convert.html">Convert</a>
+          <a href="bills.html">Pay Bills</a>
+          <a href="card.html">Virtual Card</a>
+          <a href="index.html#faq">Help</a>
+        </div>
+        <div class="nav-right">
+          <a class="nav-login" href="#">Log in</a>
+          <a class="btn btn-sm" href="#">Join the Waitlist</a>
+          <button
+            class="burger"
+            id="burger"
+            aria-label="Menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+        <div class="mob" id="mobMenu">
+          <a href="convert.html">Convert</a>
+          <a href="bills.html">Pay Bills</a>
+          <a href="card.html">Virtual Card</a>
+          <a href="index.html#faq">Help</a>
+          <!-- <a href="#">Log in</a> -->
+        </div>
+      </nav>
+    </div>
+
+
+    <!-- ================= PAGE HERO ================= -->
+    <header class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow" data-reveal>Virtual Card</span>
+        <h1 data-reveal data-reveal-delay="1">A virtual dollar card, funded instantly.</h1>
+        <p class="lede" data-reveal data-reveal-delay="2">Fund it from your PeerHub balance and spend online anywhere Visa is accepted &mdash; subscriptions, ads, shopping, all of it.</p>
+        <a class="btn btn-sm" href="#" data-reveal data-reveal-delay="3">Join the Waitlist</a>
+
+        <div class="card-visual-sec" data-reveal data-reveal-delay="4">
+          <div class="ccard">
+            <div class="top">
+              <span class="chipimg"></span>
+              <img
+                src="assets/logo/peerhub-mark-white.png"
+                alt=""
+                style="width: 24px"
+              />
+            </div>
+            <div class="no">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4821</div>
+            <div class="bot">
+              <span>Ada Nwosu</span><span>09 / 29</span>
+            </div>
+          </div>
+        </div>
+        <div class="accept-row" data-reveal data-reveal-delay="5">
+          <span class="accept-pill">Subscriptions</span>
+          <span class="accept-pill">Online shopping</span>
+          <span class="accept-pill">Ads platforms</span>
+          <span class="accept-pill">Global travel</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="feat-sec">
+      <div class="feat-grid">
+          <div class="feat-card" data-reveal>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v10H3z" /><path d="M3 11h18M7 15h4" /></svg></span>
+            <h3>Instant funding</h3>
+            <p>Load it from your balance in seconds, no waiting on approvals.</p>
+          </div>
+          <div class="feat-card" data-reveal data-reveal-delay="1">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" /><path d="M3.2 12h17.6M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18" /></svg></span>
+            <h3>Works anywhere online</h3>
+            <p>Subscriptions, ads, shopping &mdash; anywhere Visa is accepted.</p>
+          </div>
+          <div class="feat-card" data-reveal data-reveal-delay="2">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h12v9H6z" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg></span>
+            <h3>Full control</h3>
+            <p>Fund it, freeze it, or top it up whenever you need to.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="steps-sec">
+      <div class="steps-panel" data-reveal>
+        <h2>How it works</h2>
+          <div class="step">
+            <span class="n">1</span>
+            <div>
+              <h4>Fund your card</h4>
+              <p>Move money from your balance onto your card.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="n">2</span>
+            <div>
+              <h4>Get your card details</h4>
+              <p>Card number, expiry, and CVV, ready to use.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="n">3</span>
+            <div>
+              <h4>Spend online</h4>
+              <p>Use it anywhere that accepts Visa.</p>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="page-cta">
+      <div class="page-cta-inner" data-reveal>
+        <h2>Ready for your card?</h2>
+        <p>Join the waitlist and we&rsquo;ll let you know the moment PeerHub is ready for you.</p>
+        <a class="btn" href="#">Join the Waitlist</a>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="wrap">
+        <div class="f-top">
+          <div class="f-brand">
+            <!-- reversed colourway, on a solid ground, clear space preserved -->
+            <a
+              class="logo rev"
+              href="index.html"
+              style="--lg-mark: 30px"
+              aria-label="PeerHub — home"
+            >
+              <img
+                class="logo-mark"
+                src="assets/logo/peerhub-mark-white.png"
+                alt=""
+              />
+              <span class="wm">PeerHub</span>
+            </a>
+            <p>
+              Convert crypto to cash, pay your bills, and spend with a
+              virtual dollar card &mdash; or just chat with our WhatsApp AI.
+            </p>
+          </div>
+          <div class="f-col">
+            <h4>Socials</h4>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+          </div>
+          <div class="f-col">
+            <h4>Features</h4>
+            <a href="convert.html">Convert</a>
+            <a href="bills.html">Pay Bills</a>
+            <a href="card.html">Virtual Card</a>
+            <a href="whatsapp.html">WhatsApp AI</a>
+          </div>
+        </div>
+
+        <div class="f-rule"></div>
+        <div class="f-mid">
+          <div>&copy; 2026 &mdash; PeerHub</div>
+          <div><a href="#">Terms of Use</a></div>
+          <div><a href="#">Privacy Policy</a></div>
+        </div>
+        <div class="f-rule" style="margin: 0 0 26px"></div>
+
+        <div class="legal">
+          <p>
+            PeerHub is a technology platform. Crypto-to-fiat conversion,
+            bill payments, and virtual card services on PeerHub are
+            provided in line with applicable regulations in the markets we
+            operate in.
+          </p>
+          <p>
+            Virtual dollar card services are issued through PeerHub&rsquo;s
+            licensed card partners. Cryptocurrency prices are volatile
+            &mdash; convert responsibly.
+          </p>
+          <p>
+            All trademarks, service marks, and registered marks belong to
+            their respective owners.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

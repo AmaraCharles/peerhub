@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PeerHub: Convert Crypto to Cash, Pay Bills, Get a Virtual Dollar Card</title>
+    <meta
+      name="description"
+      content="PeerHub lets you convert crypto to fiat and back, pay your utility bills, and spend with a virtual dollar card — or just chat with our WhatsApp AI and let it handle the transaction for you."
+    />
+    <meta name="theme-color" content="#1C1969" />
+    <link rel="icon" type="image/png" href="assets/logo/favicon-32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/logo/favicon-192.png"
+    />
+    <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body id="top">
+    <!-- ================= NAV ================= -->
+    <div class="nav-outer" id="navOuter">
+      <nav class="nav">
+        <a class="logo" href="index.html" aria-label="PeerHub — home">
+          <img
+            class="logo-mark"
+            src="assets/logo/peerhub-mark-colour.png"
+            alt=""
+          />
+          <span class="wm">PeerHub</span>
+        </a>
+        <div class="nav-links">
+          <a href="convert.html">Convert</a>
+          <a href="bills.html">Pay Bills</a>
+          <a href="card.html">Virtual Card</a>
+          <a href="index.html#faq">Help</a>
+        </div>
+        <div class="nav-right">
+          <a class="nav-login" href="#">Log in</a>
+          <a class="btn btn-sm" href="#">Join the Waitlist</a>
+          <button
+            class="burger"
+            id="burger"
+            aria-label="Menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+        <div class="mob" id="mobMenu">
+          <a href="convert.html">Convert</a>
+          <a href="bills.html">Pay Bills</a>
+          <a href="card.html">Virtual Card</a>
+          <a href="index.html#faq">Help</a>
+           <!-- <a href="#">Log in</a> -->
+        </div>
+      </nav>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy" data-reveal>
+          <span class="eyebrow">Money, simplified</span>
+          <h1 class="h-heavy">
+            Crypto to cash. Cash to crypto.
+            <span class="accent">Instantly.</span>
+          </h1>
+          <p class="sub">
+            Convert crypto to fiat and back, pay every utility bill, and
+            spend with a virtual dollar card — or just chat with our
+            WhatsApp AI and let it handle the transaction for you.
+          </p>
+          <form class="hero-form" onsubmit="return false;">
+            <input
+              type="email"
+              placeholder="What's your email?"
+              aria-label="Email"
+            />
+            <button class="btn btn-mint" type="submit">
+              Join the Waitlist
+            </button>
+          </form>
+          <div class="trust-row">
+            <div>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 3l7 3v5.2c0 4.4-2.9 7.5-7 9.8-4.1-2.3-7-5.4-7-9.8V6z"
+                />
+                <path d="m9 12 2.2 2.2L15.4 10" /></svg
+              >Bank-level Security
+            </div>
+            <div>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M13 2.5 4.6 13.4h6L9.6 21.5 19 10.4h-6.4z" /></svg
+              >Instant Conversions
+            </div>
+            <div>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" />
+                <path
+                  d="M3.2 12h17.6M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18"
+                /></svg
+              >WhatsApp AI, 24/7
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone mockup: not a real device photo, a coded UI mock in
+             brand colours, consistent with the mock-UI language used
+             elsewhere on the site. -->
+        <div class="hero-phone-wrap" data-reveal data-reveal-delay="1">
+          <div class="hero-phone">
+            <div class="hp-notch"></div>
+            <div class="hp-screen">
+              <div class="hp-top">
+                <span>Good afternoon</span>
+                <img
+                  class="hp-mark"
+                  src="assets/logo/peerhub-mark-colour.png"
+                  alt=""
+                />
+              </div>
+              <div class="hp-balance">
+                <small>Total balance</small>
+                <b><span data-count="4820.50">$0.00</span></b>
+                <span class="hp-delta">&#9650; 2.4% today</span>
+              </div>
+              <div class="hp-actions">
+                <span><i>&#8646;</i>Convert</span>
+                <span><i>&#9889;</i>Pay Bill</span>
+                <span><i>&#9724;</i>Card</span>
+              </div>
+              <ul class="hp-list">
+                <li>
+                  <span class="hp-ic btc">&#8383;</span>
+                  <div><b>Bought BTC</b><small>0.02 BTC</small></div>
+                  <em class="up">+$1,240</em>
+                </li>
+                <li>
+                  <span class="hp-ic ngn">&#8358;</span>
+                  <div><b>Electricity Bill</b><small>Ikeja Electric</small></div>
+                  <em>&#8358;8,500</em>
+                </li>
+                <li>
+                  <span class="hp-ic usdt">T</span>
+                  <div><b>Converted USDT</b><small>to USD</small></div>
+                  <em class="up">+$500</em>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span class="hp-chip hp-chip-1">BTC &#9650; 2.4%</span>
+          <span class="hp-chip hp-chip-2">&#9889; Instant</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= SHOWCASE ================= -->
+    <section class="showcase">
+      <div class="showcase-inner">
+        <div class="pcard left" data-reveal>
+          <div class="inner">
+            <div class="mock mock-dash">
+              <div class="mh">
+                Convert <span class="st"><i></i>Live</span>
+              </div>
+              <div class="amt">
+                <small>Converted this month</small>
+                <b>$248,910<i>.40</i></b>
+                <div class="spark">
+                  <i style="height: 34%"></i><i style="height: 52%"></i
+                  ><i style="height: 41%"></i><i style="height: 68%"></i
+                  ><i class="hi" style="height: 88%"></i
+                  ><i style="height: 60%"></i><i style="height: 74%"></i
+                  ><i style="height: 46%"></i><i style="height: 92%"></i
+                  ><i style="height: 57%"></i>
+                </div>
+              </div>
+              <ul class="rows">
+                <li>
+                  <span class="ccy b"><span>BTC</span></span>
+                  <div class="tx">
+                    <b>Buy · BTC &rarr; NGN</b><small>0.42 BTC</small>
+                  </div>
+                  <span class="pill ok">Settled</span>
+                </li>
+                <li>
+                  <span class="ccy"><span>USDT</span></span>
+                  <div class="tx">
+                    <b>Swap · USDT &rarr; USD</b><small>1,200 USDT</small>
+                  </div>
+                  <span class="pill ok">Settled</span>
+                </li>
+                <li>
+                  <span class="ccy b"><span>NGN</span></span>
+                  <div class="tx">
+                    <b>Sell · NGN &rarr; USDT</b><small>&#8358;450,000</small>
+                  </div>
+                  <span class="pill wait">Converting</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- logomark used on its own, app-icon style, on a clean solid ground -->
+        <div class="mark-badge" aria-hidden="true">
+          <img src="assets/logo/peerhub-mark-white.png" alt="" />
+        </div>
+
+        <div class="pcard right" data-reveal data-reveal-delay="1">
+          <div
+            class="inner"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+              align-items: center;
+            "
+          >
+            <div class="rail">
+              <span class="chip"><i>$</i>USD</span>
+              <span class="chip"><i>£</i>GBP</span>
+              <span class="chip"><i>€</i>EUR</span>
+              <span class="chip"><i>₦</i>NGN</span>
+              <span class="chip"><i>₿</i>BTC</span>
+              <span class="chip"><i>T</i>USDT</span>
+            </div>
+            <svg class="down" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 4v15M6 13l6 6 6-6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <div class="mock mock-acct">
+              <div class="mh">
+                Virtual Dollar Card <span class="st"><i></i>Active</span>
+              </div>
+              <dl>
+                <div>
+                  <dt>Card number</dt>
+                  <dd>•••• •••• •••• 4821</dd>
+                </div>
+                <div>
+                  <dt>Expiry</dt>
+                  <dd>09 / 29</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Active</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRUST PANEL ================= -->
+    <section class="trust-sec">
+      <div class="trust-panel" data-reveal>
+        <span class="eyebrow">Built to be trusted</span>
+        <h2 class="h-display">Secure. Verified. Reliable.</h2>
+        <p class="lede">
+          Every conversion, bill payment, and card transaction on PeerHub is
+          encrypted and verified end-to-end.
+        </p>
+
+        <div class="trust-grid">
+          <div class="tg-col">
+            <div class="tg-card">
+              <span class="ic"
+                ><svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 3l7 3v5.2c0 4.4-2.9 7.5-7 9.8-4.1-2.3-7-5.4-7-9.8V6z"
+                  />
+                  <path d="m9 12 2.2 2.2L15.4 10" /></svg
+              ></span>
+              <p>Bank-level encryption on every transaction, every time.</p>
+            </div>
+            <div class="tg-card">
+              <span class="ic"
+                ><svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 7h16v12H4z" />
+                  <path d="M4 11h16M8 15h4" /></svg
+              ></span>
+              <p>Every user is verified before they can convert or spend.</p>
+            </div>
+          </div>
+
+          <div class="tg-mid">
+            <img
+              src="https://ext.same-assets.com/2997703285/34934298.avif"
+              alt=""
+            />
+            <span class="tint"></span>
+            <div class="cap">
+              <b>Crypto in.<br />Cash out.</b
+              ><span>BTC · USDT · NGN · USD</span>
+            </div>
+          </div>
+
+          <div class="tg-col">
+            <div class="tg-card">
+              <span class="ic"
+                ><svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" />
+                  <path
+                    d="M3.2 12h17.6M12 3c2.6 2.9 2.6 15.1 0 18M12 3c-2.6 2.9-2.6 15.1 0 18"
+                  /></svg
+              ></span>
+              <p>Real-time rates on every conversion &mdash; no hidden markups.</p>
+            </div>
+            <div class="tg-card">
+              <span class="ic"
+                ><svg
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="m12 3 2.3 5.3 5.7 .5-4.3 3.8 1.3 5.6L12 15.3 6.9 18.2l1.3-5.6L4 8.8l5.7-.5z"
+                  /></svg
+              ></span>
+              <p>
+                One team obsessed with getting your money to you fast &mdash;
+                in the app, or over WhatsApp.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <a class="btn" href="#"
+          >Join the Waitlist
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 12h15M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= WHAT YOU GET ================= -->
+    <section class="bento-sec" id="what-you-get">
+      <div class="wrap">
+        <span class="eyebrow">What you get</span>
+        <h2 class="h-display">
+          Everything you need to move, spend, and convert your money.
+        </h2>
+
+        <div class="bento">
+          <!-- 01 -->
+          <article class="bcard span2 bala" id="convert" data-reveal>
+            <div class="txt">
+              <div class="num">01</div>
+              <h3>Convert Crypto to Cash &mdash; and Back</h3>
+              <p>
+                Buy and sell BTC, USDT, ETH and more at real market rates.
+                Convert to naira or dollars and settle straight to your
+                wallet or bank.
+              </p>
+            </div>
+            <div class="media">
+              <div class="mock mock-bal">
+                <div class="mh">
+                  Balances <span class="st"><i></i>Synced</span>
+                </div>
+                <ul class="bal-rows">
+                  <li>
+                    <span class="ccy b"><span>BTC</span></span
+                    ><span class="bar"><i style="width: 82%"></i></span
+                    ><b>0.94 BTC</b>
+                  </li>
+                  <li>
+                    <span class="ccy"><span>USDT</span></span
+                    ><span class="bar"
+                      ><i class="m" style="width: 46%"></i></span
+                    ><b>12,400 USDT</b>
+                  </li>
+                  <li>
+                    <span class="ccy b"><span>NGN</span></span
+                    ><span class="bar"><i style="width: 58%"></i></span
+                    ><b>&#8358;1,204,500</b>
+                  </li>
+                  <li>
+                    <span class="ccy"><span>USD</span></span
+                    ><span class="bar"
+                      ><i class="m" style="width: 31%"></i></span
+                    ><b>$3,180.00</b>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 -->
+          <article class="bcard center" data-reveal data-reveal-delay="1">
+            <div class="num">02</div>
+            <h3>Two-Way, Real-Time</h3>
+            <p>
+              Crypto to fiat or fiat to crypto &mdash; swap either direction
+              in seconds, no long queues.
+            </p>
+            <div class="art">
+              <div class="coins">
+                <span class="coin"><b>BTC</b><span>Buy</span></span>
+                <span class="coin c2"><b>USDT</b><span>Sell</span></span>
+                <span class="coin c1"><b>NGN</b><span>Convert</span></span>
+                <span class="coin c3"><b>USD</b><span>Withdraw</span></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 -->
+          <article class="bcard center" id="card" data-reveal data-reveal-delay="2">
+            <div class="num">03</div>
+            <h3>Virtual Dollar Card</h3>
+            <p>
+              Fund it instantly from your balance and spend online anywhere
+              Visa is accepted &mdash; subscriptions, ads, shopping, all of
+              it.
+            </p>
+            <div class="art">
+              <div class="ccard">
+                <div class="top">
+                  <span class="chipimg"></span>
+                  <img
+                    src="assets/logo/peerhub-mark-white.png"
+                    alt=""
+                    style="width: 24px"
+                  />
+                </div>
+                <div class="no">•••• •••• •••• 4821</div>
+                <div class="bot">
+                  <span>Ada Nwosu</span><span>09 / 29</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 -->
+          <article class="bcard span2" id="bills" data-reveal>
+            <div class="txt">
+              <div class="num">04</div>
+              <h3>Pay Every Bill, Instantly</h3>
+              <p>
+                Electricity, airtime, data, and cable subscriptions &mdash;
+                paid directly from your balance and confirmed in seconds.
+              </p>
+            </div>
+            <div class="media">
+              <ul class="feed">
+                <li>
+                  <span class="dot"></span>
+                  <div class="tx">
+                    <b>&#8358;8,500 · Electricity</b
+                    ><small>Prepaid token</small>
+                  </div>
+                  <em>6 sec</em>
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  <div class="tx">
+                    <b>&#8358;2,000 · Airtime</b
+                    ><small>Instant top-up</small>
+                  </div>
+                  <em>3 sec</em>
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  <div class="tx">
+                    <b>&#8358;20,000 · Cable TV</b
+                    ><small>Subscription renewal</small>
+                  </div>
+                  <em>Sending</em>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 05 -->
+          <article class="bcard center" data-reveal data-reveal-delay="1">
+            <div class="num">05</div>
+            <h3>Rates You Can See</h3>
+            <p>
+              Every conversion shows the exact rate and fee upfront &mdash;
+              before you confirm anything.
+            </p>
+            <div class="art">
+              <div class="code">
+                <div class="bar"><i></i><i></i><i></i></div>
+                <pre><span class="c"># live rate</span>
+<span class="k">BTC</span> &rarr; NGN
+1 BTC = <span class="s">&#8358;102,450,000</span>
+<span class="s">Fee</span>: <span class="k">0%</span></pre>
+              </div>
+            </div>
+          </article>
+
+          <!-- 06 -->
+          <article class="bcard center bala" id="whatsapp" data-reveal data-reveal-delay="2">
+            <div class="num">06</div>
+            <h3>Chat With Our WhatsApp AI</h3>
+            <p>
+              Convert currency, pay a bill, or send money &mdash; just
+              message PeerHub on WhatsApp and let the AI handle it.
+            </p>
+            <div class="art">
+              <div class="crew">
+                <div class="faces">
+                  <span>AN</span><span>TK</span><span>MO</span><span>JB</span>
+                </div>
+                <div class="bubble">
+                  Done &mdash; converted &#8358;50,000 to USDT and sent it to
+                  your wallet. Anything else?<small
+                    >PeerHub AI · WhatsApp · just now</small
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <a class="btn" href="#"
+          >Join the Waitlist
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 12h15M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= INDUSTRIES ================= -->
+    <section class="ind-sec" id="industries">
+      <div class="ind-head">
+        <span class="eyebrow on-dark">Built for how you use money</span>
+        <svg class="deco" viewBox="0 0 120 64" fill="none" aria-hidden="true">
+          <path d="M8 56 24 12h14L22 56z" fill="#3B21F6" />
+          <path d="M40 56 56 12h14L54 56z" fill="#00F2FF" opacity=".55" />
+          <path d="M72 56 88 12h14L86 56z" fill="#F0F0FF" opacity=".28" />
+        </svg>
+        <h2>One app, however you move money.</h2>
+        <p>
+          Whether you&rsquo;re trading crypto, paying bills, spending online,
+          or just chatting your way through a transaction &mdash; PeerHub
+          fits into your day.
+        </p>
+      </div>
+
+      <div class="ind-track" id="indTrack">
+        <a class="ind-card" href="convert.html" data-reveal>
+          <img
+            src="https://ext.same-assets.com/2997703285/3061919914.avif"
+            alt=""
+          />
+          <span class="tint"></span><span class="veil"></span>
+          <img class="mk" src="assets/logo/peerhub-mark-white.png" alt="" />
+          <div class="body">
+            <h3>Crypto traders &amp; investors</h3>
+            <p>
+              Buy and sell at live market rates, then cash out to your bank
+              in minutes &mdash; no long withdrawal queues.
+            </p>
+          </div>
+        </a>
+        <a class="ind-card" href="bills.html" data-reveal data-reveal-delay="1">
+          <img
+            src="https://ext.same-assets.com/2997703285/799424371.avif"
+            alt=""
+          />
+          <span class="tint"></span><span class="veil"></span>
+          <img class="mk" src="assets/logo/peerhub-mark-white.png" alt="" />
+          <div class="body">
+            <h3>Everyday bill payers</h3>
+            <p>
+              Handle electricity, airtime, data and cable subscriptions
+              without ever leaving the app.
+            </p>
+          </div>
+        </a>
+        <a class="ind-card" href="card.html" data-reveal data-reveal-delay="2">
+          <img
+            src="https://ext.same-assets.com/2997703285/4169691828.avif"
+            alt=""
+          />
+          <span class="tint"></span><span class="veil"></span>
+          <img class="mk" src="assets/logo/peerhub-mark-white.png" alt="" />
+          <div class="body">
+            <h3>Online spenders</h3>
+            <p>
+              Fund a virtual dollar card instantly and pay for subscriptions,
+              ads, and online purchases anywhere Visa is accepted.
+            </p>
+          </div>
+        </a>
+        <a class="ind-card" href="whatsapp.html" data-reveal data-reveal-delay="3">
+          <img
+            src="https://ext.same-assets.com/2997703285/3758368850.avif"
+            alt=""
+          />
+          <span class="tint"></span><span class="veil"></span>
+          <img class="mk" src="assets/logo/peerhub-mark-white.png" alt="" />
+          <div class="body">
+            <h3>People on the go</h3>
+            <p>
+              Skip the app entirely &mdash; convert, pay bills, or send money
+              just by chatting with PeerHub&rsquo;s WhatsApp AI.
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="ind-foot">
+        <div class="dots" id="indDots">
+          <i class="on"></i><i></i><i></i><i></i>
+        </div>
+        <div class="arrows">
+          <button type="button" data-dir="-1" aria-label="Previous">
+            <svg viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6" /></svg>
+          </button>
+          <button type="button" data-dir="1" aria-label="Next">
+            <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="faq-sec"  style="margin-top: 30px;" id="faq">
+      <div class="faq-panel" data-reveal>
+        <div>
+          <h2>Frequently<br />Asked Questions</h2>
+          <p class="aside">
+            Everything about converting, paying bills, your card, and
+            chatting with our WhatsApp AI. Still stuck? Just ask in the app.
+          </p>
+        </div>
+        <div>
+          <details open>
+            <summary>What is PeerHub?</summary>
+            <div class="ans">
+              PeerHub is an app that lets you convert crypto to fiat and
+              back, pay your utility bills, and spend with a virtual dollar
+              card &mdash; all in one place.
+            </div>
+          </details>
+          <details>
+            <summary>How does crypto-to-fiat conversion work?</summary>
+            <div class="ans">
+              Add crypto to your PeerHub balance and convert it to naira or
+              dollars at the live rate &mdash; no hidden markups. You can
+              also go the other way and convert your fiat balance back into
+              crypto.
+            </div>
+          </details>
+          <details>
+            <summary>What bills can I pay on PeerHub?</summary>
+            <div class="ans">
+              Electricity, airtime, mobile data, and cable TV subscriptions
+              &mdash; paid straight from your PeerHub balance, crypto or
+              fiat.
+            </div>
+          </details>
+          <details>
+            <summary>What is the virtual dollar card?</summary>
+            <div class="ans">
+              It&rsquo;s a virtual USD card you fund instantly from your
+              PeerHub balance, for subscriptions, online shopping, ads, and
+              anything else that accepts Visa or Mastercard.
+            </div>
+          </details>
+          <details>
+            <summary>How do I fund my virtual card?</summary>
+            <div class="ans">
+              Convert crypto or fiat straight into your card balance from
+              the app &mdash; it&rsquo;s ready to spend immediately, no
+              waiting on approvals.
+            </div>
+          </details>
+          <details>
+            <summary>What can the WhatsApp AI actually do?</summary>
+            <div class="ans">
+              Message PeerHub on WhatsApp and the AI can convert currency,
+              pay a bill, check your balance, or send money for you &mdash;
+              no need to open the app.
+            </div>
+          </details>
+          <details>
+            <summary>Is my money and my crypto safe on PeerHub?</summary>
+            <div class="ans">
+              Yes. Every transaction is encrypted, and all users are
+              verified before they can convert, pay bills, or spend.
+            </div>
+          </details>
+          <details>
+            <summary>How do I get started?</summary>
+            <div class="ans">
+              Join the waitlist with your email and we&rsquo;ll let you know
+              the moment PeerHub is ready for you.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta">
+      <span class="fade"></span>
+      <div class="in" data-reveal>
+        <h2 class="h-heavy">
+          Crypto, cash, bills, and your card.<br />All in one place.
+        </h2>
+        <p>
+          Join the waitlist, or chat with our WhatsApp AI right now. No
+          pressure either way.
+        </p>
+        <a class="btn btn-mint" href="#"
+          >Join the Waitlist
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 12h15M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="marquee">
+      <div class="mq-track">
+        <span>Crypto to cash</span
+        ><span>Cash to crypto</span><span>Bill payments</span
+        ><span>Virtual dollar card</span><span>WhatsApp AI</span
+        ><span>Real-time rates</span>
+        <span>Crypto to cash</span
+        ><span>Cash to crypto</span><span>Bill payments</span
+        ><span>Virtual dollar card</span><span>WhatsApp AI</span
+        ><span>Real-time rates</span>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="wrap">
+        <div class="f-top">
+          <div class="f-brand">
+            <!-- reversed colourway, on a solid ground, clear space preserved -->
+            <a
+              class="logo rev"
+              href="index.html"
+              style="--lg-mark: 30px"
+              aria-label="PeerHub — home"
+            >
+              <img
+                class="logo-mark"
+                src="assets/logo/peerhub-mark-white.png"
+                alt=""
+              />
+              <span class="wm">PeerHub</span>
+            </a>
+            <p>
+              Convert crypto to cash, pay your bills, and spend with a
+              virtual dollar card &mdash; or just chat with our WhatsApp AI.
+            </p>
+          </div>
+          <div class="f-col">
+            <h4>Socials</h4>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+          </div>
+          <div class="f-col">
+            <h4>Features</h4>
+            <a href="convert.html">Convert</a>
+            <a href="bills.html">Pay Bills</a>
+            <a href="card.html">Virtual Card</a>
+            <a href="whatsapp.html">WhatsApp AI</a>
+          </div>
+        </div>
+
+        <div class="f-rule"></div>
+        <div class="f-mid">
+          <div>&copy; 2026 &mdash; PeerHub</div>
+          <div><a href="#">Terms of Use</a></div>
+          <div><a href="#">Privacy Policy</a></div>
+        </div>
+        <div class="f-rule" style="margin: 0 0 26px"></div>
+
+        <div class="legal">
+          <p>
+            PeerHub is a technology platform. Crypto-to-fiat conversion,
+            bill payments, and virtual card services on PeerHub are
+            provided in line with applicable regulations in the markets we
+            operate in.
+          </p>
+          <p>
+            Virtual dollar card services are issued through PeerHub&rsquo;s
+            licensed card partners. Cryptocurrency prices are volatile
+            &mdash; convert responsibly.
+          </p>
+          <p>
+            All trademarks, service marks, and registered marks belong to
+            their respective owners.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
