@@ -1,26 +1,62 @@
 /* =====================================================================
    FONTS
-   Brand guideline: Neurial Grotesk is the one and only typeface —
-   Light / Normal / Medium / Bold — used for everything, headings
-   included, with weight (not a different family) carrying hierarchy.
-   Neurial Grotesk is a licensed commercial face with no public font
-   files, so no @font-face is declared for it here. Space Grotesk is
-   loaded as a close, freely-licensed stand-in so the site still reads
-   as one geometric grotesk. Swap in the licensed Neurial Grotesk
-   .woff2 files and add @font-face rules the moment they're available.
-
-   Exception, by request: the hero headline and buttons keep the
-   pre-guideline display face ("Midnight Sans") rather than the
-   unified body font — see --heavy-hero below. Everything else on the
-   site (body copy, section headings, the nav wordmark) stays on the
-   guideline typeface.
+   The brand deck supplies no typography specimens, so the existing
+   type system is retained unchanged. The wordmark is locked to
+   --brand-wordmark and must never be substituted.
    ===================================================================== */
-      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap");
       @font-face {
         font-family: "Midnight Sans";
         src: url("https://ext.same-assets.com/2997703285/3673856991.otf")
           format("opentype");
         font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Euclid";
+        src: url("https://ext.same-assets.com/2997703285/2604286814.ttf")
+          format("truetype");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Euclid";
+        src: url("https://ext.same-assets.com/2997703285/1884158720.ttf")
+          format("truetype");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Euclid";
+        src: url("https://ext.same-assets.com/2997703285/3677362542.ttf")
+          format("truetype");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Feature";
+        src: url("https://ext.same-assets.com/2997703285/3992938641.otf")
+          format("opentype");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Feature";
+        src: url("https://ext.same-assets.com/2997703285/4116397736.otf")
+          format("opentype");
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Feature";
+        src: url("https://ext.same-assets.com/2997703285/1171649340.otf")
+          format("opentype");
+        font-weight: 500;
         font-style: normal;
         font-display: swap;
       }
@@ -47,20 +83,11 @@
         --minty: #00f2ff;
         --yellow: #ffad00;
         --coral: #ff715f;
-        /* typography — one typeface, four approved weights */
-        --font: "Neurial Grotesk", "Space Grotesk", -apple-system,
-          "Segoe UI", sans-serif;
-        --fw-light: 300;
-        --fw-normal: 400;
-        --fw-medium: 500;
-        --fw-bold: 700;
-        --display: var(--font);
-        --heavy: var(--font);
-        --body: var(--font);
-        --brand-wordmark: var(--font);
-        /* pre-guideline display face, kept only for the hero headline
-           and buttons by request */
-        --heavy-hero: "Midnight Sans", "Arial Black", sans-serif;
+        /* typography */
+        --display: "Feature", ui-serif, Georgia, serif;
+        --heavy: "Midnight Sans", "Arial Black", sans-serif;
+        --body: "Euclid", -apple-system, "Segoe UI", sans-serif;
+        --brand-wordmark: var(--heavy);
         --maxw: 1240px;
       }
       *,
@@ -160,7 +187,7 @@
       }
       .logo .wm {
         font-family: var(--brand-wordmark);
-        font-weight: 700;
+        font-weight: 900;
         font-size: calc(var(--lg-mark) * 0.84);
         line-height: 1;
         letter-spacing: -0.012em;
@@ -180,7 +207,7 @@
         gap: 10px;
         background: var(--bala);
         color: var(--off);
-        font-family: var(--heavy-hero);
+        font-family: var(--heavy);
         font-size: 19px;
         letter-spacing: 0.02em;
         text-transform: uppercase;
@@ -206,6 +233,12 @@
         font-size: 15px;
         padding: 11px 22px;
         border-width: 1.2px;
+      }
+      /* Nav "Join the Waitlist" swaps to a shorter label once the nav
+         compresses to its mobile layout, so the pill never wraps to two
+         lines (which was throwing its padding off). */
+      .nav-right .btn-sm .txt-short {
+        display: none;
       }
       .btn-mint {
         background: var(--minty);
@@ -243,12 +276,12 @@
       }
       .h-display {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         letter-spacing: -0.015em;
         line-height: 1.03;
       }
       .h-heavy {
-        font-family: var(--heavy-hero);
+        font-family: var(--heavy);
         font-weight: 900;
         text-transform: uppercase;
         line-height: 0.92;
@@ -616,7 +649,7 @@
         align-items: center;
         justify-content: center;
         font-size: 12px;
-        font-weight: 700;
+        font-weight: 600;
         background: var(--bala);
         color: var(--off);
       }
@@ -803,7 +836,7 @@
       .amt b {
         display: block;
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: 32px;
         letter-spacing: -0.02em;
         margin-top: 5px;
@@ -1075,7 +1108,7 @@
       .tg-mid .cap b {
         display: block;
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: 26px;
         line-height: 1.1;
       }
@@ -1130,7 +1163,7 @@
       }
       .bcard h3 {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: 44px;
         line-height: 1.05;
         margin-top: 14px;
@@ -1246,7 +1279,7 @@
       .coin b {
         transform: skewX(9deg);
         font-family: var(--heavy);
-        font-weight: 700;
+        font-weight: 900;
         font-size: 19px;
         letter-spacing: 0.02em;
       }
@@ -1304,7 +1337,7 @@
         z-index: 2;
         margin-top: auto;
         font-family: var(--heavy);
-        font-weight: 700;
+        font-weight: 900;
         font-size: 16px;
         letter-spacing: 0.1em;
       }
@@ -1509,7 +1542,7 @@
       }
       .ind-head h2 {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: clamp(28px, 3.6vw, 44px);
         margin-top: 22px;
         line-height: 1.1;
@@ -1596,7 +1629,7 @@
       }
       .ind-card h3 {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: 29px;
         line-height: 1.08;
       }
@@ -1687,7 +1720,7 @@
       }
       .blog-sec h2 {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: clamp(30px, 3.8vw, 46px);
         letter-spacing: -0.01em;
       }
@@ -1731,7 +1764,7 @@
       }
       .bl h3 {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: 23px;
         line-height: 1.22;
         margin-top: 14px;
@@ -1772,7 +1805,7 @@
       }
       .faq-panel h2 {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: clamp(34px, 4vw, 52px);
         line-height: 1.06;
         letter-spacing: -0.01em;
@@ -2032,6 +2065,16 @@
         .burger {
           display: flex;
         }
+        .nav-right .btn-sm .txt-full {
+          display: none;
+        }
+        .nav-right .btn-sm .txt-short {
+          display: inline;
+        }
+        .nav-right .btn-sm {
+          padding: 10px 18px;
+          white-space: nowrap;
+        }
         .hero-grid {
           grid-template-columns: 1fr 300px;
           gap: 26px;
@@ -2174,7 +2217,7 @@
       }
       .page-hero h1 {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: clamp(32px, 4.6vw, 54px);
         line-height: 1.08;
         letter-spacing: -0.01em;
@@ -2244,7 +2287,7 @@
       .steps-panel h2 {
         text-align: center;
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: clamp(26px, 3.4vw, 38px);
         letter-spacing: -0.01em;
         color: var(--deep);
@@ -2297,7 +2340,7 @@
       }
       .page-cta h2 {
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: clamp(26px, 3.4vw, 36px);
         letter-spacing: -0.01em;
         color: var(--deep);
@@ -2368,7 +2411,7 @@
       .stat b {
         display: block;
         font-family: var(--display);
-        font-weight: 500;
+        font-weight: 400;
         font-size: 32px;
         color: var(--deep);
         letter-spacing: -0.01em;
@@ -2425,7 +2468,7 @@
         align-items: center;
         justify-content: center;
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 600;
         flex: none;
       }
       .rate-val {
