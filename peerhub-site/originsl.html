@@ -449,26 +449,33 @@ a{text-decoration:none;color:inherit}
 .mhero::before{content:'';position:absolute;top:-10vw;right:-15vw;width:min(80vw,400px);height:min(80vw,400px);
   border-radius:50%;background:radial-gradient(circle,rgba(59,33,246,.1) 0%,transparent 68%);pointer-events:none}
 
-.mh-text{padding:clamp(28px,7vw,48px) clamp(16px,5vw,40px) 0;display:flex;flex-direction:column;
+.mh-text{padding:clamp(20px,6vw,36px) clamp(16px,5vw,40px) 0;display:flex;flex-direction:column;
   align-items:flex-start;position:relative;z-index:10}
 
-.mh-h1{font-family:'Inter',system-ui,sans-serif;font-size:clamp(2.2rem,12vw,4rem);font-weight:900;
-  line-height:1.18;letter-spacing:-.04em;text-transform:uppercase;display:flex;flex-direction:column;
-  align-items:flex-start;gap:.18em}
+.mh-h1{font-family:'Inter',system-ui,sans-serif;font-size:clamp(1.9rem,10.5vw,3.2rem);font-weight:900;
+  line-height:1.12;letter-spacing:-.03em;text-transform:uppercase;display:flex;flex-direction:column;
+  align-items:flex-start;gap:.12em}
 .mh-h1 .mh-line{display:inline;background:var(--h-deep);color:#fff;padding:.06em .2em;
-  -webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:4px}
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:4px;
+  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) both}
 .mh-h1 .mh-line.yellow{background:var(--h-yellow);color:var(--h-deep)}
+.mh-h1 .mh-line:nth-child(1){animation-delay:.1s}
+.mh-h1 .mh-line:nth-child(2){animation-delay:.2s}
+.mh-h1 .mh-line:nth-child(3){animation-delay:.3s}
 
-.mh-subtitle{color:rgba(28,25,105,.65);font-size:clamp(.85rem,3.5vw,1rem);line-height:1.65;
-  margin-top:clamp(14px,4vw,22px);max-width:38ch}
+.mh-subtitle{color:rgba(28,25,105,.65);font-size:clamp(.85rem,3.5vw,1rem);line-height:1.6;
+  margin-top:clamp(10px,3vw,16px);max-width:34ch;
+  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) .4s both}
 
-.mh-cta{margin-top:clamp(16px,4vw,24px);background:var(--h-yellow);color:var(--h-deep);
+.mh-cta{margin-top:clamp(14px,3.5vw,20px);background:var(--h-yellow);color:var(--h-deep);
   font-family:inherit;font-size:clamp(.8rem,3.5vw,.95rem);font-weight:800;padding:.85em 1.6em;
   border-radius:999px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;
-  letter-spacing:.02em;box-shadow:0 4px 20px rgba(255,173,0,.35)}
+  letter-spacing:.02em;box-shadow:0 4px 20px rgba(255,173,0,.35);
+  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) .5s both}
 .mh-cta svg{flex-shrink:0;width:clamp(14px,4vw,16px);height:clamp(14px,4vw,16px)}
 
-.mh-social-proof{display:flex;align-items:center;gap:10px;margin-top:clamp(14px,4vw,20px);flex-wrap:wrap}
+.mh-social-proof{display:flex;align-items:center;gap:10px;margin-top:clamp(12px,3vw,16px);flex-wrap:wrap;
+  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) .6s both}
 .mh-avatars{display:flex}
 .mh-avatar{width:clamp(24px,6vw,30px);height:clamp(24px,6vw,30px);border-radius:50%;border:2px solid #fff;
   display:flex;align-items:center;justify-content:center;font-size:clamp(9px,2.2vw,11px);font-weight:700;
@@ -482,16 +489,23 @@ a{text-decoration:none;color:inherit}
 .mh-social-text strong{color:var(--h-deep);font-weight:700}
 
 .mh-phone-wrap{position:relative;z-index:10;display:flex;justify-content:center;
-  padding:clamp(16px,5vw,32px) clamp(16px,5vw,32px) 0;margin-bottom:-1.5rem}
+  padding:clamp(12px,4vw,24px) clamp(16px,5vw,32px) 0;margin-bottom:-1.5rem;
+  opacity:0;animation:mh-land-in .9s cubic-bezier(.4,0,.2,1) .5s both}
 .mh-phone-img{width:clamp(180px,55vw,300px);height:auto;display:block;
-  filter:drop-shadow(0 20px 36px rgba(59,33,246,.18));animation:mh-float 4s ease-in-out infinite}
+  filter:drop-shadow(0 20px 36px rgba(59,33,246,.18));animation:mh-float 4s ease-in-out 1.4s infinite}
 @keyframes mh-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* Hero content lands in on load: fade + rise, staggered per element */
+@keyframes mh-land-in{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
 .mh-cards{position:relative;z-index:10;display:flex;flex-direction:column;gap:10px;
-  padding:clamp(24px,6vw,40px) clamp(16px,5vw,32px) clamp(24px,6vw,40px)}
+  padding:clamp(16px,5vw,32px) clamp(16px,5vw,32px) clamp(24px,6vw,40px)}
 .mh-card{background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(59,33,246,.1);border-radius:clamp(10px,3vw,14px);padding:12px clamp(12px,3vw,16px);
-  display:flex;align-items:center;gap:12px;box-shadow:0 2px 14px rgba(28,25,105,.09)}
+  display:flex;align-items:center;gap:12px;box-shadow:0 2px 14px rgba(28,25,105,.09);
+  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) both}
+.mh-card:nth-child(1){animation-delay:.7s}
+.mh-card:nth-child(2){animation-delay:.8s}
+.mh-card:nth-child(3){animation-delay:.9s}
 .mh-card-icon{width:clamp(34px,9vw,40px);height:clamp(34px,9vw,40px);border-radius:clamp(8px,2.5vw,10px);
   display:flex;align-items:center;justify-content:center;font-size:clamp(15px,4.5vw,18px);flex-shrink:0}
 .mh-card-icon.btc{background:#F7931A}
@@ -513,6 +527,12 @@ a{text-decoration:none;color:inherit}
   position:relative;z-index:10}
 .mh-scroll-line{width:1px;height:20px;background:rgba(28,25,105,.15);margin-bottom:6px}
 
+@media(prefers-reduced-motion:reduce){
+  .mh-h1 .mh-line,.mh-subtitle,.mh-cta,.mh-social-proof,.mh-phone-wrap,.mh-card{
+    animation:none!important;opacity:1!important;transform:none!important}
+  .mh-phone-img{animation:none!important}
+}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:1024px){
   .hero-phone{right:2%}
@@ -529,12 +549,14 @@ a{text-decoration:none;color:inherit}
 }
 
 @media(max-width:768px){
-  :root{--nav-h:60px}
+  :root{--nav-h:64px}
   .nav{padding:0 20px}
+  .nav-logo{height:28px}
   .mobile-only{display:inline}
   .desktop-only{display:none}
   .nav-links,.nav-actions{display:none}
   .hamburger{display:flex}
+  .ham-line{width:22px;opacity:.85}
   .mob-nav{display:flex}
 
   /* Swap in the hali.html-style mobile hero; desktop .hero markup is hidden */
@@ -765,7 +787,7 @@ a{text-decoration:none;color:inherit}
       <span class="mh-line yellow">INSTANTLY.</span>
     </h1>
 
-    <p class="mh-subtitle">Convert crypto to fiat and back, pay every utility bill, and spend with a virtual dollar card &mdash; or just chat with our WhatsApp AI.</p>
+    <p class="mh-subtitle">Convert crypto to cash, pay bills, and spend with a virtual dollar card &mdash; instantly.</p><br>
 
     <button class="mh-cta" type="button">
       JOIN THE WAITLIST
