@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PeerHub — Crypto to Cash, Instantly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+
+  <style>
+    /* ── BRAND TOKENS ── */
+    :root {
+      --bala-blue:   #3B21F6;
+      --deep-blue:   #1C1969;
+      --off-white:   #F0F0FF;
+      --minty-blue:  #00F2FF;
+      --deep-yellow: #FFAD00;
+      --coral:       #FF715F;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(
+        108deg,
+        #d4ceff 0%, #d4ceff 22%, #ddd8ff 36%,
+        #e8e5ff 50%, #f0efff 62%, #f7f6ff 72%,
+        #ffffff 82%, #ffffff 100%
+      );
+    }
+
+    /* ─────────────────────────────────────
+       NAV
+    ───────────────────────────────────── */
+    .nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: clamp(14px, 3vw, 22px) clamp(16px, 5vw, 80px);
+      position: relative;
+      z-index: 20;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: clamp(28px, 4vw, 36px);
+      height: clamp(28px, 4vw, 36px);
+      border-radius: 8px;
+      background: var(--bala-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(13px, 2vw, 17px);
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .logo-text {
+      color: var(--deep-blue);
+      font-size: clamp(15px, 2.2vw, 20px);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    /* Desktop nav links — hidden on mobile */
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: clamp(24px, 3vw, 48px);
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--deep-blue);
+      font-size: clamp(13px, 1.2vw, 16px);
+      font-weight: 500;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-waitlist {
+      background: var(--bala-blue);
+      color: #fff;
+      font-family: inherit;
+      font-size: clamp(11px, 1.1vw, 14px);
+      font-weight: 700;
+      padding: clamp(8px, 1vw, 12px) clamp(14px, 2vw, 24px);
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* Hamburger — visible on mobile only */
+    .hamburger {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: clamp(18px, 5vw, 22px);
+      height: 2px;
+      background: var(--deep-blue);
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+
+    /* ─────────────────────────────────────
+       HERO
+    ───────────────────────────────────── */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: calc(100svh - 70px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* decorative glow blobs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10vw; right: -15vw;
+      width: min(80vw, 400px); height: min(80vw, 400px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,33,246,0.1) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    /* ─────────────────────────────────────
+       MOBILE LAYOUT (default / < 900px)
+       Single column: text → phone → cards
+    ───────────────────────────────────── */
+
+    /* Headline */
+    .hero-text {
+      padding: clamp(28px, 7vw, 48px) clamp(16px, 5vw, 40px) 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 12vw, 4rem);
+      font-weight: 900;
+      line-height: 1.18;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.18em;
+    }
+
+    /* Per-line highlighted boxes */
+    h1 .line {
+      display: inline;
+      background: var(--deep-blue);
+      color: #fff;
+      padding: 0.06em 0.2em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      border-radius: 4px;
+    }
+
+    h1 .line.yellow {
+      background: var(--deep-yellow);
+      color: var(--deep-blue);
+    }
+
+    .subtitle {
+      color: rgba(28, 25, 105, 0.65);
+      font-size: clamp(0.85rem, 3.5vw, 1rem);
+      line-height: 1.65;
+      margin-top: clamp(14px, 4vw, 22px);
+      max-width: 38ch;
+    }
+
+    .btn-cta {
+      margin-top: clamp(16px, 4vw, 24px);
+      background: var(--deep-yellow);
+      color: var(--deep-blue);
+      font-family: inherit;
+      font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+      font-weight: 800;
+      padding: 0.85em 1.6em;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 20px rgba(255,173,0,0.35);
+    }
+
+    .btn-cta svg {
+      flex-shrink: 0;
+      width: clamp(14px, 4vw, 16px);
+      height: clamp(14px, 4vw, 16px);
+    }
+
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: clamp(14px, 4vw, 20px);
+      flex-wrap: wrap;
+    }
+
+    .avatars { display: flex; }
+
+    .avatar {
+      width: clamp(24px, 6vw, 30px);
+      height: clamp(24px, 6vw, 30px);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(9px, 2.2vw, 11px);
+      font-weight: 700;
+      color: #fff;
+      position: relative;
+    }
+
+    .avatar:not(:first-child) { margin-left: -8px; }
+    .avatar:nth-child(1) { background: var(--bala-blue);   z-index: 4; }
+    .avatar:nth-child(2) { background: var(--deep-yellow); z-index: 3; color: var(--deep-blue); }
+    .avatar:nth-child(3) { background: var(--coral);       z-index: 2; }
+    .avatar:nth-child(4) { background: #26A17B;            z-index: 1; }
+
+    .social-text {
+      color: rgba(28,25,105,0.55);
+      font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+      line-height: 1.4;
+    }
+    .social-text strong { color: var(--deep-blue); font-weight: 700; }
+
+    /* ── Phone image — mobile: centred below text ── */
+    .phone-wrap {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      padding: clamp(16px, 5vw, 32px) clamp(16px, 5vw, 32px) 0;
+      margin-bottom: -1.5rem;
+    }
+
+    .phone-img {
+      width: clamp(180px, 55vw, 300px);
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 20px 36px rgba(59,33,246,0.18));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    /* ── Transaction cards — mobile: stacked list ── */
+    .cards {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: clamp(24px, 6vw, 40px) clamp(16px, 5vw, 32px) clamp(24px, 6vw, 40px);
+    }
+
+    .card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(59,33,246,0.1);
+      border-radius: clamp(10px, 3vw, 14px);
+      padding: 12px clamp(12px, 3vw, 16px);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 14px rgba(28,25,105,0.09);
+    }
+
+    .card-icon {
+      width: clamp(34px, 9vw, 40px);
+      height: clamp(34px, 9vw, 40px);
+      border-radius: clamp(8px, 2.5vw, 10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(15px, 4.5vw, 18px);
+      flex-shrink: 0;
+    }
+
+    .card-icon.btc  { background: #F7931A; }
+    .card-icon.usdt { background: var(--bala-blue); border-radius: 50%; }
+    .card-icon.bolt { background: #e8e5ff; }
+    .card-icon.bolt span { font-size: clamp(14px, 4vw, 17px); }
+
+    .card-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+    .card-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+    .card-label {
+      color: var(--deep-blue);
+      font-size: clamp(0.75rem, 3vw, 0.87rem);
+      font-weight: 600;
+    }
+
+    .badge {
+      background: rgba(0,242,255,0.15);
+      color: #007f8e;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+
+    .card-time {
+      color: rgba(28,25,105,0.4);
+      font-size: clamp(0.65rem, 2.4vw, 0.72rem);
+      margin-top: 2px;
+    }
+
+    .card-amount {
+      font-size: clamp(0.85rem, 3.5vw, 1rem);
+      font-weight: 700;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .card-amount.pos { color: #1aad6e; }
+    .card-amount.neg { color: var(--coral); }
+
+    /* ── Scroll hint ── */
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: clamp(16px, 4vw, 24px);
+      color: rgba(28,25,105,0.3);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 10;
+    }
+
+    .scroll-line {
+      width: 1px; height: 20px;
+      background: rgba(28,25,105,0.15);
+      margin-bottom: 6px;
+    }
+
+    /* ─────────────────────────────────────
+       DESKTOP LAYOUT (≥ 900px)
+       Nav: full links | Hero: 2-column
+       Left: text+CTA  |  Right: phone+cards
+    ───────────────────────────────────── */
+    @media (min-width: 900px) {
+      /* show full nav links, hide hamburger */
+      .nav-links { display: flex; }
+      .hamburger { display: none; }
+
+      /* hero: left text col + right visual col */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+        grid-template-areas:
+          "text  right"
+          "scroll scroll";
+        min-height: calc(100svh - 80px);
+        padding: 0 0 0 clamp(32px, 6vw, 80px); /* no right padding — phone bleeds to edge */
+        overflow: hidden;
+      }
+
+      .hero::before { width: 500px; height: 500px; }
+
+      /* left column */
+      .hero-text {
+        grid-area: text;
+        padding: 0;
+        justify-content: center;
+        align-self: center;
+      }
+
+      h1 { font-size: clamp(2.8rem, 5.5vw, 5.5rem); }
+
+      /* right column — relative so we can absolutely place phone + cards */
+      .hero-right {
+        grid-area: right;
+        position: relative;
+        overflow: visible;
+      }
+
+      /* phone: anchored to bottom-right, extends to viewport edge */
+      .phone-wrap {
+        position: absolute;
+        bottom: 0;
+        right: -2vw;          /* bleed slightly past column edge */
+        width: auto;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+
+      .phone-img {
+        width: clamp(280px, 42vw, 540px);
+        position: relative;
+        z-index: 5;
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* cards: float left side of right col, in front of phone
+         (width is vw-based, not %-of-column, so it doesn't collapse
+         at typical laptop widths where the right column itself is narrow) */
+      .cards {
+        position: absolute;
+        left: 0;
+        bottom: clamp(40px, 8vw, 90px);
+        width: clamp(290px, 26vw, 340px);
+        padding: 0;
+        gap: 10px;
+        z-index: 10;
+      }
+
+      .card { border-radius: 14px; padding: 14px 16px; }
+
+      .scroll-hint { grid-area: scroll; padding-bottom: 24px; }
+    }
+
+    /* ─────────────────────────────────────
+       WIDE DESKTOP (≥ 1200px)
+    ───────────────────────────────────── */
+    @media (min-width: 1200px) {
+      h1 { font-size: clamp(3.5rem, 5vw, 6rem); }
+
+      .hero { padding-left: clamp(60px, 8vw, 120px); }
+
+      .phone-wrap { right: -3vw; }
+      .phone-img  { width: clamp(340px, 40vw, 580px); }
+      .cards      { width: clamp(310px, 24vw, 360px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <a class="logo" href="#">
+      <div class="logo-icon">P</div>
+      <span class="logo-text">PeerHub</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Convert</a></li>
+      <li><a href="#">Pay Bills</a></li>
+      <li><a href="#">Virtual Card</a></li>
+      <li><a href="#">Help</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="btn-waitlist">Join the waitlist</button>
+      <button class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+
+    <!-- LEFT / MOBILE-TOP: text + CTA -->
+    <div class="hero-text">
+      <h1>
+        <span class="line">CRYPTO</span>
+        <span class="line">TO CASH,</span>
+        <span class="line yellow">INSTANTLY.</span>
+      </h1>
+
+      <p class="subtitle">
+        Convert crypto to fiat and back, pay every utility bill, and spend
+        with a virtual dollar card — or just chat with our WhatsApp AI.
+      </p>
+
+      <button class="btn-cta">
+        JOIN THE WAITLIST
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+
+      <div class="social-proof">
+        <div class="avatars">
+          <div class="avatar">A</div>
+          <div class="avatar">B</div>
+          <div class="avatar">C</div>
+          <div class="avatar">D</div>
+        </div>
+        <span class="social-text">
+          Join <strong>50,000+</strong> others already on the waitlist
+        </span>
+      </div>
+    </div>
+
+    <!-- RIGHT / MOBILE-MIDDLE+BOTTOM: phone + cards -->
+    <div class="hero-right">
+      <div class="phone-wrap">
+        <img class="phone-img"
+             src="https://cdn.prod.website-files.com/6360022338a81bd6fdbb1145/67f8f68b6a43a328b669a59c_4632949cb6e5e84e75bc4b053891115f_handWithPhone.avif"
+             alt="PeerHub app on a phone" />
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon btc">₿</div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-label">BTC converted to cash</span>
+              <span class="badge">LIVE</span>
+            </div>
+            <span class="card-time">45 minutes ago</span>
+          </div>
+          <span class="card-amount pos">+$1,680</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon usdt" style="color:#fff;font-weight:800;font-size:15px;">⟳</div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-label">USDT → USD swap</span>
+            </div>
+            <span class="card-time">3 days ago</span>
+          </div>
+          <span class="card-amount pos">+$213</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon bolt"><span>⚡</span></div>
+          <div class="card-body">
+            <div class="card-row">
+              <span class="card-label">Electricity bill paid</span>
+            </div>
+            <span class="card-time">34 minutes ago</span>
+          </div>
+          <span class="card-amount neg">−$42.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCROLL HINT -->
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      SCROLL
+    </div>
+
+  </section>
+
+</body>
+</html>
