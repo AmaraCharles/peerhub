@@ -236,13 +236,13 @@ a{text-decoration:none;color:inherit}
 .currency-cta{color:var(--blue)}
 
 /* ---- 3. VIRTUAL CARDS (text left, illustrated right) ---- */
-.vc-section{background:var(--green-light);display:grid;grid-template-columns:1fr 1.2fr;min-height:560px;overflow:hidden}
+.vc-section{background:#dbf7f9;display:grid;grid-template-columns:1fr 1.2fr;min-height:560px;overflow:hidden}
 .vc-text{padding:56px 48px;display:flex;flex-direction:column;justify-content:center;z-index:2}
 .vc-text .sec-label{color:#16A34A}
 .vc-visual{position:relative;display:flex;align-items:center;justify-content:center;overflow:visible;padding:36px 0 0}
-.vc-phone-img{height:380px;width:auto;object-fit:contain;object-position:bottom center;position:relative;z-index:2;
+.vc-media{height:380px;width:auto;max-width:100%;object-fit:contain;object-position:bottom center;position:relative;z-index:2;
   transform:scale(.94);transition:transform 1.4s cubic-bezier(.4,0,.2,1) .2s;border-radius:16px}
-.in-view .vc-phone-img{transform:scale(1)}
+.in-view .vc-media{transform:scale(1)}
 .orb{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-weight:800;z-index:3;animation:bob 4s ease-in-out infinite}
 .orb-ps{width:52px;height:52px;background:#003087;color:#fff;font-size:20px;top:8%;right:16%;animation-delay:0s}
@@ -538,7 +538,7 @@ a{text-decoration:none;color:inherit}
 
   .vc-section{grid-template-columns:1fr;min-height:auto}
   .vc-visual{order:0;height:320px;padding:20px 0 0}
-  .vc-phone-img{height:260px}
+  .vc-media{height:260px}
   .vc-text{order:1;padding:32px 20px 40px}
   .orb-sh,.orb-di{display:none}
   .orb-ps{top:6%;right:8%;width:42px;height:42px;font-size:17px}
@@ -581,7 +581,7 @@ a{text-decoration:none;color:inherit}
 @media(max-width:400px){
   .ph-container{padding:0 8px}
   .hero-phone{height:52%}
-  .vc-phone-img{height:230px}
+  .vc-media{height:230px}
   .vc-visual{height:280px}
   .wa-phone{height:auto}
   .wa-phone-img{height:250px}
@@ -882,14 +882,12 @@ a{text-decoration:none;color:inherit}
         <p class="sec-body">Fund it instantly from your balance and spend online anywhere Visa is accepted &mdash; subscriptions, ads, shopping, all of it.</p>
       </div>
       <div class="vc-visual split-r">
-        <div class="orb orb-ps"><i class="fa-brands fa-playstation"></i></div>
-        <div class="orb orb-nf">N</div>
-        <div class="orb orb-sh">SHEIN</div>
-        <div class="orb orb-di">disney+</div>
-        <div class="orb orb-am"><i class="fa-brands fa-amazon"></i></div>
-        <div class="orb orb-ap"><i class="fa-brands fa-apple"></i></div>
-        <div class="orb orb-sp"><i class="fa-brands fa-spotify"></i></div>
-        <img class="vc-phone-img" src="https://cdn.prod.website-files.com/6360022338a81bd6fdbb1145/683ebb4a552463589e61ce75_0974207bb656f20ca75a64de5b2e0b99_hand-with-card.avif" alt="Hand holding phone with virtual card">
+        <canvas class="vc-media" id="vcCanvas" aria-label="PeerHub virtual card animation"></canvas>
+        <video id="vcSrcVideo" muted loop playsinline preload="auto"
+          style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none">
+          <source src="black-alpha.mp4" type="video/mp4">
+        </video>
+        
       </div>
     </div>
   </div>
@@ -1142,6 +1140,67 @@ if (expenseBars) {
   }, { threshold: 0.4 });
   barIO.observe(expenseBars);
 }
+
+// Virtual card video: composite hidden color+alpha combo video onto a
+// canvas each frame so the black backdrop is truly transparent and the
+// card/rings blend into whatever background sits behind them.
+(function () {
+  const canvas = document.getElementById('vcCanvas');
+  const vid = document.getElementById('vcSrcVideo');
+  if (!canvas || !vid) return;
+
+  const ctx = canvas.getContext('2d', { alpha: true });
+  const colorCv = document.createElement('canvas');
+  const alphaCv = document.createElement('canvas');
+  const cctx = colorCv.getContext('2d', { willReadFrequently: true });
+  const actx = alphaCv.getContext('2d', { willReadFrequently: true });
+
+  let vw = 0, vh = 0, halfH = 0, ready = false, started = false;
+
+  function setup() {
+    vw = vid.videoWidth;
+    vh = vid.videoHeight;
+    if (!vw || !vh) return;
+    halfH = vh / 2;
+    canvas.width = vw;
+    canvas.height = halfH;
+    colorCv.width = vw; colorCv.height = halfH;
+    alphaCv.width = vw; alphaCv.height = halfH;
+    ready = true;
+  }
+  vid.addEventListener('loadedmetadata', setup);
+  if (vid.readyState >= 1) setup();
+
+  function drawFrame() {
+    if (ready && vid.readyState >= 2) {
+      cctx.drawImage(vid, 0, 0, vw, halfH, 0, 0, vw, halfH);
+      actx.drawImage(vid, 0, halfH, vw, halfH, 0, 0, vw, halfH);
+      const colorData = cctx.getImageData(0, 0, vw, halfH);
+      const alphaData = actx.getImageData(0, 0, vw, halfH);
+      const cd = colorData.data, ad = alphaData.data;
+      for (let i = 0; i < cd.length; i += 4) cd[i + 3] = ad[i];
+      ctx.putImageData(colorData, 0, 0);
+    }
+    requestAnimationFrame(drawFrame);
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    const p = vid.play();
+    if (p && p.catch) p.catch(function () {});
+    requestAnimationFrame(drawFrame);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const vcIO = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { start(); vcIO.disconnect(); } });
+    }, { threshold: 0.1 });
+    vcIO.observe(canvas);
+  } else {
+    start();
+  }
+})();
 </script>
 
 </body>
