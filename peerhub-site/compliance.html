@@ -3,13 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PeerHub: Convert Crypto to Cash, Pay Bills, Get a Virtual Dollar Card</title>
-<meta name="description" content="PeerHub lets you convert crypto to fiat and back, pay your utility bills, and spend with a virtual dollar card — or just chat with our WhatsApp AI and let it handle the transaction for you.">
+<title>Compliance — PeerHub</title>
+<meta name="description" content="PeerHub's approach to licensing, identity verification, anti-money laundering, and data protection.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;color:var(--ink);background:#fff;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.mobile-only{display:none}
+.desktop-only{display:inline}
+
 :root{
   --blue:#3333FF;--blue-dark:#2222CC;--blue-light:#EEEFFF;
   --ink:#0A0A14;--grey-text:#6B7280;--purple:#7C3AED;--purple-light:#F3E8FF;
@@ -17,12 +24,6 @@
   --r:22px;--nav-h:72px;
   --bala:#3B21F6;--h-deep:#1C1969;--h-cyan:#00F2FF;--h-yellow:#FFAD00;--h-coral:#FF715F;
 }
-html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,sans-serif;color:var(--ink);background:#fff;overflow-x:hidden}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
-.mobile-only{display:none}
-.desktop-only{display:inline}
 
 /* ============ NAV ============ */
 .nav{position:sticky;top:0;z-index:299;background:#fff;border-bottom:1px solid #E5E7EB;
@@ -52,124 +53,10 @@ a{text-decoration:none;color:inherit}
 .mob-link{display:block;padding:18px 0;font-size:22px;font-weight:700;color:var(--ink);border-bottom:1px solid #F3F4F6}
 .mob-actions{margin-top:32px;display:flex;flex-direction:column;gap:12px}
 
-/* ============ HERO ============ */
-.hero{position:relative;width:100%;height:calc(100vh - var(--nav-h));min-height:600px;overflow:hidden;
-  background:linear-gradient(108deg,#d4ceff 0%,#d4ceff 22%,#ddd8ff 36%,#e8e5ff 50%,#f0efff 62%,#f7f6ff 72%,#ffffff 82%,#ffffff 100%)}
-
-.hero-phone{position:absolute;right:6%;top:50%;transform:translateY(-52%);height:82%;max-height:680px;
-  object-fit:contain;object-position:center;z-index:5;
-  filter:drop-shadow(0 48px 96px rgba(59,33,246,.22));
-  animation:phone-in 1s cubic-bezier(.4,0,.2,1) .35s both}
-@keyframes phone-in{from{opacity:0;transform:translateY(calc(-52% + 42px))}to{opacity:1;transform:translateY(-52%)}}
-
-.glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
-.glow-1{width:520px;height:520px;background:rgba(59,33,246,.14);top:-130px;left:-110px}
-.glow-2{width:220px;height:220px;background:rgba(0,242,255,.08);bottom:6%;left:22%}
-
-.hero-copy{position:absolute;z-index:10;top:54%;left:5%;transform:translateY(-50%);max-width:560px;
-  animation:copy-in .9s cubic-bezier(.4,0,.2,1) .25s both}
-@keyframes copy-in{from{opacity:0;transform:translateY(calc(-50% + 30px))}to{opacity:1;transform:translateY(-50%)}}
-
-.h-badge{display:inline-flex;align-items:center;gap:8px;background:var(--h-cyan);color:#07072e;
-  font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;
-  padding:7px 16px 7px 10px;border-radius:100px;margin-bottom:26px}
-.h-badge-pulse{width:7px;height:7px;background:var(--h-deep);border-radius:50%;flex-shrink:0;
-  animation:h-pulse 2s ease-in-out infinite}
-@keyframes h-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
-
-.headline{
-  display:flex;flex-direction:column;gap:7px;
-  margin-bottom:28px;
-  line-height:1;
-}
-
-.hl-box{display:inline-block;font-family:'Barlow Condensed','Inter',sans-serif;font-weight:900;
-  font-size:clamp(46px,6vw,84px);text-transform:uppercase;letter-spacing:-1.5px;color:#F0F0FF;
-  padding:4px 18px 4px 12px;line-height:.97}
-.hl-dark{background:var(--h-deep)}
-.hl-blue{background:var(--bala)}
-
-.hero-sub{color:rgba(28,25,105,.72);font-size:16px;line-height:1.68;max-width:380px;margin-bottom:32px}
-
-.hero-cta{display:inline-flex;align-items:center;gap:12px;background:var(--h-yellow);color:#0a0508;
-  font-size:14.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
-  padding:17px 34px;border-radius:100px;box-shadow:0 10px 36px rgba(255,173,0,.44);
-  transition:transform .2s,box-shadow .2s}
-.hero-cta:hover{transform:translateY(-2px);box-shadow:0 16px 48px rgba(255,173,0,.58)}
-.h-cta-arrow{font-size:14px;transition:transform .2s}
-.hero-cta:hover .h-cta-arrow{transform:translateX(5px)}
-
-.cta-trust{margin-top:16px;display:flex;align-items:center;gap:8px;color:rgba(28,25,105,.5);font-size:12.5px}
-.trust-avatars{display:flex}
-.trust-avatar{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);
-  margin-left:-6px;font-size:10px;display:flex;align-items:center;justify-content:center;
-  background:var(--bala);color:#fff;font-weight:700}
-.trust-avatar:first-child{margin-left:0}
-
-.float-cards{position:absolute;z-index:10;right:26%;bottom:10%;display:flex;flex-direction:column;gap:10px;
-  animation:cards-in 1s cubic-bezier(.4,0,.2,1) .55s both}
-@keyframes cards-in{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.fcard{background:rgba(255,255,255,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border-radius:18px;padding:12px 16px;display:flex;align-items:center;gap:12px;min-width:280px;
-  box-shadow:0 8px 36px rgba(255,255,255,.94)}
-.fcard:nth-child(1){transform:translateX(-16px)}
-.fcard:nth-child(2){transform:translateX(0)}
-.fcard:nth-child(3){transform:translateX(-10px)}
-.fcard-icon{width:40px;height:40px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;
-  justify-content:center;font-size:17px}
-.fcard-body{flex:1}
-.fcard-title{font-size:13px;font-weight:600;color:#12103a}
-.fcard-meta{font-size:11px;color:#9CA3AF;margin-top:2px;display:flex;align-items:center;gap:5px}
-.fcard-dot{width:3px;height:3px;border-radius:50%;background:#D1D5DB}
-.fcard-amount{font-size:14px;font-weight:700}
-.fcard-amount.pos{color:#2222CC}
-.fcard-amount.neg{color:#dc2626}
-.fcard-badge{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--h-deep);
-  background:rgba(0,242,255,.2);padding:2px 7px;border-radius:100px}
-
-.scroll-nudge{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:10;
-  display:flex;flex-direction:column;align-items:center;gap:5px;color:rgba(28,25,105,.35);
-  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
-  animation:h-nudge 2.4s ease-in-out infinite}
-@keyframes h-nudge{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
-.scroll-chevron{font-size:16px;opacity:.5}
-
-/* ============ PRESS ============ */
-.press{padding:40px 60px;background:#fff;display:flex;align-items:center;gap:40px;
-  flex-wrap:wrap;border-bottom:1px solid #F3F4F6}
-.press-label{font-size:11px;font-weight:700;letter-spacing:2.5px;color:#9CA3AF;
-  text-transform:uppercase;white-space:nowrap;flex-shrink:0}
-.press-logos{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
-.press-logo{font-size:16px;font-weight:700;color:#374151;opacity:.7;white-space:nowrap}
-.press-logo.forbes{font-size:21px;font-style:italic}
-.press-divider{width:1px;height:18px;background:#D1D5DB;flex-shrink:0}
-
-/* ============ NO LIMITS ============ */
-.no-limits{padding:88px 60px 96px;text-align:center;background:#fff;position:relative;overflow:hidden}
-.cert-badge{width:76px;height:84px;background:linear-gradient(145deg,#8B1A1A,#C0392B);
-  border-radius:8px 8px 50% 50%;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;margin:0 auto 44px;box-shadow:0 8px 24px rgba(139,26,26,.3)}
-.cert-badge span{color:#fff;font-size:6.5px;font-weight:700;text-align:center;line-height:1.3}
-.cert-check{width:26px;height:26px;background:rgba(255,255,255,.2);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;margin-top:4px;color:#fff;font-size:12px}
-.no-limits h2{font-size:clamp(36px,5.4vw,60px);font-weight:800;letter-spacing:-1.8px;color:var(--ink);line-height:1.06;margin-bottom:10px}
-.nl-go{display:flex;align-items:center;justify-content:center;gap:16px;
-  font-size:clamp(36px,5.4vw,60px);font-weight:800;letter-spacing:-1.8px;color:var(--purple)}
-.toggle-pill{width:64px;height:34px;background:#0D0D1A;border-radius:999px;padding:4px;
-  cursor:pointer;display:inline-flex;align-items:center;flex-shrink:0;transition:background .3s}
-.toggle-pill.on{background:var(--blue)}
-.toggle-knob{width:26px;height:26px;background:#fff;border-radius:50%;display:flex;
-  align-items:center;justify-content:center;font-size:13px;
-  transition:margin-left .35s cubic-bezier(.4,0,.2,1);margin-left:0}
-.toggle-pill.on .toggle-knob{margin-left:30px}
-.plus{position:absolute;color:#D1D5DB;font-size:16px;font-weight:300;opacity:.55}
-
-/* ============ SHARED PRODUCT-CARD SYSTEM ============ */
-.ph-container{width:100%;padding:0 24px;display:flex;flex-direction:column;gap:28px}
-.section-wrap{width:100%;border-radius:var(--r);overflow:hidden;
-  opacity:0;transform:scale(.97);
-  transition:opacity .85s cubic-bezier(.4,0,.2,1),transform 1.05s cubic-bezier(.4,0,.2,1)}
-.section-wrap.in-view{opacity:1;transform:scale(1)}
+.btn-primary{background:var(--blue);color:#fff;border:none;font-family:inherit;font-size:15px;
+  font-weight:600;padding:11px 22px;border-radius:10px;cursor:pointer;
+  transition:background .2s,transform .15s;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px)}
 
 .sec-label{font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:20px}
 .sec-h2{font-size:clamp(30px,3.6vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.12;color:var(--ink);margin-bottom:18px}
@@ -186,210 +73,9 @@ a{text-decoration:none;color:inherit}
   stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
 .cta-link:hover .arrow-circle svg{stroke:#fff}
 
-.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#1a1a2e;color:#fff;font-family:inherit;
-  font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;border:none;cursor:pointer;
-  margin-top:28px;text-decoration:none;transition:background .2s,transform .15s}
-.cta-btn:hover{background:#2a2a4a;transform:translateY(-1px)}
+.fade-up{opacity:0;transform:translateY(36px);transition:opacity .65s ease,transform .65s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
 
-
-.split-l{opacity:0;transform:translateX(-48px);transition:opacity .8s cubic-bezier(.4,0,.2,1) .2s,transform .85s cubic-bezier(.4,0,.2,1) .2s}
-.split-r{opacity:0;transform:translateX(48px);transition:opacity .8s cubic-bezier(.4,0,.2,1) .2s,transform .85s cubic-bezier(.4,0,.2,1) .2s}
-.in-view .split-l{opacity:1;transform:translateX(0)}
-.in-view .split-r{opacity:1;transform:translateX(0)}
-
-/* ---- 1. CONVERT CRYPTO TO CASH (illustrated, text + mockup) ---- */
-.bank-section{background:var(--blue-light);display:grid;grid-template-columns:1fr 1.05fr;min-height:560px}
-.bank-text{padding:56px 52px;display:flex;flex-direction:column;justify-content:center}
-.bank-text .sec-label{color:var(--blue)}
-.bank-visual{position:relative;display:flex;align-items:center;justify-content:center;overflow:visible;padding:32px}
-.bank-mock{width:min(320px,86%);background:#fff;border-radius:20px;padding:22px;box-shadow:0 24px 60px rgba(51,51,255,.18)}
-.bank-flags{display:flex;gap:8px;margin-bottom:18px}
-.bank-flag{width:34px;height:34px;border-radius:50%;background:var(--blue-light);display:flex;
-  align-items:center;justify-content:center;border:2px solid #fff;color:var(--blue);font-size:14px}
-.bank-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F3F4F6}
-.bank-row:last-child{border-bottom:none}
-.bank-row-lbl{font-size:12px;color:#6B7280;font-weight:500}
-.bank-row-val{font-size:13px;color:var(--ink);font-weight:600}
-.bank-copy{width:24px;height:24px;background:var(--blue-light);border-radius:6px;
-  display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:11px;flex-shrink:0}
-
-/* ---- 2. CURRENCY EXCHANGE (photo left, content right) ---- */
-.currency-section{display:grid;grid-template-columns:3fr 7fr;min-height:560px;gap:10px;padding:6px}
-.photo-panel{position:relative;background:#C084FC;overflow:hidden;border-radius:16px}
-.photo-panel img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;
-  position:absolute;inset:0;transform:scale(1.06);transition:transform 1.5s cubic-bezier(.4,0,.2,1) .1s}
-.in-view .photo-panel img{transform:scale(1)}
-.content-panel{background:#EDE8FC;padding:56px 48px;display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;border-radius:16px}
-.content-panel .sec-label{color:var(--purple)}
-.coin-top,.coin-bottom{position:absolute;z-index:1}
-.coin-top{top:-22px;right:-18px;width:100px;height:88px}
-.coin-top-inner{width:100%;height:100%;background:radial-gradient(ellipse at 35% 30%,#93C5FD,#2563EB 58%,#1E40AF);
-  border-radius:50% 62% 42% 55%/55% 45% 62% 50%;
-  box-shadow:inset 4px 4px 10px rgba(255,255,255,.25),0 12px 32px rgba(37,99,235,.3);
-  transform:rotate(-18deg)}
-.coin-bottom{bottom:-24px;right:-22px;width:120px;height:110px}
-.coin-bottom-inner{width:100%;height:100%;background:radial-gradient(ellipse at 35% 30%,#C084FC,#7C3AED 55%,#5B21B6);
-  border-radius:55% 45% 52% 58%/50% 60% 45% 55%;
-  box-shadow:inset 5px 5px 12px rgba(255,255,255,.18),0 16px 40px rgba(124,58,237,.3);
-  transform:rotate(14deg);display:flex;align-items:center;justify-content:center;font-size:22px;color:rgba(255,255,255,.85)}
-.currency-cta{color:var(--blue)}
-
-/* ---- 3. VIRTUAL CARDS (text left, illustrated right) ---- */
-.vc-section{background:#dbf7f9;display:grid;grid-template-columns:1fr 1.2fr;min-height:560px;overflow:hidden}
-.vc-text{padding:56px 48px;display:flex;flex-direction:column;justify-content:center;z-index:2}
-.vc-text .sec-label{color:#2222CC}
-.vc-visual{position:relative;display:flex;align-items:center;justify-content:center;overflow:visible;padding:36px 0 0}
-.vc-media{height:380px;width:auto;max-width:100%;object-fit:contain;object-position:bottom center;position:relative;z-index:2;
-  transform:scale(.94);transition:transform 1.4s cubic-bezier(.4,0,.2,1) .2s;border-radius:16px}
-.in-view .vc-media{transform:scale(1)}
-.orb{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-weight:800;z-index:3;animation:bob 4s ease-in-out infinite}
-.orb-ps{width:52px;height:52px;background:#003087;color:#fff;font-size:20px;top:8%;right:16%;animation-delay:0s}
-.orb-nf{width:48px;height:48px;background:#E50914;color:#fff;font-size:18px;font-weight:900;top:24%;right:3%;animation-delay:.6s}
-.orb-sh{width:56px;height:56px;background:#fff;color:#111;border:1px solid #ddd;font-size:10px;top:42%;left:8%;animation-delay:1s}
-.orb-di{width:44px;height:44px;background:#113CCF;color:#fff;font-size:8px;letter-spacing:-.3px;bottom:32%;left:4%;animation-delay:1.5s}
-.orb-am{width:50px;height:50px;background:#FF9900;color:#fff;font-size:20px;bottom:26%;right:6%;animation-delay:2s}
-.orb-ap{width:52px;height:52px;background:#000;color:#fff;font-size:22px;bottom:14%;right:15%;animation-delay:.4s}
-.orb-sp{width:54px;height:54px;background:#1DB954;color:#fff;font-size:22px;bottom:4%;left:30%;animation-delay:1.2s}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-
-/* ---- 4. MONEY TRANSFER (photo left, content right) ---- */
-.mt-section{display:grid;grid-template-columns:3fr 7fr;min-height:560px;background:#fff;gap:10px;padding:6px}
-.mt-photo{position:relative;overflow:hidden;background:#F5C842;border-radius:16px}
-.mt-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;
-  position:absolute;inset:0;transform:scale(1.06);transition:transform 1.5s cubic-bezier(.4,0,.2,1) .1s}
-.in-view .mt-photo img{transform:scale(1)}
-.mt-content{background:#FEF0E6;padding:56px 52px;display:flex;flex-direction:column;justify-content:center;border-radius:16px}
-.mt-content .sec-label{color:#D97706}
-.mt-content .cta-link{color:var(--blue)}
-
-/* ---- 5. WHATSAPP AI BOT (illustrated chat mockup) ---- */
-.wa-section{background:linear-gradient(155deg,#EAFBF1 0%,#E4F8ED 55%,#F3E8FF 100%);
-  display:grid;grid-template-columns:1fr 1fr;min-height:560px;overflow:hidden}
-.wa-content{padding:56px 52px;display:flex;flex-direction:column;justify-content:center}
-.wa-content .sec-label{color:var(--wa-green)}
-.wa-badges{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
-.wa-badge{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #E5E7EB;
-  border-radius:10px;padding:9px 14px;font-size:13px;font-weight:600;color:#374151}
-.wa-badge i{color:var(--wa-green)}
-.wa-visual{position:relative;display:flex;align-items:center;justify-content:center;padding:32px 24px}
-.wa-notify{position:absolute;top:10%;left:8%;background:#fff;border-radius:16px;padding:11px 16px;
-  display:flex;align-items:center;gap:11px;z-index:5;white-space:nowrap;
-  animation:bob 4s ease-in-out infinite}
-.wa-notify-icn{width:34px;height:34px;border-radius:50%;background:var(--wa-green);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.wa-notify .n-title{font-size:13px;font-weight:700;color:var(--ink)}
-.wa-notify .n-sub{font-size:11.5px;color:#6B7280}
-.wa-phone{width:250px;background:#0D0D1A;border-radius:30px;padding:11px;
-  position:relative;z-index:2;transform:scale(.96);transition:transform 1.4s cubic-bezier(.4,0,.2,1) .2s}
-.in-view .wa-phone{transform:scale(1)}
-.wa-phone-img{height:400px;width:auto;object-fit:contain;object-position:bottom;position:relative;z-index:2;
-  transform:scale(.94);transition:transform 1.4s cubic-bezier(.4,0,.2,1) .2s}
-.in-view .wa-phone-img{transform:scale(1)}
-.wa-screen{background:#ECE5DD;border-radius:20px;overflow:hidden}
-.wa-topbar{background:#075E54;color:#fff;padding:11px 13px;display:flex;align-items:center;gap:9px}
-.wa-avatar{width:28px;height:28px;border-radius:50%;background:var(--wa-green);display:flex;
-  align-items:center;justify-content:center;font-size:13px}
-.wa-name{font-size:11.5px;font-weight:700}
-.wa-status{font-size:9px;color:#D9FDD3}
-.wa-chat{padding:12px 9px;display:flex;flex-direction:column;gap:7px;min-height:280px}
-.wa-bubble{max-width:82%;padding:8px 10px;border-radius:10px;font-size:11px;line-height:1.42}
-.wa-bubble.in{background:#fff;color:#111;align-self:flex-start;border-top-left-radius:2px}
-.wa-bubble.out{background:#D9FDD3;color:#111;align-self:flex-end;border-top-right-radius:2px}
-.wa-bubble .wa-time{display:block;text-align:right;font-size:8.5px;color:#9CA3AF;margin-top:3px}
-.wa-bubble b{color:#075E54}
-
-/* ---- 6. CSR — MAKING A DIFFERENCE (text left, photo right) ---- */
-.csr-section{display:grid;grid-template-columns:7fr 5fr;min-height:520px;background:#FDF2F8;gap:10px;padding:6px}
-.csr-text{display:flex;flex-direction:column;justify-content:center;background:#FDF2F8;border-radius:16px;padding:56px 52px}
-.csr-heart{width:52px;height:52px;border-radius:50%;background:#FCE7F3;color:#DB2777;
-  display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px}
-.csr-photo{position:relative;overflow:hidden;border-radius:16px}
-.csr-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
-  transform:scale(1.06);transition:transform 1.5s cubic-bezier(.4,0,.2,1) .1s}
-.in-view .csr-photo img{transform:scale(1)}
-
-.iban-rows{display:flex;flex-direction:column;gap:5px;padding-top:6px}
-.iban-row{display:flex;align-items:center;gap:7px;background:#1e2a4a;border-radius:7px;padding:7px 9px}
-.iban-row.hi{background:#3333FF22;border:1px solid #3333FF55}
-.iban-lbl{font-size:9.5px;color:#9CA3AF}
-.iban-lbl.hi{color:#60A5FA;font-weight:600}
-.iban-num{font-size:9px;color:#6B7280;margin-left:auto}
-
-.visa-mini{background:linear-gradient(135deg,#312e81,#4338CA);border-radius:8px;padding:8px;position:relative;overflow:hidden;flex:1}
-.vm-name{color:#fff;font-size:7px;font-weight:600}
-.vm-num{color:rgba(255,255,255,.6);font-size:6px;letter-spacing:2px;margin-top:6px}
-.vm-visa{color:#fff;font-size:8px;font-weight:900;text-align:right;margin-top:4px}
-
-.fx-box{display:flex;align-items:center;gap:8px;height:100%;padding-top:6px}
-.fx-side{flex:1;background:#1e2a4a;border-radius:8px;padding:8px;text-align:center}
-.fx-flag{font-size:18px;margin-bottom:3px}
-.fx-code{font-size:8px;color:#9CA3AF}
-.fx-amount{font-size:10px;color:#fff;font-weight:700}
-.fx-arrow{font-size:18px;color:#60A5FA;flex-shrink:0}
-
-.avatar-cluster{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding-top:10px}
-.av-img{width:42px;height:42px;border-radius:50%;border:2px solid #16162a;object-fit:cover}
-
-.donut-wrap{display:flex;align-items:center;gap:10px;padding-top:8px}
-.donut{width:64px;height:64px;border-radius:50%;flex-shrink:0;
-  background:conic-gradient(var(--blue) 0% 0%,#1e2a4a 0% 100%);position:relative}
-.donut::after{content:'';position:absolute;inset:11px;border-radius:50%;background:#16162a}
-.donut-num{font-size:17px;font-weight:700;color:#fff}
-.donut-lbl{font-size:9px;color:#9CA3AF;line-height:1.5}
-.bar-mini{display:flex;align-items:flex-end;gap:4px;height:60px;padding-bottom:3px}
-.bar-b{flex:1;border-radius:3px 3px 0 0;background:#2a2a40;height:0;transition:height 1s cubic-bezier(.4,0,.2,1)}
-.bar-b.on{background:var(--blue)}
-
-/* ============ FAQ ============ */
-.faq-sec{padding:88px 60px;background:#fff;display:grid;grid-template-columns:1fr 1.6fr;gap:56px}
-.faq-head{display:flex;flex-direction:column}
-.faq-head .sec-label{margin-bottom:14px;display:block}
-.faq-help-card{margin-top:auto;padding-top:32px}
-.faq-help-inner{background:var(--blue-light);border-radius:18px;padding:28px 26px;max-width:420px}
-.faq-help-icon{width:44px;height:44px;border-radius:12px;background:var(--wa-green);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px}
-.faq-help-title{font-weight:700;font-size:18px;color:var(--ink);margin-bottom:8px}
-.faq-help-body{font-size:14px;line-height:1.6;color:#4B5563;margin-bottom:18px}
-.faq-list{display:flex;flex-direction:column;gap:10px}
-.faq-list details{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:14px;padding:20px 22px;transition:background .2s}
-.faq-list details[open]{background:var(--blue-light);border-color:#DDE0FF}
-.faq-list summary{list-style:none;cursor:pointer;font-size:16px;font-weight:600;color:var(--ink);
-  display:flex;align-items:center;justify-content:space-between;gap:12px}
-.faq-list summary::-webkit-details-marker{display:none}
-.faq-list summary i{font-size:13px;color:#6B7280;transition:transform .25s;flex-shrink:0}
-.faq-list details[open] summary i{transform:rotate(180deg);color:var(--blue)}
-.faq-ans{font-size:15px;line-height:1.7;color:#4B5563;margin-top:12px}
-
-/* ============ MARQUEE ============ */
-.marquee-wrap{padding:60px 0 36px;overflow:hidden}
-.marquee-track{display:flex;white-space:nowrap;animation:marquee 22s linear infinite;width:max-content}
-.marquee-text{font-size:clamp(36px,5.5vw,64px);font-weight:800;letter-spacing:-2px;color:#E5E7EB;padding-right:56px;flex-shrink:0}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ============ SOCIAL PROOF ============ */
-.social{padding:96px 60px;text-align:center;background:var(--blue-light)}
-.social-sub{font-size:16px;color:#4B5563;max-width:460px;margin:0 auto;line-height:1.6}
-
-.social-stats{display:flex;justify-content:center;gap:0;max-width:720px;margin:48px auto 0}
-.stat-block{flex:1;padding:0 20px}
-.stat-block+.stat-block{border-left:1px solid #DDE0FF}
-.stat-num{font-size:clamp(28px,4vw,40px);font-weight:800;
-  letter-spacing:-1px;color:var(--bala)}
-.stat-label{font-size:13px;color:#4B5563;margin-top:6px}
-
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;text-align:left}
-.tcard{background:var(--dark);border-radius:20px;padding:30px 26px;display:flex;flex-direction:column;gap:18px}
-.tcard-top{display:flex;align-items:center;gap:13px}
-.tav{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0}
-.tav img{width:100%;height:100%;object-fit:cover}
-.tname{font-size:14px;font-weight:600;color:#fff}
-.trole{font-size:12px;color:#9CA3AF;margin-top:1px}
-.tstars{color:var(--h-yellow);font-size:12px;letter-spacing:2px}
-.tquote{font-size:15.5px;font-weight:600;color:#E5E7EB;line-height:1.6}
-
-/* ============ FOOTER ============ */
 .footer{background:var(--ink);color:#fff;padding:64px 60px 36px}
 .footer-top{display:grid;grid-template-columns:1.4fr repeat(2,1fr);gap:36px;margin-bottom:44px}
 .footer-logo{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.9}
@@ -405,206 +91,98 @@ a{text-decoration:none;color:inherit}
 .footer-legal a:hover{color:#fff}
 .footer-legal-note{font-size:11px;color:#4B5563;line-height:1.7;margin-top:20px;max-width:900px}
 
-/* ============ SCROLL FADE ============ */
-.fade-up{opacity:0;transform:translateY(36px);transition:opacity .65s ease,transform .65s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+/* ============ STATIC PAGE HERO ============ */
+.page-hero{background:linear-gradient(108deg,#d4ceff 0%,#e3dffd 40%,#f3f2ff 70%,#ffffff 100%);
+  padding:56px 60px 44px}
+.page-hero-inner{max-width:800px;margin:0 auto}
+.page-title{font-size:clamp(32px,4.2vw,52px);font-weight:800;letter-spacing:-1.3px;line-height:1.1;
+  color:var(--ink);margin-bottom:14px}
+.page-updated{font-size:13px;color:#6B7280}
+.page-updated b{color:var(--ink);font-weight:600}
 
-/* ============ MOBILE HERO (ported from hali.html) ============ */
-/* Hidden by default / on desktop — only shown below 768px, replacing .hero */
-.mhero{display:none;position:relative;width:100%;min-height:calc(100svh - var(--nav-h));overflow:hidden;
-  flex-direction:column;
-  background:linear-gradient(108deg,#d4ceff 0%,#d4ceff 22%,#ddd8ff 36%,#e8e5ff 50%,#f0efff 62%,#f7f6ff 72%,#ffffff 82%,#ffffff 100%)}
-.mhero::before{content:'';position:absolute;top:-10vw;right:-15vw;width:min(80vw,400px);height:min(80vw,400px);
-  border-radius:50%;background:radial-gradient(circle,rgba(59,33,246,.1) 0%,transparent 68%);pointer-events:none}
+/* ============ LEGAL CONTENT ============ */
+.legal-wrap{max-width:760px;margin:0 auto;padding:56px 60px 100px}
+.legal-toc{background:var(--blue-light);border-radius:16px;padding:26px 28px;margin-bottom:48px}
+.legal-toc h3{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--ink);opacity:.65;margin-bottom:14px}
+.legal-toc ol{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.legal-toc a{color:var(--ink);opacity:.78;font-size:14.5px;font-weight:500;transition:opacity .2s,color .2s}
+.legal-toc a:hover{opacity:1;color:var(--blue)}
+.legal-section{margin-bottom:40px;scroll-margin-top:100px}
+.legal-section:last-child{margin-bottom:0}
+.legal-section h2{font-size:22px;font-weight:800;letter-spacing:-.6px;color:var(--ink);margin-bottom:14px}
+.legal-section p{font-size:15.5px;line-height:1.75;color:#374151;margin-bottom:14px}
+.legal-section p:last-child{margin-bottom:0}
+.legal-section ul{margin:0 0 14px 20px;color:#374151;font-size:15.5px;line-height:1.75}
+.legal-section li{margin-bottom:7px}
+.legal-section li:last-child{margin-bottom:0}
+.legal-section a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.legal-section strong{font-weight:700;color:var(--ink)}
+.legal-note{background:var(--peach);border-radius:14px;padding:18px 20px;font-size:13.5px;
+  line-height:1.65;color:#7C5A3C;margin-bottom:44px;display:flex;gap:12px;align-items:flex-start}
+.legal-note i{color:#D97706;font-size:16px;margin-top:1px;flex-shrink:0}
 
-.mh-text{padding:clamp(20px,6vw,36px) clamp(16px,5vw,40px) 0;display:flex;flex-direction:column;
-  align-items:flex-start;position:relative;z-index:10}
+/* ============ LOGIN ============ */
+.login-shell{min-height:calc(100vh - var(--nav-h));display:grid;grid-template-columns:1fr 1fr}
+.login-brand{background:linear-gradient(160deg,var(--h-deep) 0%,var(--bala) 100%);
+  position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;
+  padding:56px 56px 48px;color:#fff}
+.login-brand-pattern{position:absolute;inset:0;opacity:.14;
+  background-image:repeating-linear-gradient(115deg,#fff 0 18px,transparent 18px 46px);
+  -webkit-mask-image:radial-gradient(circle at 80% 30%,#000 0%,transparent 62%);
+  mask-image:radial-gradient(circle at 80% 30%,#000 0%,transparent 62%)}
+.login-brand-top{position:relative;z-index:2;display:flex;align-items:center;gap:10px}
+.login-brand-logo{height:26px;filter:brightness(0) invert(1)}
+.login-brand-quote{position:relative;z-index:2;max-width:420px}
+.login-brand-quote h2{font-size:clamp(26px,2.6vw,34px);font-weight:800;letter-spacing:-.8px;
+  line-height:1.25;margin-bottom:16px}
+.login-brand-quote p{font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.75)}
+.login-panel{display:flex;align-items:center;justify-content:center;padding:56px 48px}
+.login-card{width:100%;max-width:380px}
+.login-card h1{font-size:28px;font-weight:800;letter-spacing:-.7px;color:var(--ink);margin-bottom:8px}
+.login-card>p{font-size:14.5px;color:#6B7280;margin-bottom:32px;line-height:1.6}
+.login-field{margin-bottom:18px}
+.login-field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:7px}
+.login-input{width:100%;padding:13px 15px;border:1.5px solid #E5E7EB;border-radius:10px;
+  font-family:inherit;font-size:14.5px;color:var(--ink);transition:border-color .2s}
+.login-input:focus{outline:none;border-color:var(--blue)}
+.login-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+.login-remember{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#4B5563}
+.login-forgot{font-size:13.5px;color:var(--blue);font-weight:600}
+.login-submit{width:100%;justify-content:center;font-size:15px;padding:14px}
+.login-divider{display:flex;align-items:center;gap:14px;margin:26px 0;color:#9CA3AF;font-size:12.5px}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:#E5E7EB}
+.login-waitlist{background:var(--blue-light);border-radius:12px;padding:16px 18px;text-align:center}
+.login-waitlist p{font-size:13.5px;color:#374151;margin-bottom:10px;line-height:1.55}
+.login-waitlist a{color:var(--blue);font-weight:700;font-size:13.5px}
 
-.mh-h1{font-family:'Inter',system-ui,sans-serif;font-size:clamp(1.9rem,10.5vw,3.2rem);font-weight:900;
-  line-height:1.12;letter-spacing:-.03em;text-transform:uppercase;display:flex;flex-direction:column;
-  align-items:flex-start;gap:.12em}
-.mh-h1 .mh-line{display:inline;background:var(--h-deep);color:#fff;padding:.06em .2em;
-  -webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:4px;
-  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) both}
-.mh-h1 .mh-line.yellow{background:var(--h-yellow);color:var(--h-deep)}
-.mh-h1 .mh-line:nth-child(1){animation-delay:.1s}
-.mh-h1 .mh-line:nth-child(2){animation-delay:.2s}
-.mh-h1 .mh-line:nth-child(3){animation-delay:.3s}
-
-.mh-subtitle{color:rgba(28,25,105,.65);font-size:clamp(.85rem,3.5vw,1rem);line-height:1.6;
-  margin-top:clamp(10px,3vw,16px);max-width:34ch;
-  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) .4s both}
-
-.mh-cta{margin-top:clamp(14px,3.5vw,20px);background:var(--h-yellow);color:var(--h-deep);
-  font-family:inherit;font-size:clamp(.8rem,3.5vw,.95rem);font-weight:800;padding:.85em 1.6em;
-  border-radius:999px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;
-  letter-spacing:.02em;box-shadow:0 4px 20px rgba(255,173,0,.35);
-  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) .5s both}
-.mh-cta svg{flex-shrink:0;width:clamp(14px,4vw,16px);height:clamp(14px,4vw,16px)}
-
-.mh-social-proof{display:flex;align-items:center;gap:10px;margin-top:clamp(12px,3vw,16px);flex-wrap:wrap;
-  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) .6s both}
-.mh-avatars{display:flex}
-.mh-avatar{width:clamp(24px,6vw,30px);height:clamp(24px,6vw,30px);border-radius:50%;border:2px solid #fff;
-  display:flex;align-items:center;justify-content:center;font-size:clamp(9px,2.2vw,11px);font-weight:700;
-  color:#fff;position:relative}
-.mh-avatar:not(:first-child){margin-left:-8px}
-.mh-avatar:nth-child(1){background:var(--bala);z-index:4}
-.mh-avatar:nth-child(2){background:var(--h-yellow);z-index:3;color:var(--h-deep)}
-.mh-avatar:nth-child(3){background:var(--h-coral);z-index:2}
-.mh-avatar:nth-child(4){background:#26A17B;z-index:1}
-.mh-social-text{color:rgba(28,25,105,.55);font-size:clamp(.7rem,2.8vw,.8rem);line-height:1.4}
-.mh-social-text strong{color:var(--h-deep);font-weight:700}
-
-.mh-phone-wrap{position:relative;z-index:10;display:flex;justify-content:center;
-  padding:clamp(12px,4vw,24px) clamp(16px,5vw,32px) 0;margin-bottom:-1.5rem;
-  opacity:0;animation:mh-land-in .9s cubic-bezier(.4,0,.2,1) .5s both}
-.mh-phone-img{width:clamp(180px,55vw,300px);height:auto;display:block;
-  filter:drop-shadow(0 20px 36px rgba(59,33,246,.18));animation:mh-float 4s ease-in-out 1.4s infinite}
-@keyframes mh-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-/* Hero content lands in on load: fade + rise, staggered per element */
-@keyframes mh-land-in{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-
-.mh-cards{position:relative;z-index:10;display:flex;flex-direction:column;gap:10px;
-  padding:clamp(16px,5vw,32px) clamp(16px,5vw,32px) clamp(24px,6vw,40px)}
-.mh-card{background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border:1px solid rgba(59,33,246,.1);border-radius:clamp(10px,3vw,14px);padding:12px clamp(12px,3vw,16px);
-  display:flex;align-items:center;gap:12px;box-shadow:0 2px 14px rgba(28,25,105,.09);
-  opacity:0;animation:mh-land-in .8s cubic-bezier(.4,0,.2,1) both}
-.mh-card:nth-child(1){animation-delay:.7s}
-.mh-card:nth-child(2){animation-delay:.8s}
-.mh-card:nth-child(3){animation-delay:.9s}
-.mh-card-icon{width:clamp(34px,9vw,40px);height:clamp(34px,9vw,40px);border-radius:clamp(8px,2.5vw,10px);
-  display:flex;align-items:center;justify-content:center;font-size:clamp(15px,4.5vw,18px);flex-shrink:0}
-.mh-card-icon.btc{background:#F7931A}
-.mh-card-icon.usdt{background:var(--bala);border-radius:50%;color:#fff;font-weight:800;font-size:15px}
-.mh-card-icon.bolt{background:#e8e5ff}
-.mh-card-icon.bolt span{font-size:clamp(14px,4vw,17px)}
-.mh-card-body{flex:1;min-width:0;display:flex;flex-direction:column}
-.mh-card-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.mh-card-label{color:var(--h-deep);font-size:clamp(.75rem,3vw,.87rem);font-weight:600}
-.mh-badge{background:rgba(0,242,255,.15);color:#007f8e;font-size:9px;font-weight:700;padding:2px 7px;
-  border-radius:999px;letter-spacing:.5px}
-.mh-card-time{color:rgba(28,25,105,.4);font-size:clamp(.65rem,2.4vw,.72rem);margin-top:2px}
-.mh-card-amount{font-size:clamp(.85rem,3.5vw,1rem);font-weight:700;flex-shrink:0;white-space:nowrap}
-.mh-card-amount.pos{color:#1aad6e}
-.mh-card-amount.neg{color:var(--h-coral)}
-
-.mh-scroll-hint{display:flex;flex-direction:column;align-items:center;padding-bottom:clamp(16px,4vw,24px);
-  color:rgba(28,25,105,.3);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;
-  position:relative;z-index:10}
-.mh-scroll-line{width:1px;height:20px;background:rgba(28,25,105,.15);margin-bottom:6px}
-
-@media(prefers-reduced-motion:reduce){
-  .mh-h1 .mh-line,.mh-subtitle,.mh-cta,.mh-social-proof,.mh-phone-wrap,.mh-card{
-    animation:none!important;opacity:1!important;transform:none!important}
-  .mh-phone-img{animation:none!important}
-}
-
-/* ============ RESPONSIVE ============ */
 @media(max-width:1024px){
-  .hero-phone{right:2%}
-  .float-cards{right:20%}
-  .press{padding:36px 40px;gap:28px}
-  .no-limits{padding:72px 40px 84px}
-  .ph-container{padding:0 16px;gap:20px}
-  .faq-sec{padding:72px 40px;gap:36px}
-  .social{padding:72px 40px}
-  .tgrid{grid-template-columns:1fr 1fr}
+  .page-hero{padding:48px 40px 36px}
+  .legal-wrap{padding:48px 40px 80px}
   .footer{padding:56px 40px 32px}
   .footer-top{grid-template-columns:1fr 1fr;row-gap:36px}
 }
-
+@media(max-width:900px){
+  .login-shell{grid-template-columns:1fr}
+  .login-brand{display:none}
+}
 @media(max-width:768px){
-  :root{--nav-h:64px}
-  .nav{padding:0 20px}
-  .nav-logo{height:28px}
   .mobile-only{display:inline}
   .desktop-only{display:none}
   .nav-links,.nav-actions{display:none}
   .hamburger{display:flex}
-  .ham-line{width:22px;opacity:.85}
   .mob-nav{display:flex}
-
-  /* Swap in the hali.html-style mobile hero; desktop .hero markup is hidden */
-  .hero{display:none}
-  .mhero{display:flex}
-
-  .press{padding:28px 20px;flex-direction:column;align-items:flex-start;gap:16px}
-  .press-logos{gap:16px}
-  .press-logo{font-size:14px}
-
-  .no-limits{padding:56px 20px 68px}
-  .no-limits h2,.nl-go{font-size:32px}
-
-  .ph-container{padding:0 12px;gap:14px}
-  .section-wrap{border-radius:18px}
-
-  .bank-section{grid-template-columns:1fr}
-  .bank-text{order:1;padding:32px 20px 40px}
-  .bank-visual{order:0;min-height:300px}
-
-  .currency-section{grid-template-columns:1fr}
-  .photo-panel{min-height:300px}
-  .content-panel{order:1;padding:32px 20px 40px}
-  .coin-top{width:70px;height:62px;top:-12px;right:-10px}
-  .coin-bottom{width:88px;height:80px;bottom:-14px;right:-12px}
-
-  .vc-section{grid-template-columns:1fr;min-height:auto}
-  .vc-visual{order:0;height:320px;padding:20px 0 0}
-  .vc-media{height:260px}
-  .vc-text{order:1;padding:32px 20px 40px}
-  .orb-sh,.orb-di{display:none}
-  .orb-ps{top:6%;right:8%;width:42px;height:42px;font-size:17px}
-  .orb-nf{top:20%;right:2%;width:38px;height:38px;font-size:15px}
-  .orb-am{bottom:30%;right:4%;width:40px;height:40px;font-size:17px}
-  .orb-ap{bottom:16%;right:10%;width:42px;height:42px;font-size:19px}
-  .orb-sp{bottom:4%;left:18%;width:42px;height:42px;font-size:19px}
-
-  .mt-section{grid-template-columns:1fr}
-  .mt-photo{min-height:300px}
-  .mt-content{order:1;padding:32px 20px 40px}
-
-  .wa-section{grid-template-columns:1fr}
-  .wa-visual{order:0;height:340px;padding:36px 12px 0}
-  .wa-phone{width:220px}
-  .wa-phone-img{height:300px}
-  .wa-notify{top:6%;left:4%;padding:8px 12px;gap:8px}
-  .wa-content{order:1;padding:32px 20px 40px}
-  .wa-badges{justify-content:center}
-
-  .csr-section{grid-template-columns:1fr;padding:0;gap:14px}
-  .csr-photo{order:0;height:260px}
-  .csr-text{order:1;padding:32px 20px 40px}
-
-  .sec-h2{font-size:26px!important;letter-spacing:-.9px}
-  .sec-body{font-size:14px}
-
-  .faq-sec{grid-template-columns:1fr;padding:56px 20px;gap:28px}
-  .faq-list summary{font-size:15px}
-
-  .social{padding:56px 20px}
-  .social-stats{flex-direction:column;gap:24px;max-width:280px}
-  .stat-block+.stat-block{border-left:none;border-top:1px solid #DDE0FF;padding-top:20px}
-  .tgrid{grid-template-columns:1fr;gap:16px;margin-top:40px}
-
+  .page-hero{padding:40px 20px 32px}
+  .page-title{font-size:30px}
+  .legal-wrap{padding:40px 20px 64px}
+  .legal-toc{padding:20px 20px}
+  .legal-section h2{font-size:19px}
   .footer{padding:48px 20px 28px}
   .footer-top{grid-template-columns:1fr 1fr;gap:28px}
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
+  .login-panel{padding:40px 20px}
 }
-
-@media(max-width:400px){
-  .ph-container{padding:0 8px}
-  .hero-phone{height:52%}
-  .vc-media{height:230px}
-  .vc-visual{height:280px}
-  .wa-phone{height:auto}
-  .wa-phone-img{height:250px}
-  .wa-visual{height:300px}
-  .photo-panel{min-height:260px}
-  .mt-photo{min-height:260px}
-  .csr-photo{height:220px}
-  .marquee-text{font-size:28px}
+@media(max-width:600px){
   .footer-top{grid-template-columns:1fr}
 }
 
@@ -614,7 +192,7 @@ a{text-decoration:none;color:inherit}
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="#"><img src="assets/logo/colour.png" alt="PeerHub" class="nav-logo"></a>
+  <a href="originsl.html"><img src="assets/logo/colour.png" alt="PeerHub" class="nav-logo"></a>
   <ul class="nav-links">
     <li><a href="convert.html">Convert</a></li>
     <li><a href="bills.html">Pay Bills</a></li>
@@ -625,7 +203,7 @@ a{text-decoration:none;color:inherit}
     <a href="login.html" class="btn-primary" style="background:transparent;color:var(--ink);box-shadow:none;padding:11px 14px">
       Log in
     </a>
-    <a href="#" class="btn-primary">
+    <a href="originsl.html#" class="btn-primary">
       <span class="desktop-only">Join the waitlist</span>
       <span class="mobile-only">Join waitlist</span>
     </a>
@@ -645,433 +223,69 @@ a{text-decoration:none;color:inherit}
   <a href="help.html" class="mob-link">Help</a>
   <a href="login.html" class="mob-link">Log in</a>
   <div class="mob-actions">
-    <a href="#" class="btn-primary" style="justify-content:center;font-size:16px;padding:14px 24px">
+    <a href="originsl.html#" class="btn-primary" style="justify-content:center;font-size:16px;padding:14px 24px">
       <i class="fa-solid fa-rocket"></i>&nbsp;Join waitlist
     </a>
   </div>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
-
-  <img class="hero-phone"
-    src="https://cdn.prod.website-files.com/6360022338a81bd6fdbb1145/67f8f68b6a43a328b669a59c_4632949cb6e5e84e75bc4b053891115f_handWithPhone.avif"
-    alt="PeerHub app on phone">
-
-  <div class="hero-copy">
-   
-    <!-- <h1 class="headline">
-      <span class="hl-box hl-dark">CRYPTO TO CASH,</span>
-      <span class="hl-box hl-blue">CASH TO CRYPTO.</span>
-      <span class="hl-box hl-dark">INSTANTLY.</span>
-    </h1> -->
-
-    <h1 class="headline">
-      <span class="hl-row"><span class="hl-box hl-dark">CRYPTO</span></span>
-      <span class="hl-row"><span class="hl-box hl-blue">TO CASH,</span></span>
-      <span class="hl-row"><span class="hl-box hl-dark">INSTANTLY.</span></span>
-    </h1>
-
-
-
-    <p class="hero-sub">Convert crypto to fiat and back, pay every utility bill, and spend with a virtual dollar card &mdash; or just chat with our WhatsApp AI.</p>
-
-    <a href="#" class="hero-cta">
-      <i class="fa-solid fa-bell"></i>
-      Join the waitlist
-      <i class="fa-solid fa-arrow-right h-cta-arrow"></i>
-    </a>
-
-    <div class="cta-trust">
-      <div class="trust-avatars">
-        <div class="trust-avatar">A</div>
-        <div class="trust-avatar" style="background:var(--h-coral)">K</div>
-        <div class="trust-avatar" style="background:var(--h-yellow);color:#000">M</div>
-        <div class="trust-avatar" style="background:var(--h-cyan);color:#000">J</div>
-      </div>
-      Join 50,000+ others already on the waitlist
-    </div>
-  </div>
-
-  <div class="float-cards">
-    <div class="fcard">
-      <div class="fcard-icon" style="background:#FEF9EC">
-        <i class="fa-solid fa-bitcoin-sign" style="color:var(--h-yellow);font-size:16px"></i>
-      </div>
-      <div class="fcard-body">
-        <div class="fcard-title">BTC converted to cash</div>
-        <div class="fcard-meta">
-          <span class="fcard-badge">Live</span>
-          <span class="fcard-dot"></span>
-          <span>45 minutes ago</span>
-        </div>
-      </div>
-      <div class="fcard-amount pos">+$1,680</div>
-    </div>
-
-    <div class="fcard">
-      <div class="fcard-icon" style="background:#EEF0FF">
-        <i class="fa-solid fa-rotate" style="color:var(--bala);font-size:16px"></i>
-      </div>
-      <div class="fcard-body">
-        <div class="fcard-title">USDT &rarr; USD swap</div>
-        <div class="fcard-meta">3 days ago</div>
-      </div>
-      <div class="fcard-amount pos">+$213</div>
-    </div>
-
-    <div class="fcard">
-      <div class="fcard-icon" style="background:#FFF0EE">
-        <i class="fa-solid fa-bolt" style="color:var(--h-coral);font-size:17px"></i>
-      </div>
-      <div class="fcard-body">
-        <div class="fcard-title">Electricity bill paid</div>
-        <div class="fcard-meta">34 minutes ago</div>
-      </div>
-      <div class="fcard-amount neg">&minus;$42.00</div>
-    </div>
-  </div>
-
-  <div class="scroll-nudge">
-    <span>Scroll</span>
-    <i class="fa-solid fa-chevron-down scroll-chevron"></i>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="sec-label" style="color:var(--bala)">Legal</span>
+    <h1 class="page-title">Compliance</h1>
+    <p class="page-updated">Last updated <b>January 15, 2026</b></p>
   </div>
 </section>
 
-<!-- MOBILE HERO (ported from hali.html — desktop keeps the section above) -->
-<section class="mhero">
-  <div class="mh-text">
-    <h1 class="mh-h1">
-      <span class="mh-line">CRYPTO</span>
-      <span class="mh-line">TO CASH,</span>
-      <span class="mh-line yellow">INSTANTLY.</span>
-    </h1>
-
-    <p class="mh-subtitle">Convert crypto to cash, pay bills, and spend with a virtual dollar card &mdash; instantly.</p>
-
-    <button class="mh-cta" type="button">
-      JOIN THE WAITLIST
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="19" y2="12"/>
-        <polyline points="12 5 19 12 12 19"/>
-      </svg>
-    </button>
-
-    <div class="mh-social-proof">
-      <div class="mh-avatars">
-        <div class="mh-avatar">A</div>
-        <div class="mh-avatar">B</div>
-        <div class="mh-avatar">C</div>
-        <div class="mh-avatar">D</div>
-      </div>
-      <span class="mh-social-text">Join <strong>50,000+</strong> others already on the waitlist</span>
-    </div>
+<div class="legal-wrap">
+  <div class="legal-toc fade-up">
+    <h3>On this page</h3>
+    <ol>
+      <li><a href="#approach">1. Our approach to compliance</a></li>
+      <li><a href="#licensing">2. Licensing &amp; regulatory status</a></li>
+      <li><a href="#kyc">3. Identity verification (KYC)</a></li>
+      <li><a href="#aml">4. Anti-money laundering</a></li>
+      <li><a href="#partners">5. Card issuing partners</a></li>
+      <li><a href="#data">6. Data protection compliance</a></li>
+      <li><a href="#report">7. Reporting a concern</a></li>
+    </ol>
   </div>
 
-  <div class="mh-phone-wrap">
-    <img class="mh-phone-img"
-      src="https://cdn.prod.website-files.com/6360022338a81bd6fdbb1145/67f8f68b6a43a328b669a59c_4632949cb6e5e84e75bc4b053891115f_handWithPhone.avif"
-      alt="PeerHub app on a phone">
+  <div class="legal-section fade-up" id="approach">
+    <h2>1. Our approach to compliance</h2>
+    <p>PeerHub operates at the intersection of crypto and traditional finance, which means we hold ourselves to the standards of both. Every conversion, bill payment, and card transaction runs through the same verification and monitoring pipeline, regardless of which market it happens in.</p>
   </div>
 
-  <div class="mh-cards">
-    <div class="mh-card">
-      <div class="mh-card-icon btc">&#8383;</div>
-      <div class="mh-card-body">
-        <div class="mh-card-row">
-          <span class="mh-card-label">BTC converted to cash</span>
-          <span class="mh-badge">LIVE</span>
-        </div>
-        <span class="mh-card-time">45 minutes ago</span>
-      </div>
-      <span class="mh-card-amount pos">+$1,680</span>
-    </div>
-
-    <div class="mh-card">
-      <div class="mh-card-icon usdt">&#8635;</div>
-      <div class="mh-card-body">
-        <div class="mh-card-row">
-          <span class="mh-card-label">USDT &rarr; USD swap</span>
-        </div>
-        <span class="mh-card-time">3 days ago</span>
-      </div>
-      <span class="mh-card-amount pos">+$213</span>
-    </div>
-
-    <div class="mh-card">
-      <div class="mh-card-icon bolt"><span>&#9889;</span></div>
-      <div class="mh-card-body">
-        <div class="mh-card-row">
-          <span class="mh-card-label">Electricity bill paid</span>
-        </div>
-        <span class="mh-card-time">34 minutes ago</span>
-      </div>
-      <span class="mh-card-amount neg">&minus;$42.00</span>
-    </div>
+  <div class="legal-section fade-up" id="licensing">
+    <h2>2. Licensing &amp; regulatory status</h2>
+    <p>PeerHub is a technology platform. Crypto-to-fiat conversion, bill payment, and virtual card services are provided in line with applicable regulations in each market we operate in, working alongside licensed financial partners who hold the relevant regulatory approvals in their jurisdictions.</p>
   </div>
 
-  <div class="mh-scroll-hint">
-    <div class="mh-scroll-line"></div>
-    SCROLL
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-text">Crypto to cash &middot; Cash to crypto &middot; Bill payments &middot; Virtual dollar card &middot; WhatsApp AI &middot; Real-time rates &middot;&nbsp;</span>
-    <span class="marquee-text">Crypto to cash &middot; Cash to crypto &middot; Bill payments &middot; Virtual dollar card &middot; WhatsApp AI &middot; Real-time rates &middot;&nbsp;</span>
+  <div class="legal-section fade-up" id="kyc">
+    <h2>3. Identity verification (KYC)</h2>
+    <p>Every PeerHub user completes identity verification before converting funds, paying bills, or spending on a virtual card. This typically involves confirming your government-issued ID and a live selfie match, in line with know-your-customer (KYC) requirements in your market.</p>
   </div>
 
+  <div class="legal-section fade-up" id="aml">
+    <h2>4. Anti-money laundering</h2>
+    <p>We monitor transactions for patterns consistent with money laundering or terrorist financing, and file reports with relevant authorities where required. Accounts showing suspicious activity may be paused pending review.</p>
+  </div>
+
+  <div class="legal-section fade-up" id="partners">
+    <h2>5. Card issuing partners</h2>
+    <p>The PeerHub virtual dollar card is issued through licensed card partners who are directly regulated for card issuance in their respective markets. We work with these partners to keep card issuance, funding, and spend controls compliant end to end.</p>
+  </div>
+
+  <div class="legal-section fade-up" id="data">
+    <h2>6. Data protection compliance</h2>
+    <p>We handle personal data in line with applicable data protection law in the markets we serve. See our <a href="privacy.html">Privacy Policy</a> for the full detail on what we collect and how it's used.</p>
+  </div>
+
+  <div class="legal-section fade-up" id="report">
+    <h2>7. Reporting a concern</h2>
+    <p>If you believe PeerHub or one of our partners has fallen short of a compliance obligation, tell us at <a href="mailto:compliance@peerhub.app">compliance@peerhub.app</a>. We take every report seriously and will follow up directly.</p>
+  </div>
 </div>
-
-
-<!-- NO LIMITS -->
-<!-- <section class="no-limits fade-up">
-  
-  <h2>No Limits, No Borders</h2>
-  <div class="nl-go">
-    Go global
-    <div class="toggle-pill" id="toggle">
-      <div class="toggle-knob"><i class="fa-solid fa-bolt"></i></div>
-    </div>
-  </div>
-</section> -->
-
-<span id="toggle"></span>
-<div class="ph-container">
-
-  <!-- 1. CONVERT CRYPTO TO CASH -->
-  <div class="section-wrap fade-up" id="convert">
-    <div class="bank-section">
-      <div class="bank-text split-l">
-        <span class="sec-label">Convert</span>
-        <h2 class="sec-h2">Convert Crypto to Cash &mdash; and Back</h2>
-        <p class="sec-body">Buy and sell BTC, USDT, ETH and more at real market rates. Convert to naira or dollars and settle straight to your wallet or bank.</p>
-        <a href="#" class="cta-link" style="color:var(--blue)">
-          Start converting
-          <span class="arrow-circle"><svg viewBox="0 0 16 16"><polyline points="3,8 13,8"/><polyline points="9,4 13,8 9,12"/></svg></span>
-        </a>
-      </div>
-      <div class="bank-visual split-r">
-        <div class="bank-mock">
-          <div class="bank-flags">
-            <div class="bank-flag" style="color:#F59E0B">&#8383;</div>
-            <div class="bank-flag" style="color:#26A17B">T</div>
-            <div class="bank-flag" style="color:#008751">&#8358;</div>
-          </div>
-          <div class="bank-row"><span class="bank-row-lbl">BTC</span><span class="bank-row-val">0.94 BTC</span></div>
-          <div class="bank-row"><span class="bank-row-lbl">USDT</span><span class="bank-row-val">12,400 USDT</span></div>
-          <div class="bank-row"><span class="bank-row-lbl">NGN Balance</span><span class="bank-row-val">&#8358;1,204,500</span></div>
-          <div class="bank-row"><span class="bank-row-lbl">USD Balance</span><span class="bank-row-val">$3,180.00</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. TWO-WAY, REAL-TIME RATES -->
-  <div class="section-wrap fade-up">
-    <div class="currency-section">
-      <div class="photo-panel split-l">
-        <img src="./images/purpleman.jpeg" alt="Smiling woman with phone">
-      </div>
-      <div class="content-panel split-r">
-        <div class="coin-top"><div class="coin-top-inner"></div></div>
-        <span class="sec-label" style="color:var(--purple)">Live Rates</span>
-        <h2 class="sec-h2">Two-way, real-time conversion</h2>
-        <p class="sec-body">Crypto to fiat or fiat to crypto &mdash; swap either direction in seconds. Every conversion shows the exact rate and fee upfront, with no hidden markups.</p>
-        <a href="#" class="cta-link currency-cta">
-          See live rates
-          <span class="arrow-circle"><svg viewBox="0 0 16 16"><polyline points="3,8 13,8"/><polyline points="9,4 13,8 9,12"/></svg></span>
-        </a>
-        <div class="coin-bottom"><div class="coin-bottom-inner">$</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. VIRTUAL DOLLAR CARD -->
-  <div class="section-wrap fade-up" id="card">
-    <div class="vc-section">
-      <div class="vc-text split-l">
-        <span class="sec-label" style="color:#2222CC">Virtual Card</span>
-        <h2 class="sec-h2">Virtual Dollar Card</h2>
-        <p class="sec-body">Fund it instantly from your balance and spend online anywhere Visa is accepted &mdash; subscriptions, ads, shopping, all of it.</p>
-      </div>
-      <div class="vc-visual split-r">
-        <canvas class="vc-media" id="vcCanvas" aria-label="PeerHub virtual card animation"></canvas>
-        <video id="vcSrcVideo" muted loop playsinline preload="auto"
-          style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none">
-          <source src="black-alpha.mp4" type="video/mp4">
-        </video>
-        
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. PAY EVERY BILL, INSTANTLY -->
-  <div class="section-wrap fade-up" id="bills">
-    <div class="mt-section">
-      <div class="mt-photo split-l">
-        <img src="./images/yellowwoman.jpeg" alt="Smiling man">
-      </div>
-      <div class="mt-content split-r">
-        <span class="sec-label" style="color:#D97706">Pay Bills</span>
-        <h2 class="sec-h2">Pay Every Bill, Instantly</h2>
-        <p class="sec-body">Electricity, airtime, data, and cable subscriptions &mdash; paid directly from your balance and confirmed in seconds.</p>
-        <a href="#" class="cta-link">
-          Pay a bill
-          <span class="arrow-circle"><svg viewBox="0 0 16 16"><polyline points="3,8 13,8"/><polyline points="9,4 13,8 9,12"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5. WHATSAPP AI BOT -->
-  <div class="section-wrap fade-up" id="whatsapp" style="margin-bottom: 30px;">
-    <div class="wa-section">
-      <div class="wa-content split-l">
-        <span class="sec-label">WhatsApp AI</span>
-        <h2 class="sec-h2">Chat With Our WhatsApp AI</h2>
-        <p class="sec-body">Convert currency, pay a bill, or send money &mdash; just message PeerHub on WhatsApp and let the AI handle it.</p>
-        <div class="wa-badges">
-          <span class="wa-badge"><i class="fa-solid fa-arrows-rotate"></i> Crypto &rarr; Fiat</span>
-          <span class="wa-badge"><i class="fa-solid fa-bolt"></i> Pay Bills</span>
-          <span class="wa-badge"><i class="fa-solid fa-paper-plane"></i> Send Money</span>
-        </div>
-        <a href="#" class="cta-btn" style="background:var(--wa-green)">
-          <i class="fa-brands fa-whatsapp"></i> Try it on WhatsApp
-        </a>
-      </div>
-      <div class="wa-visual split-r">
-        <div class="wa-notify">
-          <div class="wa-notify-icn"><i class="fa-solid fa-check"></i></div>
-          <div>
-            <div class="n-title">Sent &#8358;20,000</div>
-            <div class="n-sub">to Mama Ngozi &middot; Instant</div>
-          </div>
-        </div>
-        <img class="wa-phone-img" src="./images/whatsappimg.jpeg" alt="Transfer chat interface">
-      </div>
-    </div>
-  </div>
-
-</div><!-- /ph-container -->
-
-<!-- FAQ -->
-<section class="faq-sec fade-up" id="faq">
-  <div class="faq-head">
-    <span class="sec-label" style="color:var(--bala)">Support</span>
-    <h2 class="sec-h2" style="color:#000">Frequently Asked Questions</h2>
-    <p class="sec-body" style="max-width:420px">Everything about converting, paying bills, your card, and chatting with our WhatsApp AI. Still stuck? Just ask in the app.</p>
-
-    <div class="faq-help-card">
-      <div class="faq-help-inner">
-        <div class="faq-help-icon"><i class="fa-brands fa-whatsapp"></i></div>
-        <h3 class="faq-help-title">Still have questions?</h3>
-        <p class="faq-help-body">Chat with our WhatsApp AI for instant answers, any time of day.</p>
-        <a href="#" class="cta-link" style="color:var(--wa-green)">
-          Start a chat
-          <span class="arrow-circle"><svg viewBox="0 0 16 16"><polyline points="3,8 13,8"/><polyline points="9,4 13,8 9,12"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="faq-list">
-    <details open>
-      <summary>What is PeerHub?<i class="fa-solid fa-chevron-down"></i></summary>
-      <div class="faq-ans">PeerHub is an app that lets you convert crypto to fiat and back, pay your utility bills, and spend with a virtual dollar card &mdash; all in one place.</div>
-    </details>
-    <details>
-      <summary>How does crypto-to-fiat conversion work?<i class="fa-solid fa-chevron-down"></i></summary>
-      <div class="faq-ans">Add crypto to your PeerHub balance and convert it to naira or dollars at the live rate &mdash; no hidden markups. You can also go the other way and convert your fiat balance back into crypto.</div>
-    </details>
-    <details>
-      <summary>What bills can I pay on PeerHub?<i class="fa-solid fa-chevron-down"></i></summary>
-      <div class="faq-ans">Electricity, airtime, mobile data, and cable TV subscriptions &mdash; paid straight from your PeerHub balance, crypto or fiat.</div>
-    </details>
-    <details>
-      <summary>What is the virtual dollar card?<i class="fa-solid fa-chevron-down"></i></summary>
-      <div class="faq-ans">It&rsquo;s a virtual USD card you fund instantly from your PeerHub balance, for subscriptions, online shopping, ads, and anything else that accepts Visa or Mastercard.</div>
-    </details>
-    <details>
-      <summary>How do I fund my virtual card?<i class="fa-solid fa-chevron-down"></i></summary>
-      <div class="faq-ans">Convert crypto or fiat straight into your card balance from the app &mdash; it&rsquo;s ready to spend immediately, no waiting on approvals.</div>
-    </details>
-    <details>
-      <summary>What can the WhatsApp AI actually do?<i class="fa-solid fa-chevron-down"></i></summary>
-      <div class="faq-ans">Message PeerHub on WhatsApp and the AI can convert currency, pay a bill, check your balance, or send money for you &mdash; no need to open the app.</div>
-    </details>
-    <details>
-      <summary>Is my money and my crypto safe on PeerHub?<i class="fa-solid fa-chevron-down"></i></summary>
-      <div class="faq-ans">Yes. Every transaction is encrypted, and all users are verified before they can convert, pay bills, or spend.</div>
-    </details>
-    <details>
-      <summary>How do I get started?<i class="fa-solid fa-chevron-down"></i></summary>
-      <div class="faq-ans">Join the waitlist with your email and we&rsquo;ll let you know the moment PeerHub is ready for you.</div>
-    </details>
-  </div>
-</section>
-
-
-<!-- SOCIAL PROOF -->
-<section class="social fade-up">
-  <span class="sec-label" style="justify-content:center;display:flex;color:var(--bala)">Social Proof</span>
-  <h2 class="sec-h2" style="text-align:center;margin:0 auto 14px">Trusted by thousands, one conversion at a time</h2>
-  <p class="social-sub">Real people already moving crypto, paying bills, and spending smarter with PeerHub.</p>
-
-  <div class="social-stats">
-    <div class="stat-block">
-      <div class="stat-num"><span class="count-num" data-target="50000" data-decimals="0">0</span>+</div>
-      <div class="stat-label">On the waitlist</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-num">&lt;<span class="count-num" data-target="10" data-decimals="0">0</span>s</div>
-      <div class="stat-label">Avg. conversion time</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-num">24/7</div>
-      <div class="stat-label">WhatsApp AI support</div>
-    </div>
-  </div>
-
-  <div class="tgrid">
-    <div class="tcard">
-      <div class="tcard-top">
-        <div class="tav"><img src="https://i.pravatar.cc/120?img=33" alt="Customer"></div>
-        <div>
-          <div class="tname">Freelancer</div>
-          <div class="trole">Lagos &middot; PeerHub user since 2022</div>
-        </div>
-      </div>
-      <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="tquote">&ldquo;I no longer juggle three different apps. PeerHub converts my crypto, pays my bills, and tops up my card &mdash; all from one place.&rdquo;</p>
-    </div>
-    <div class="tcard">
-      <div class="tcard-top">
-        <div class="tav"><img src="https://i.pravatar.cc/120?img=12" alt="Customer"></div>
-        <div>
-          <div class="tname">Small business owner</div>
-          <div class="trole">Accra &middot; PeerHub user since 2023</div>
-        </div>
-      </div>
-      <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="tquote">&ldquo;The WhatsApp bot alone sold me. I convert USDT to naira on my way to work &mdash; no app, no stress.&rdquo;</p>
-    </div>
-    <div class="tcard">
-      <div class="tcard-top">
-        <div class="tav"><img src="https://i.pravatar.cc/120?img=47" alt="Customer"></div>
-        <div>
-          <div class="tname">Product designer</div>
-          <div class="trole">Nairobi &middot; PeerHub user since 2023</div>
-        </div>
-      </div>
-      <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="tquote">&ldquo;Funding my virtual card takes seconds now. I&rsquo;ve cancelled two other apps since switching.&rdquo;</p>
-    </div>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -1086,7 +300,7 @@ a{text-decoration:none;color:inherit}
         <li><a href="convert.html"><i class="fa-solid fa-arrows-rotate fa-fw"></i>Convert</a></li>
         <li><a href="bills.html"><i class="fa-solid fa-bolt fa-fw"></i>Pay Bills</a></li>
         <li><a href="card.html"><i class="fa-solid fa-credit-card fa-fw"></i>Virtual Card</a></li>
-        <li><a href="#whatsapp"><i class="fa-brands fa-whatsapp fa-fw"></i>WhatsApp AI</a></li>
+        <li><a href="originsl.html#whatsapp"><i class="fa-brands fa-whatsapp fa-fw"></i>WhatsApp AI</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1127,19 +341,6 @@ mobNav.querySelectorAll('a, button').forEach(el => {
   });
 });
 
-// Toggle pill
-document.getElementById('toggle').addEventListener('click', function() {
-  this.classList.toggle('on');
-});
-
-// section-wrap cards — zoom-in on scroll
-const cardIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in-view'); cardIO.unobserve(e.target); }
-  });
-}, { threshold: 0.06 });
-document.querySelectorAll('.section-wrap:not(.in-view)').forEach(el => cardIO.observe(el));
-
 // fade-up sections — reveal on scroll
 const fadeIO = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -1147,129 +348,6 @@ const fadeIO = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.05 });
 document.querySelectorAll('.fade-up').forEach(el => fadeIO.observe(el));
-
-// Count-up number animation (phone balance, expense total)
-function animateCountEl(el) {
-  const target = parseFloat(el.dataset.target);
-  const prefix = el.dataset.prefix || '';
-  const decimals = el.dataset.decimals !== undefined ? parseInt(el.dataset.decimals) : 2;
-  const duration = 1300;
-  const start = performance.now();
-  function step(now) {
-    const p = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    const val = target * eased;
-    el.textContent = prefix + val.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-    if (p < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-const countIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { animateCountEl(e.target); countIO.unobserve(e.target); }
-  });
-}, { threshold: 0.4 });
-document.querySelectorAll('.count-num').forEach(el => countIO.observe(el));
-
-// Expense donut fill animation
-function animateDonut(el) {
-  const target = parseFloat(el.dataset.percent) || 0;
-  const duration = 1300;
-  const start = performance.now();
-  function step(now) {
-    const p = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    const pct = target * eased;
-    el.style.background = `conic-gradient(var(--blue) 0% ${pct}%, #1e2a4a ${pct}% 100%)`;
-    if (p < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-const donutEl = document.getElementById('expenseDonut');
-if (donutEl) {
-  const donutIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { animateDonut(e.target); donutIO.unobserve(e.target); }
-    });
-  }, { threshold: 0.4 });
-  donutIO.observe(donutEl);
-}
-
-// Expense outflow bars grow-in animation
-const expenseBars = document.getElementById('expenseBars');
-if (expenseBars) {
-  const barIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.bar-b').forEach(bar => { bar.style.height = bar.dataset.h; });
-        barIO.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.4 });
-  barIO.observe(expenseBars);
-}
-
-// Virtual card video: composite hidden color+alpha combo video onto a
-// canvas each frame so the black backdrop is truly transparent and the
-// card/rings blend into whatever background sits behind them.
-(function () {
-  const canvas = document.getElementById('vcCanvas');
-  const vid = document.getElementById('vcSrcVideo');
-  if (!canvas || !vid) return;
-
-  const ctx = canvas.getContext('2d', { alpha: true });
-  const colorCv = document.createElement('canvas');
-  const alphaCv = document.createElement('canvas');
-  const cctx = colorCv.getContext('2d', { willReadFrequently: true });
-  const actx = alphaCv.getContext('2d', { willReadFrequently: true });
-
-  let vw = 0, vh = 0, halfH = 0, ready = false, started = false;
-
-  function setup() {
-    vw = vid.videoWidth;
-    vh = vid.videoHeight;
-    if (!vw || !vh) return;
-    halfH = vh / 2;
-    canvas.width = vw;
-    canvas.height = halfH;
-    colorCv.width = vw; colorCv.height = halfH;
-    alphaCv.width = vw; alphaCv.height = halfH;
-    ready = true;
-  }
-  vid.addEventListener('loadedmetadata', setup);
-  if (vid.readyState >= 1) setup();
-
-  function drawFrame() {
-    if (ready && vid.readyState >= 2) {
-      cctx.drawImage(vid, 0, 0, vw, halfH, 0, 0, vw, halfH);
-      actx.drawImage(vid, 0, halfH, vw, halfH, 0, 0, vw, halfH);
-      const colorData = cctx.getImageData(0, 0, vw, halfH);
-      const alphaData = actx.getImageData(0, 0, vw, halfH);
-      const cd = colorData.data, ad = alphaData.data;
-      for (let i = 0; i < cd.length; i += 4) cd[i + 3] = ad[i];
-      ctx.putImageData(colorData, 0, 0);
-    }
-    requestAnimationFrame(drawFrame);
-  }
-
-  function start() {
-    if (started) return;
-    started = true;
-    const p = vid.play();
-    if (p && p.catch) p.catch(function () {});
-    requestAnimationFrame(drawFrame);
-  }
-
-  if ('IntersectionObserver' in window) {
-    const vcIO = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { start(); vcIO.disconnect(); } });
-    }, { threshold: 0.1 });
-    vcIO.observe(canvas);
-  } else {
-    start();
-  }
-})();
 </script>
-
 </body>
 </html>
