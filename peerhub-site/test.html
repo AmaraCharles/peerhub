@@ -54,7 +54,10 @@ a{text-decoration:none;color:inherit}
 
 /* ============ HERO ============ */
 .hero{position:relative;width:100%;height:calc(100vh - var(--nav-h));min-height:600px;overflow:hidden;
-  background:linear-gradient(108deg,#d4ceff 0%,#d4ceff 22%,#ddd8ff 36%,#e8e5ff 50%,#f0efff 62%,#f7f6ff 72%,#ffffff 82%,#ffffff 100%)}
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22220%22%20height%3D%22220%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%233333FF%22%20stroke-opacity%3D%220.09%22%20stroke-width%3D%221.4%22%3E%3Cline%20x1%3D%2220%22%20y1%3D%2235%22%20x2%3D%2295%22%20y2%3D%2275%22/%3E%3Cline%20x1%3D%2295%22%20y1%3D%2275%22%20x2%3D%22175%22%20y2%3D%2240%22/%3E%3Cline%20x1%3D%2295%22%20y1%3D%2275%22%20x2%3D%2265%22%20y2%3D%22160%22/%3E%3Cline%20x1%3D%2265%22%20y1%3D%22160%22%20x2%3D%22160%22%20y2%3D%22185%22/%3E%3Cline%20x1%3D%22175%22%20y1%3D%2240%22%20x2%3D%22160%22%20y2%3D%22185%22/%3E%3Cline%20x1%3D%2220%22%20y1%3D%2235%22%20x2%3D%2265%22%20y2%3D%22160%22/%3E%3C/g%3E%3Cg%20fill%3D%22%233333FF%22%20fill-opacity%3D%220.14%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2235%22%20r%3D%223.2%22/%3E%3Ccircle%20cx%3D%2295%22%20cy%3D%2275%22%20r%3D%224%22/%3E%3Ccircle%20cx%3D%22175%22%20cy%3D%2240%22%20r%3D%223.2%22/%3E%3Ccircle%20cx%3D%2265%22%20cy%3D%22160%22%20r%3D%223.2%22/%3E%3Ccircle%20cx%3D%22160%22%20cy%3D%22185%22%20r%3D%224%22/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(108deg,#d4ceff 0%,#d4ceff 22%,#ddd8ff 36%,#e8e5ff 50%,#f0efff 62%,#f7f6ff 72%,#ffffff 82%,#ffffff 100%);
+  background-repeat:repeat,no-repeat;
+  background-size:220px 220px,cover}
 
 .hero-phone{position:absolute;right:6%;top:50%;transform:translateY(-52%);height:82%;max-height:680px;
   object-fit:contain;object-position:center;z-index:5;
@@ -65,10 +68,6 @@ a{text-decoration:none;color:inherit}
 .glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
 .glow-1{width:520px;height:520px;background:rgba(59,33,246,.14);top:-130px;left:-110px}
 .glow-2{width:220px;height:220px;background:rgba(0,242,255,.08);bottom:6%;left:22%}
-
-.hero-watermark{position:absolute;z-index:1;right:-4%;top:50%;transform:translateY(-50%);
-  font-size:min(46vw,640px);line-height:1;color:var(--bala);opacity:.07;
-  pointer-events:none;user-select:none}
 
 .hero-copy{position:absolute;z-index:10;top:54%;left:5%;transform:translateY(-50%);max-width:560px;
   animation:copy-in .9s cubic-bezier(.4,0,.2,1) .25s both}
@@ -376,7 +375,10 @@ a{text-decoration:none;color:inherit}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ============ SUPPORTED COINS ============ */
-.coins-strip{padding:8px 60px 56px;display:flex;flex-direction:column;align-items:center;gap:18px;background:#fff}
+.coins-strip{padding:8px 60px 56px;display:flex;flex-direction:column;align-items:center;gap:18px;
+  background-color:#fff;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22220%22%20height%3D%22220%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%233333FF%22%20stroke-opacity%3D%220.06%22%20stroke-width%3D%221.4%22%3E%3Cline%20x1%3D%2220%22%20y1%3D%2235%22%20x2%3D%2295%22%20y2%3D%2275%22/%3E%3Cline%20x1%3D%2295%22%20y1%3D%2275%22%20x2%3D%22175%22%20y2%3D%2240%22/%3E%3Cline%20x1%3D%2295%22%20y1%3D%2275%22%20x2%3D%2265%22%20y2%3D%22160%22/%3E%3Cline%20x1%3D%2265%22%20y1%3D%22160%22%20x2%3D%22160%22%20y2%3D%22185%22/%3E%3Cline%20x1%3D%22175%22%20y1%3D%2240%22%20x2%3D%22160%22%20y2%3D%22185%22/%3E%3Cline%20x1%3D%2220%22%20y1%3D%2235%22%20x2%3D%2265%22%20y2%3D%22160%22/%3E%3C/g%3E%3Cg%20fill%3D%22%233333FF%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2235%22%20r%3D%223.2%22/%3E%3Ccircle%20cx%3D%2295%22%20cy%3D%2275%22%20r%3D%224%22/%3E%3Ccircle%20cx%3D%22175%22%20cy%3D%2240%22%20r%3D%223.2%22/%3E%3Ccircle%20cx%3D%2265%22%20cy%3D%22160%22%20r%3D%223.2%22/%3E%3Ccircle%20cx%3D%22160%22%20cy%3D%22185%22%20r%3D%224%22/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:220px 220px}
 .coins-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--grey-text)}
 .coins-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:820px}
 .coin-chip{display:flex;align-items:center;gap:9px;background:var(--blue-light);color:var(--ink);
@@ -435,9 +437,6 @@ a{text-decoration:none;color:inherit}
   background:linear-gradient(108deg,#d4ceff 0%,#d4ceff 22%,#ddd8ff 36%,#e8e5ff 50%,#f0efff 62%,#f7f6ff 72%,#ffffff 82%,#ffffff 100%)}
 .mhero::before{content:'';position:absolute;top:-10vw;right:-15vw;width:min(80vw,400px);height:min(80vw,400px);
   border-radius:50%;background:radial-gradient(circle,rgba(59,33,246,.1) 0%,transparent 68%);pointer-events:none}
-.mh-watermark{position:absolute;z-index:1;right:-10%;bottom:2%;
-  font-size:min(75vw,380px);line-height:1;color:var(--bala);opacity:.06;
-  pointer-events:none;user-select:none}
 
 .mh-text{padding:clamp(20px,6vw,36px) clamp(16px,5vw,40px) 0;display:flex;flex-direction:column;
   align-items:flex-start;position:relative;z-index:10}
@@ -489,18 +488,6 @@ a{text-decoration:none;color:inherit}
 
 .mh-cards{position:relative;z-index:10;display:flex;flex-direction:column;gap:10px;
   padding:clamp(16px,5vw,32px) clamp(16px,5vw,32px) clamp(24px,6vw,40px)}
-
-.mh-ticker{position:relative;z-index:10;overflow:hidden;border-top:1px solid rgba(28,25,105,.08);
-  border-bottom:1px solid rgba(28,25,105,.08);background:rgba(255,255,255,.6);padding:10px 0}
-.mh-ticker-track{display:flex;white-space:nowrap;width:max-content;animation:mh-ticker-scroll 18s linear infinite}
-@keyframes mh-ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.mh-ticker-item{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;
-  color:var(--h-deep);padding:0 16px;border-right:1px solid rgba(28,25,105,.1)}
-.mh-ticker-sym{font-weight:900;width:14px;text-align:center;flex-shrink:0}
-.mh-ticker-item b{font-weight:800}
-.mh-ticker-item b.pos{color:#16a34a}
-.mh-ticker-item b.neg{color:#dc2626}
-.mh-ticker-item b.flat{color:#9CA3AF}
 .mh-card{background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(59,33,246,.1);border-radius:clamp(10px,3vw,14px);padding:12px clamp(12px,3vw,16px);
   display:flex;align-items:center;gap:12px;box-shadow:0 2px 14px rgba(28,25,105,.09);
@@ -508,12 +495,10 @@ a{text-decoration:none;color:inherit}
 .mh-card:nth-child(1){animation-delay:.7s}
 .mh-card:nth-child(2){animation-delay:.8s}
 .mh-card:nth-child(3){animation-delay:.9s}
-.mh-card:nth-child(4){animation-delay:1s}
 .mh-card-icon{width:clamp(34px,9vw,40px);height:clamp(34px,9vw,40px);border-radius:clamp(8px,2.5vw,10px);
   display:flex;align-items:center;justify-content:center;font-size:clamp(15px,4.5vw,18px);flex-shrink:0}
 .mh-card-icon.btc{background:#F7931A}
-.mh-card-icon.usdt{background:#26A17B;border-radius:50%;color:#fff;font-weight:800;font-size:16px}
-.mh-card-icon.eth{background:#627EEA;border-radius:50%;color:#fff;font-weight:800;font-size:15px}
+.mh-card-icon.usdt{background:var(--bala);border-radius:50%;color:#fff;font-weight:800;font-size:15px}
 .mh-card-icon.bolt{background:#e8e5ff}
 .mh-card-icon.bolt span{font-size:clamp(14px,4vw,17px)}
 .mh-card-body{flex:1;min-width:0;display:flex;flex-direction:column}
@@ -693,7 +678,6 @@ a{text-decoration:none;color:inherit}
 <section class="hero">
   <div class="glow glow-1"></div>
   <div class="glow glow-2"></div>
-  <i class="fa-brands fa-bitcoin hero-watermark"></i>
 
   <img class="hero-phone"
     src="https://cdn.prod.website-files.com/6360022338a81bd6fdbb1145/67f8f68b6a43a328b669a59c_4632949cb6e5e84e75bc4b053891115f_handWithPhone.avif"
@@ -781,7 +765,6 @@ a{text-decoration:none;color:inherit}
 
 <!-- MOBILE HERO (ported from hali.html — desktop keeps the section above) -->
 <section class="mhero">
-  <i class="fa-brands fa-bitcoin mh-watermark"></i>
   <div class="mh-text">
     <h1 class="mh-h1">
       <span class="mh-line">CRYPTO</span>
@@ -830,7 +813,7 @@ a{text-decoration:none;color:inherit}
     </div>
 
     <div class="mh-card">
-      <div class="mh-card-icon usdt">T</div>
+      <div class="mh-card-icon usdt">&#8635;</div>
       <div class="mh-card-body">
         <div class="mh-card-row">
           <span class="mh-card-label">USDT &rarr; USD swap</span>
@@ -838,18 +821,6 @@ a{text-decoration:none;color:inherit}
         <span class="mh-card-time">3 days ago</span>
       </div>
       <span class="mh-card-amount pos">+$213</span>
-    </div>
-
-    <div class="mh-card">
-      <div class="mh-card-icon eth">&Xi;</div>
-      <div class="mh-card-body">
-        <div class="mh-card-row">
-          <span class="mh-card-label">ETH converted to cash</span>
-          <span class="mh-badge">LIVE</span>
-        </div>
-        <span class="mh-card-time">2 hours ago</span>
-      </div>
-      <span class="mh-card-amount pos">+$940</span>
     </div>
 
     <div class="mh-card">
@@ -861,19 +832,6 @@ a{text-decoration:none;color:inherit}
         <span class="mh-card-time">34 minutes ago</span>
       </div>
       <span class="mh-card-amount neg">&minus;$42.00</span>
-    </div>
-  </div>
-
-  <div class="mh-ticker">
-    <div class="mh-ticker-track">
-      <span class="mh-ticker-item"><span class="mh-ticker-sym" style="color:#F7931A">&#8383;</span>BTC <b class="pos">+2.4%</b></span>
-      <span class="mh-ticker-item"><span class="mh-ticker-sym" style="color:#627EEA">&Xi;</span>ETH <b class="pos">+1.1%</b></span>
-      <span class="mh-ticker-item"><span class="mh-ticker-sym" style="color:#26A17B">T</span>USDT <b class="flat">0.0%</b></span>
-      <span class="mh-ticker-item"><span class="mh-ticker-sym" style="color:#F0B90B">B</span>BNB <b class="neg">&minus;0.6%</b></span>
-      <span class="mh-ticker-item"><span class="mh-ticker-sym" style="color:#F7931A">&#8383;</span>BTC <b class="pos">+2.4%</b></span>
-      <span class="mh-ticker-item"><span class="mh-ticker-sym" style="color:#627EEA">&Xi;</span>ETH <b class="pos">+1.1%</b></span>
-      <span class="mh-ticker-item"><span class="mh-ticker-sym" style="color:#26A17B">T</span>USDT <b class="flat">0.0%</b></span>
-      <span class="mh-ticker-item"><span class="mh-ticker-sym" style="color:#F0B90B">B</span>BNB <b class="neg">&minus;0.6%</b></span>
     </div>
   </div>
 
