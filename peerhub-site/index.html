@@ -664,6 +664,146 @@ a{text-decoration:none;color:inherit}
 }
 
 </style>
+<style>
+:root{
+  --modern-ink:#0c1020;--modern-muted:#687085;--modern-line:#e6e9f2;
+  --modern-soft:#f5f7fb;--modern-violet:#6157ff;--modern-cyan:#8ef4e4;
+}
+body{background:var(--modern-soft);color:var(--modern-ink);letter-spacing:-.01em}
+.nav{height:76px;padding:0 clamp(20px,5vw,72px);background:rgba(255,255,255,.84);
+  border-bottom:1px solid rgba(230,233,242,.8);backdrop-filter:blur(18px)}
+.nav-logo{height:30px}.nav-links{gap:30px;font-size:14px}
+.nav-links a{color:#4a5267;opacity:1}.nav-links a:hover{color:var(--modern-violet)}
+.btn-primary{border-radius:12px;background:var(--modern-ink);box-shadow:0 8px 20px rgba(12,16,32,.12)}
+.btn-primary:hover{background:var(--modern-violet);box-shadow:0 12px 26px rgba(97,87,255,.25)}
+
+.market-strip{position:relative;z-index:30;display:flex;align-items:center;gap:10px;min-height:38px;
+  padding:0 clamp(20px,5vw,72px);overflow:hidden;color:#aeb7d5;background:#0d1224;
+  border-bottom:1px solid rgba(255,255,255,.08);font-size:11px;white-space:nowrap}
+.market-strip-label{color:#fff;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-right:12px}
+.market-items{display:flex;align-items:center;gap:22px;overflow:auto;scrollbar-width:none}
+.market-items::-webkit-scrollbar{display:none}
+.market-item{display:inline-flex;align-items:center;gap:7px}
+.market-symbol{width:19px;height:19px;border-radius:50%;display:inline-flex;align-items:center;
+  justify-content:center;color:#fff;font-size:9px;font-weight:800}
+.market-price{color:#f7f8ff;font-weight:600}
+.market-change{font-weight:700}.market-change.up{color:#65dfb0}
+.market-change.down{color:#ff8c9d}.market-change.flat{color:#aeb7d5}
+
+.hero{height:min(760px,calc(100vh - var(--nav-h) - 38px));min-height:640px;
+  background:radial-gradient(circle at 77% 34%,rgba(97,87,255,.28),transparent 26%),
+    radial-gradient(circle at 88% 84%,rgba(142,244,228,.12),transparent 24%),
+    linear-gradient(120deg,#090d1b 0%,#10162d 55%,#111b33 100%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
+  background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:72px 72px;
+  mask-image:linear-gradient(to right,transparent 0%,black 45%,black 100%)}
+.glow{filter:blur(100px);opacity:.6}.glow-1{background:rgba(97,87,255,.28);top:-160px;left:36%}
+.glow-2{background:rgba(142,244,228,.14);bottom:2%;left:48%}
+.hero-watermark,.hero-phone,.float-cards{display:none}
+.hero-copy{top:50%;left:clamp(24px,8vw,116px);max-width:570px}
+.h-badge{margin-bottom:24px;padding:8px 13px 8px 10px;color:#baf9ee;background:rgba(142,244,228,.11);
+  border:1px solid rgba(142,244,228,.22);font-size:10px;letter-spacing:.16em}
+.h-badge-pulse{background:var(--modern-cyan)}.headline{gap:6px;margin-bottom:24px}
+.hl-box{color:#f6f8ff;font-size:clamp(48px,6.3vw,88px);letter-spacing:-.065em;padding:0;background:none}
+.hl-row:nth-child(2) .hl-box{color:var(--modern-cyan)}
+.hero-sub{max-width:440px;margin-bottom:30px;color:#aeb7d5;font-size:16px;line-height:1.7}
+.hero-cta{background:var(--modern-violet);border:1px solid rgba(255,255,255,.13);border-radius:12px;
+  padding:15px 19px;box-shadow:0 14px 38px rgba(97,87,255,.3);text-transform:none;letter-spacing:0}
+.hero-cta:hover{background:#746cff;box-shadow:0 18px 44px rgba(97,87,255,.42)}
+.cta-trust{color:#7f8aa9}.trust-avatar{border-color:#111a34}
+.scroll-nudge{color:#687496}.scroll-nudge::after{background:#36415f}
+
+.hero-visual{position:absolute;z-index:8;top:50%;right:clamp(22px,7vw,104px);width:min(43vw,560px);
+  transform:translateY(-50%);animation:console-in 1s cubic-bezier(.2,.8,.2,1) .2s both}
+@keyframes console-in{from{opacity:0;transform:translateY(calc(-50% + 28px)) scale(.97)}
+  to{opacity:1;transform:translateY(-50%) scale(1)}}
+.terminal-card{position:relative;padding:20px;overflow:hidden;color:#f5f7ff;
+  background:linear-gradient(145deg,rgba(31,40,74,.95),rgba(17,24,48,.94));
+  border:1px solid rgba(255,255,255,.14);border-radius:24px;
+  box-shadow:0 36px 90px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.1)}
+.terminal-card::before{content:"";position:absolute;width:250px;height:250px;right:-100px;top:-120px;
+  border-radius:50%;background:rgba(142,244,228,.12);filter:blur(10px)}
+.terminal-top{position:relative;display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.terminal-brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700}
+.terminal-mark{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;color:#09121e;
+  background:var(--modern-cyan);box-shadow:0 0 24px rgba(142,244,228,.35)}
+.terminal-status{display:flex;align-items:center;gap:7px;color:#8d9abb;font-size:11px}
+.terminal-status i{color:#65dfb0;font-size:7px}
+.terminal-balance{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
+.terminal-label{color:#8d9abb;font-size:11px;margin-bottom:8px}
+.terminal-value{font-size:clamp(30px,4vw,46px);font-weight:800;letter-spacing:-.07em}
+.terminal-value small{color:#8d9abb;font-size:14px;font-weight:500;letter-spacing:0}
+.terminal-delta{padding:7px 9px;border-radius:8px;color:#6de0b2;background:rgba(101,223,176,.1);font-size:11px;font-weight:700}
+.chart-shell{position:relative;height:150px;margin:18px -2px 16px}
+.chart-grid{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;opacity:.65}
+.chart-grid span{border-top:1px solid rgba(255,255,255,.08)}
+.chart-line{position:absolute;inset:9px 0 0;width:100%;height:126px;overflow:visible}
+.chart-line path{fill:none;stroke:var(--modern-cyan);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 0 8px rgba(142,244,228,.35))}
+.chart-line circle{fill:var(--modern-cyan);stroke:#163c49;stroke-width:5}
+.chart-labels{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;color:#65718f;font-size:9px}
+.terminal-tokens{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:7px}
+.terminal-token{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid rgba(255,255,255,.08);
+  border-radius:11px;background:rgba(255,255,255,.045)}
+.token-icon{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:10px;font-weight:800}
+.token-copy{min-width:0}.token-name{font-size:10px;font-weight:700}.token-price{margin-top:2px;color:#8d9abb;font-size:9px}
+.terminal-transactions{display:flex;flex-direction:column;gap:9px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
+.terminal-transaction{display:flex;align-items:center;gap:9px}.transaction-icon{width:27px;height:27px;border-radius:9px;
+  display:grid;place-items:center;color:#8ef4e4;background:rgba(142,244,228,.1);font-size:10px}
+.transaction-copy{flex:1}.transaction-name{font-size:10px;font-weight:600}.transaction-meta{margin-top:2px;color:#71809f;font-size:9px}
+.transaction-value{color:#65dfb0;font-size:10px;font-weight:700}
+.visual-float{position:absolute;display:flex;align-items:center;gap:9px;padding:11px 13px;color:#f5f7ff;
+  background:#111a31;border:1px solid rgba(255,255,255,.13);border-radius:13px;
+  box-shadow:0 20px 40px rgba(0,0,0,.22);font-size:11px;font-weight:600;animation:float-y 4s ease-in-out infinite}
+.visual-float i{color:var(--modern-cyan)}.visual-float.rate{left:-44px;bottom:15%}
+.visual-float.secure{right:-36px;top:15%;animation-delay:-1.4s}
+@keyframes float-y{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.marquee-wrap{padding:24px 0;background:#fff;border-bottom:1px solid var(--modern-line)}
+.marquee-text{font-size:clamp(24px,3vw,42px);color:#dce1eb;letter-spacing:-.06em}
+.coins-strip{padding:70px clamp(22px,6vw,88px);background:#fff}
+.coins-label{color:var(--modern-muted);letter-spacing:.14em}
+.coin-chip{background:#f5f7fb;border:1px solid var(--modern-line);border-radius:12px;padding:11px 16px;font-size:13px}
+.coin-chip:hover{border-color:#cdd2e6;background:#eef0ff}
+.ph-container{padding:0 clamp(22px,6vw,88px);gap:22px}
+.section-wrap{border:1px solid var(--modern-line);border-radius:24px;background:#fff;box-shadow:0 10px 30px rgba(23,31,58,.04)}
+.sec-label{color:var(--modern-violet)!important;letter-spacing:.15em;font-size:11px}
+.sec-h2{color:var(--modern-ink);letter-spacing:-.06em}.sec-body{color:var(--modern-muted);line-height:1.75}
+.cta-link{color:var(--modern-violet)}.arrow-circle{width:28px;height:28px}
+.bank-section,.currency-section,.vc-section,.mt-section{padding:clamp(26px,5vw,66px)}
+.bank-visual,.vc-visual,.photo-panel,.mt-photo{border-radius:18px;overflow:hidden}
+.faq-sec{padding:90px clamp(22px,6vw,88px);background:var(--modern-soft)}
+.faq-help-inner{background:#e9edff;border:1px solid #d9defd}
+.faq-list details{background:#fff;border-color:var(--modern-line);border-radius:14px}
+.faq-list details[open]{background:#f1f2ff;border-color:#d7d5ff}
+.social{padding:90px clamp(22px,6vw,88px);background:#e9edff}
+.social-sub,.stat-label{color:var(--modern-muted)}.stat-num{color:var(--modern-violet)}
+.tcard{border-radius:18px}.footer{background:#0d1224;padding-left:clamp(22px,6vw,88px);padding-right:clamp(22px,6vw,88px)}
+
+@media(max-width:1024px){
+  .hero-visual{right:30px;width:min(47vw,500px)}.hero-copy{left:5%;max-width:48%}
+  .visual-float.rate{left:-24px}.visual-float.secure{right:-18px}
+}
+@media(max-width:768px){
+  .market-strip{min-height:34px;padding:0 20px}.market-strip-label{display:none}
+  .hero{display:none}.mhero{display:flex;min-height:calc(100svh - var(--nav-h) - 34px);
+    background:radial-gradient(circle at 85% 12%,rgba(97,87,255,.3),transparent 30%),linear-gradient(145deg,#090d1b,#121a33)}
+  .mh-watermark{opacity:.08;color:#8ef4e4}.mh-h1 .mh-line{color:#f7f8ff}
+  .mh-h1 .mh-line.yellow{color:var(--modern-cyan)}.mh-subtitle{color:#aeb7d5}
+  .mh-cta{background:var(--modern-violet);box-shadow:0 14px 34px rgba(97,87,255,.34)}
+  .mh-card{background:#fff;border-color:rgba(255,255,255,.7);box-shadow:0 18px 36px rgba(0,0,0,.16)}
+  .mh-card-label{color:var(--modern-ink)}.mh-card-time{color:#7c86a0}
+  .mh-ticker{background:#111a31;border-top:1px solid rgba(255,255,255,.1)}.mh-social-text{color:#8d9abb}
+  .coins-strip{padding-top:52px;padding-bottom:52px}.section-wrap{border-radius:18px}
+  .faq-sec,.social{padding-top:62px;padding-bottom:62px}
+}
+@media(max-width:480px){
+  .nav{height:64px}.nav-logo{height:26px}.terminal-card{padding:16px;border-radius:20px}
+  .terminal-tokens{gap:5px}.terminal-token{padding:8px 6px;gap:5px}
+}
+@media(prefers-reduced-motion:reduce){.hero-visual,.visual-float{animation:none}}
+</style>
 </head>
 <body>
 
@@ -692,6 +832,16 @@ a{text-decoration:none;color:inherit}
   </button>
 </nav>
 
+<div class="market-strip" aria-label="Crypto market snapshot">
+  <span class="market-strip-label">Markets</span>
+  <div class="market-items">
+    <span class="market-item"><span class="market-symbol" style="background:#f7931a">&#8383;</span><span>BTC</span><span class="market-price">$67,842</span><span class="market-change up">+2.42%</span></span>
+    <span class="market-item"><span class="market-symbol" style="background:#627eea">&#926;</span><span>ETH</span><span class="market-price">$3,482</span><span class="market-change up">+1.18%</span></span>
+    <span class="market-item"><span class="market-symbol" style="background:#26a17b">T</span><span>USDT</span><span class="market-price">$1.00</span><span class="market-change flat">0.00%</span></span>
+    <span class="market-item"><span class="market-symbol" style="background:#f0b90b">B</span><span>BNB</span><span class="market-price">$604</span><span class="market-change down">−0.64%</span></span>
+  </div>
+</div>
+
 <!-- MOBILE DRAWER -->
 <div class="mob-nav" id="mob-nav">
   <a href="convert.html" class="mob-link">Convert</a>
@@ -716,8 +866,43 @@ a{text-decoration:none;color:inherit}
     src="https://cdn.prod.website-files.com/6360022338a81bd6fdbb1145/67f8f68b6a43a328b669a59c_4632949cb6e5e84e75bc4b053891115f_handWithPhone.avif"
     alt="PeerHub app on phone">
 
+  <div class="hero-visual" aria-label="PeerHub crypto account preview">
+    <div class="terminal-card">
+      <div class="terminal-top">
+        <div class="terminal-brand"><span class="terminal-mark"><i class="fa-solid fa-arrow-right-arrow-left"></i></span>PeerHub wallet</div>
+        <div class="terminal-status"><i class="fa-solid fa-circle"></i> Live market data</div>
+      </div>
+      <div class="terminal-balance">
+        <div>
+          <div class="terminal-label">Total balance</div>
+          <div class="terminal-value">$24,680<small>.42</small></div>
+        </div>
+        <span class="terminal-delta">+8.24% 30d</span>
+      </div>
+      <div class="chart-shell">
+        <div class="chart-grid"><span></span><span></span><span></span><span></span></div>
+        <svg class="chart-line" viewBox="0 0 520 126" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 104 C34 100 40 78 73 84 S107 112 135 82 S176 65 200 72 S232 52 257 62 S292 76 318 50 S346 60 372 43 S400 20 424 36 S456 28 480 15 S506 22 520 4"></path>
+          <circle cx="520" cy="4" r="5"></circle>
+        </svg>
+        <div class="chart-labels"><span>09:00</span><span>12:00</span><span>15:00</span><span>18:00</span><span>Now</span></div>
+      </div>
+      <div class="terminal-tokens">
+        <div class="terminal-token"><span class="token-icon" style="background:#f7931a">&#8383;</span><div class="token-copy"><div class="token-name">BTC</div><div class="token-price">$67,842</div></div></div>
+        <div class="terminal-token"><span class="token-icon" style="background:#627eea">&#926;</span><div class="token-copy"><div class="token-name">ETH</div><div class="token-price">$3,482</div></div></div>
+        <div class="terminal-token"><span class="token-icon" style="background:#26a17b">T</span><div class="token-copy"><div class="token-name">USDT</div><div class="token-price">$1.00</div></div></div>
+      </div>
+      <div class="terminal-transactions">
+        <div class="terminal-transaction"><span class="transaction-icon"><i class="fa-solid fa-arrow-down"></i></span><div class="transaction-copy"><div class="transaction-name">BTC converted to cash</div><div class="transaction-meta">Today, 4:42 PM</div></div><span class="transaction-value">+$1,680</span></div>
+        <div class="terminal-transaction"><span class="transaction-icon"><i class="fa-solid fa-bolt"></i></span><div class="transaction-copy"><div class="transaction-name">Electricity bill paid</div><div class="transaction-meta">Today, 4:08 PM</div></div><span class="transaction-value">−$42.00</span></div>
+      </div>
+    </div>
+    <div class="visual-float rate"><i class="fa-solid fa-bolt"></i><span>Instant settlement</span></div>
+    <div class="visual-float secure"><i class="fa-solid fa-shield-halved"></i><span>Secure by design</span></div>
+  </div>
+
   <div class="hero-copy">
-   
+    <div class="h-badge"><span class="h-badge-pulse"></span>Built for the new money movement</div>
     <!-- <h1 class="headline">
       <span class="hl-box hl-dark">CRYPTO TO CASH,</span>
       <span class="hl-box hl-blue">CASH TO CRYPTO.</span>

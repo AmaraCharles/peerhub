@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeerHub — Crypto finance, reimagined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#8FE3CF;--teal-dark:#3FAE93;
+  --purple:#5B4FE8;--purple-dark:#4438C9;
+  --tan:#F0D9A8;--tan-dark:#D9B36B;
+  --ink:#171522;--sub:#6B6880;--line:#ECEAF3;--bg:#fff;
+  --r:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;color:var(--ink);background:var(--bg);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ===== NAV ===== */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px}
+.nav-logo{font-size:17px;font-weight:800;color:var(--purple);display:flex;align-items:center;gap:7px}
+.nav-logo i{font-size:15px}
+.nav-links{display:none}
+.nav-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:var(--line);color:var(--ink);font-size:15px}
+
+/* ===== HERO ===== */
+.hero{position:relative;padding:8px 24px 36px;overflow:hidden}
+.hero-blob{position:absolute;top:-40px;right:-60px;width:220px;height:220px;border-radius:50%;
+  background:var(--teal);opacity:.55;z-index:0}
+.hero-eyebrow{position:relative;z-index:1;font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal-dark);margin-bottom:10px}
+.hero h1{position:relative;z-index:1;font-size:34px;font-weight:800;line-height:1.12;letter-spacing:-.8px}
+.hero h1 span{color:var(--purple)}
+.hero-badges{position:relative;z-index:1;display:flex;gap:10px;margin-top:18px}
+.store-badge{display:flex;align-items:center;gap:7px;background:var(--ink);color:#fff;
+  padding:8px 14px;border-radius:9px;font-size:11px;font-weight:600}
+.store-badge i{font-size:15px}
+.hero-phone-wrap{position:relative;z-index:1;margin-top:28px;display:flex;justify-content:center}
+.hero-phone{width:200px;height:410px;background:linear-gradient(160deg,#1c1a2e,#100e1c);border-radius:34px;
+  padding:9px;box-shadow:0 30px 60px rgba(23,21,34,.28);position:relative;z-index:2}
+.hero-phone-screen{width:100%;height:100%;background:#fff;border-radius:26px;overflow:hidden;padding:16px 14px}
+.hp-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.hp-dot{width:26px;height:26px;border-radius:50%;background:var(--purple)}
+.hp-bal-label{font-size:9px;color:var(--sub);margin-bottom:3px}
+.hp-bal{font-size:19px;font-weight:800;margin-bottom:14px}
+.hp-row{display:flex;justify-content:space-between;align-items:center;background:#F7F6FB;border-radius:10px;
+  padding:9px 10px;margin-bottom:7px}
+.hp-row-l{display:flex;align-items:center;gap:8px}
+.hp-coin{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;color:#fff}
+.hp-txt{font-size:10px;font-weight:600}
+.hp-amt{font-size:10px;font-weight:700}
+.hero-orbit-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--purple);z-index:1}
+
+/* ===== CHOOSE BETTER ===== */
+.section{padding:36px 24px}
+.section-title{font-size:22px;font-weight:800;letter-spacing:-.5px;line-height:1.25;margin-bottom:20px}
+.section-title .accent{color:var(--purple)}
+.choose-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.choose-card{border-radius:16px;padding:16px 12px;min-height:120px;display:flex;flex-direction:column;
+  justify-content:space-between}
+.choose-card.c1{background:var(--teal)}
+.choose-card.c2{background:var(--purple);color:#fff}
+.choose-card.c3{background:var(--tan)}
+.choose-icon{width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,.55);
+  display:flex;align-items:center;justify-content:center;font-size:14px}
+.choose-card.c2 .choose-icon{background:rgba(255,255,255,.18)}
+.choose-label{font-size:12.5px;font-weight:700;line-height:1.3}
+
+/* ===== TAKE CONTROL ===== */
+.control-wrap{display:flex;flex-direction:column;gap:22px}
+.control-visual{position:relative;background:var(--teal);border-radius:24px;padding:26px;
+  display:flex;justify-content:center}
+.control-phone{width:170px;background:#fff;border-radius:18px;padding:12px;box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.control-phone .hp-bal{font-size:15px}
+.control-list{display:flex;flex-direction:column;gap:12px}
+.control-list h3{font-size:17px;font-weight:800;margin-bottom:4px}
+.control-item{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--sub);line-height:1.5}
+.control-item i{color:var(--purple);font-size:12px;margin-top:3px;flex-shrink:0}
+
+/* ===== WEALTH GRID (2x2) ===== */
+.wealth-sub{font-size:13px;color:var(--sub);line-height:1.6;margin-top:-10px;margin-bottom:22px;max-width:480px}
+.wealth-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.wealth-card{background:#F9F8FC;border-radius:16px;padding:18px 16px}
+.wealth-card h4{font-size:13.5px;font-weight:700;margin-bottom:6px;line-height:1.35}
+.wealth-card p{font-size:11.5px;color:var(--sub);line-height:1.55;margin-bottom:14px}
+.wealth-go{width:26px;height:26px;border-radius:50%;background:var(--purple);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:10px}
+
+/* ===== TRUSTED PARTNERSHIPS ===== */
+.trust-band{background:linear-gradient(135deg,var(--purple),var(--purple-dark));border-radius:24px;
+  margin:36px 24px;padding:30px 22px;color:#fff;position:relative;overflow:hidden}
+.trust-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.75}
+.trust-title{font-size:24px;font-weight:800;margin-top:6px;margin-bottom:20px;line-height:1.2}
+.trust-stat-card{background:#fff;color:var(--ink);border-radius:14px;padding:16px;margin-bottom:12px}
+.trust-stat-num{font-size:26px;font-weight:800;color:var(--purple)}
+.trust-stat-label{font-size:11.5px;color:var(--sub);margin-top:2px}
+.trust-partners{background:#fff;color:var(--ink);border-radius:14px;padding:16px}
+.trust-partners-label{font-size:11px;color:var(--sub);margin-bottom:10px;font-weight:600}
+.trust-logos{display:flex;flex-wrap:wrap;gap:8px}
+.trust-logo{background:var(--line);border-radius:7px;padding:6px 10px;font-size:10.5px;font-weight:700;color:var(--sub)}
+
+/* ===== BUILDING EXPERTISE ===== */
+.expertise-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.exp-card{border-radius:16px;padding:18px 16px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between}
+.exp-card.e1{background:var(--teal)}
+.exp-card.e2{background:var(--purple);color:#fff}
+.exp-eyebrow{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.7}
+.exp-body{font-size:12px;line-height:1.5;font-weight:600;margin-top:8px}
+.exp-stat{margin-top:14px}
+.exp-stat-num{font-size:20px;font-weight:800}
+.exp-stat-label{font-size:10.5px;opacity:.85;margin-top:1px}
+
+/* ===== TESTIMONIALS ===== */
+.testi-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;margin:0 -24px;padding-left:24px;padding-right:24px;
+  scroll-snap-type:x mandatory}
+.testi-scroll::-webkit-scrollbar{display:none}
+.testi-card{flex:0 0 78%;scroll-snap-align:start;background:#F9F8FC;border-radius:16px;padding:18px}
+.testi-stars{color:var(--tan-dark);font-size:11px;margin-bottom:10px}
+.testi-quote{font-size:13px;line-height:1.6;color:var(--ink);margin-bottom:14px}
+.testi-who{display:flex;align-items:center;gap:9px}
+.testi-avatar{width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.testi-name{font-size:12px;font-weight:700}
+.testi-role{font-size:10.5px;color:var(--sub)}
+
+/* ===== WORLD OF PEERHUB ===== */
+.world-wrap{background:#F9F8FC;border-radius:24px;padding:32px 20px}
+.world-title{text-align:center;font-size:20px;font-weight:800;margin-bottom:6px}
+.world-sub{text-align:center;font-size:12.5px;color:var(--sub);max-width:320px;margin:0 auto 26px;line-height:1.6}
+.world-orbit{position:relative;width:100%;max-width:280px;aspect-ratio:1;margin:0 auto 26px;
+  display:flex;align-items:center;justify-content:center}
+.world-center{width:64px;height:64px;border-radius:50%;background:var(--purple);color:#fff;z-index:3;
+  display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 10px 30px rgba(91,79,232,.35)}
+.world-ring{position:absolute;border:1.5px dashed #D8D4EA;border-radius:50%}
+.world-ring.r1{inset:18%}
+.world-ring.r2{inset:0}
+.world-node{position:absolute;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:12px;font-weight:800;color:#fff;box-shadow:0 6px 16px rgba(23,21,34,.15)}
+.world-bubble{position:absolute;background:#fff;border-radius:10px;padding:6px 10px;font-size:9.5px;
+  font-weight:600;box-shadow:0 8px 20px rgba(23,21,34,.1);white-space:nowrap}
+.world-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.world-stat-num{font-size:19px;font-weight:800;color:var(--purple)}
+.world-stat-label{font-size:10px;color:var(--sub);margin-top:2px;line-height:1.3}
+
+/* ===== AWARDS ===== */
+.awards-row{display:flex;justify-content:space-between;gap:10px;text-align:center}
+.award{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+.award-icon{width:44px;height:44px;border-radius:50%;background:#F9F8FC;color:var(--purple);
+  display:flex;align-items:center;justify-content:center;font-size:17px}
+.award-label{font-size:9.5px;color:var(--sub);line-height:1.4}
+
+/* ===== CTA BAND ===== */
+.cta-band{background:linear-gradient(150deg,var(--purple),var(--purple-dark) 70%);border-radius:24px;
+  margin:36px 24px;padding:32px 22px;text-align:center;color:#fff}
+.cta-featured{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+.cta-featured-logos{display:flex;justify-content:center;gap:18px;margin-bottom:26px;flex-wrap:wrap;opacity:.85}
+.cta-featured-logos span{font-size:12px;font-weight:700}
+.cta-phone{width:150px;background:#0D0D1A;border-radius:22px;padding:8px;margin:0 auto 22px;box-shadow:0 20px 44px rgba(0,0,0,.3)}
+.cta-phone-screen{background:#fff;border-radius:16px;padding:10px}
+.cta-title{font-size:21px;font-weight:800;line-height:1.25;margin-bottom:18px}
+.cta-band .hero-badges{justify-content:center}
+
+/* ===== FOOTER ===== */
+.footer{padding:44px 24px 28px;background:var(--ink);color:#fff}
+.footer-logo{font-size:17px;font-weight:800;margin-bottom:10px}
+.footer-tag{font-size:12px;color:#9B98AC;line-height:1.6;max-width:260px;margin-bottom:26px}
+.footer-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:28px}
+.footer-col h5{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#726F87;margin-bottom:12px}
+.footer-col a{display:block;font-size:12.5px;color:#D5D3E0;margin-bottom:9px}
+.footer-social{display:flex;gap:12px;margin-bottom:22px}
+.footer-social a{width:32px;height:32px;border-radius:8px;background:#26233A;display:flex;
+  align-items:center;justify-content:center;font-size:13px}
+.footer-bottom{border-top:1px solid #26233A;padding-top:18px;font-size:10.5px;color:#726F87}
+
+/* ===== DESKTOP ===== */
+@media(min-width:900px){
+  .nav{padding:22px 60px}
+  .nav-links{display:flex;gap:28px;font-size:14px;font-weight:600;color:var(--sub)}
+  .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:20px 60px 60px;gap:40px}
+  .hero h1{font-size:50px}
+  .hero-phone-wrap{margin-top:0}
+  .hero-phone{width:250px;height:510px}
+
+  .section{padding:60px 60px}
+  .choose-grid{grid-template-columns:repeat(3,1fr);max-width:640px}
+  .choose-card{min-height:150px;padding:22px 18px}
+
+  .control-wrap{flex-direction:row-reverse;align-items:center;gap:60px}
+  .control-visual{flex:1;padding:50px}
+  .control-list{flex:1}
+  .control-phone{width:220px}
+
+  .wealth-grid{grid-template-columns:1fr 1fr;max-width:640px}
+
+  .trust-band{margin:60px;padding:48px;display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:center}
+  .trust-title{font-size:32px}
+
+  .expertise-grid{max-width:640px}
+
+  .testi-scroll{margin:0;padding:0}
+  .testi-card{flex:0 0 340px}
+
+  .world-wrap{padding:60px}
+  .world-title{font-size:28px}
+
+  .awards-row{max-width:640px;margin:0 auto}
+
+  .cta-band{margin:60px;padding:60px;display:grid;grid-template-columns:1fr 1fr;align-items:center;text-align:left}
+  .cta-band .cta-featured,.cta-band .cta-featured-logos{grid-column:1/-1;text-align:center}
+  .cta-phone{margin:0}
+  .cta-band .hero-badges{justify-content:flex-start}
+
+  .footer{padding:60px 60px 32px}
+  .footer-cols{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo"><i class="fa-solid fa-diamond"></i>PeerHub</div>
+  <ul class="nav-links">
+    <li>Convert</li><li>Bills</li><li>Card</li><li>Partners</li>
+  </ul>
+  <div class="nav-icon"><i class="fa-solid fa-bars"></i></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div>
+    <div class="hero-eyebrow">Money, simplified</div>
+    <h1>Crypto finance, <span>reimagined</span></h1>
+    <p style="color:var(--sub);font-size:13.5px;margin-top:10px;max-width:320px">Convert, save, and spend your crypto in one calm, uncomplicated app.</p>
+    <div class="hero-badges">
+      <div class="store-badge"><i class="fa-brands fa-apple"></i> App Store</div>
+      <div class="store-badge"><i class="fa-brands fa-google-play"></i> Google Play</div>
+    </div>
+  </div>
+  <div class="hero-phone-wrap">
+    <div class="hero-phone">
+      <div class="hero-phone-screen">
+        <div class="hp-topbar">
+          <div class="hp-dot"></div>
+          <i class="fa-solid fa-bell" style="font-size:12px;color:var(--sub)"></i>
+        </div>
+        <div class="hp-bal-label">Total balance</div>
+        <div class="hp-bal">$4,218.60</div>
+        <div class="hp-row">
+          <div class="hp-row-l"><div class="hp-coin" style="background:#F7931A">B</div><span class="hp-txt">Bitcoin</span></div>
+          <span class="hp-amt">0.09 BTC</span>
+        </div>
+        <div class="hp-row">
+          <div class="hp-row-l"><div class="hp-coin" style="background:#26A17B">T</div><span class="hp-txt">USDT</span></div>
+          <span class="hp-amt">1,204 USDT</span>
+        </div>
+        <div class="hp-row">
+          <div class="hp-row-l"><div class="hp-coin" style="background:#627EEA">E</div><span class="hp-txt">Ethereum</span></div>
+          <span class="hp-amt">0.8 ETH</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHOOSE BETTER -->
+<section class="section">
+  <h2 class="section-title">Choose better <br><span class="accent">with PeerHub</span></h2>
+  <div class="choose-grid">
+    <div class="choose-card c1">
+      <div class="choose-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="choose-label">Protect what matters</div>
+    </div>
+    <div class="choose-card c2">
+      <div class="choose-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+      <div class="choose-label">Convert it, your way</div>
+    </div>
+    <div class="choose-card c3">
+      <div class="choose-icon"><i class="fa-solid fa-bolt"></i></div>
+      <div class="choose-label">Many needs, one app</div>
+    </div>
+  </div>
+</section>
+
+<!-- TAKE CONTROL -->
+<section class="section">
+  <div class="control-wrap">
+    <div class="control-visual">
+      <div class="control-phone">
+        <div class="hp-topbar"><div class="hp-dot" style="width:20px;height:20px"></div></div>
+        <div class="hp-bal-label">Total balance</div>
+        <div class="hp-bal">$4,218.60</div>
+        <div class="hp-row"><span class="hp-txt">Convert</span><span class="hp-amt">&rarr;</span></div>
+        <div class="hp-row"><span class="hp-txt">Pay a bill</span><span class="hp-amt">&rarr;</span></div>
+      </div>
+    </div>
+    <div class="control-list">
+      <h3>Take control of your money</h3>
+      <p style="font-size:13px;color:var(--sub);margin-bottom:6px">Crypto at your fingertips</p>
+      <div class="control-item"><i class="fa-solid fa-check"></i>Easy monitoring, single view of every wallet</div>
+      <div class="control-item"><i class="fa-solid fa-check"></i>One-tap conversion at the real rate</div>
+      <div class="control-item"><i class="fa-solid fa-check"></i>Instant bill and airtime top-ups</div>
+    </div>
+  </div>
+</section>
+
+<!-- WEALTH WORK FOR YOU -->
+<section class="section">
+  <h2 class="section-title">Let's make your <span class="accent">crypto work for you</span></h2>
+  <p class="wealth-sub">A personalised crypto experience that pairs a dedicated support line with the power of real-time technology.</p>
+  <div class="wealth-grid">
+    <div class="wealth-card">
+      <h4>Well-rounded planning of your finances</h4>
+      <p>Track balances, set targets, and see exactly where your crypto and cash stand.</p>
+      <div class="wealth-go"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+    <div class="wealth-card">
+      <h4>Transparent and jargon-free pricing</h4>
+      <p>We show the rate and fee upfront, on every single conversion, always.</p>
+      <div class="wealth-go"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+    <div class="wealth-card">
+      <h4>No bias, only the rate that's best for you</h4>
+      <p>Live market pricing pulled straight from trusted exchange partners.</p>
+      <div class="wealth-go"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+    <div class="wealth-card">
+      <h4>Backed by a serious security team</h4>
+      <p>Every account is monitored and encrypted, around the clock.</p>
+      <div class="wealth-go"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED PARTNERSHIPS -->
+<div class="trust-band">
+  <div>
+    <div class="trust-eyebrow">Bank &amp; Exchange Partners</div>
+    <div class="trust-title">Trusted partnerships</div>
+    <div class="trust-stat-card">
+      <div class="trust-stat-num">10+</div>
+      <div class="trust-stat-label">Proven partnerships with the finest exchanges for crypto conversion</div>
+    </div>
+  </div>
+  <div class="trust-partners">
+    <div class="trust-partners-label">Digital partners</div>
+    <div class="trust-logos">
+      <span class="trust-logo">BitPay</span>
+      <span class="trust-logo">Coinbase</span>
+      <span class="trust-logo">Binance</span>
+      <span class="trust-logo">Flutterwave</span>
+    </div>
+  </div>
+</div>
+
+<!-- BUILDING EXPERTISE -->
+<section class="section">
+  <h2 class="section-title">Building our <span class="accent">expertise, for you</span></h2>
+  <div class="expertise-grid">
+    <div class="exp-card e1">
+      <div class="exp-eyebrow">Fintech people</div>
+      <div class="exp-body">Our proven expertise in both crypto and traditional finance means your money is managed with top-notch tech.</div>
+    </div>
+    <div class="exp-card e2">
+      <div class="exp-eyebrow">Well-informed decisions</div>
+      <div class="exp-body">Our brightest minds do the research, so you can make prudent decisions about your money.</div>
+      <div class="exp-stat">
+        <div class="exp-stat-num">40+</div>
+        <div class="exp-stat-label">Support specialists on our team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HAPPY CUSTOMERS -->
+<section class="section">
+  <h2 class="section-title">Happy customers <br><span class="accent">are our true wealth</span></h2>
+  <div class="testi-scroll">
+    <div class="testi-card">
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-quote">&ldquo;I no longer juggle three different apps. PeerHub converts my crypto, pays my bills, and tops up my card.&rdquo;</p>
+      <div class="testi-who">
+        <div class="testi-avatar">A</div>
+        <div><div class="testi-name">Freelancer</div><div class="testi-role">Lagos</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-quote">&ldquo;The rates are transparent and the app is genuinely simple to use, even for someone new to crypto.&rdquo;</p>
+      <div class="testi-who">
+        <div class="testi-avatar">D</div>
+        <div><div class="testi-name">Small business owner</div><div class="testi-role">Accra</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-quote">&ldquo;Funding my virtual card takes seconds now. I've cancelled two other apps since switching.&rdquo;</p>
+      <div class="testi-who">
+        <div class="testi-avatar">S</div>
+        <div><div class="testi-name">Product designer</div><div class="testi-role">Nairobi</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORLD OF PEERHUB -->
+<section class="section">
+  <div class="world-wrap">
+    <div class="world-title">World of PeerHub</div>
+    <p class="world-sub">As more people gain access to better crypto tools, you may well be one of them.</p>
+    <div class="world-orbit">
+      <div class="world-ring r2"></div>
+      <div class="world-ring r1"></div>
+      <div class="world-center"><i class="fa-solid fa-bolt"></i></div>
+      <div class="world-node" style="background:#F7931A;top:6%;left:14%">B</div>
+      <div class="world-node" style="background:#627EEA;top:10%;right:10%">E</div>
+      <div class="world-node" style="background:#26A17B;bottom:14%;left:8%">T</div>
+      <div class="world-node" style="background:var(--purple);bottom:6%;right:16%"><i class="fa-solid fa-user" style="font-size:12px"></i></div>
+      <div class="world-bubble" style="top:30%;left:-6%">Is it worth it?</div>
+      <div class="world-bubble" style="bottom:26%;right:-10%">Best rate today</div>
+    </div>
+    <div class="world-stats">
+      <div><div class="world-stat-num">60+</div><div class="world-stat-label">Countries reached</div></div>
+      <div><div class="world-stat-num">500K+</div><div class="world-stat-label">On the waitlist</div></div>
+      <div><div class="world-stat-num">$50M+</div><div class="world-stat-label">Volume converted</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVERY WIN -->
+<section class="section">
+  <h2 class="section-title">Every conversion <span class="accent">inspires us for better</span></h2>
+  <div class="awards-row">
+    <div class="award"><div class="award-icon"><i class="fa-solid fa-medal"></i></div><div class="award-label">Fastest growing crypto app, 2025</div></div>
+    <div class="award"><div class="award-icon"><i class="fa-solid fa-trophy"></i></div><div class="award-label">Best rates, user-rated</div></div>
+    <div class="award"><div class="award-icon"><i class="fa-solid fa-star"></i></div><div class="award-label">Top fintech pick, community awards</div></div>
+    <div class="award"><div class="award-icon"><i class="fa-solid fa-award"></i></div><div class="award-label">Most trusted, new to crypto</div></div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div>
+    <div class="cta-featured">As seen in</div>
+    <div class="cta-featured-logos">
+      <span>TechCrunch</span><span>Bloomberg</span><span>CoinDesk</span>
+    </div>
+  </div>
+  <div class="cta-phone">
+    <div class="cta-phone-screen">
+      <div class="hp-bal-label">Total balance</div>
+      <div class="hp-bal" style="font-size:14px">$4,218.60</div>
+    </div>
+  </div>
+  <div>
+    <div class="cta-title">Managing your crypto with us is a tap away</div>
+    <div class="hero-badges">
+      <div class="store-badge"><i class="fa-brands fa-apple"></i> App Store</div>
+      <div class="store-badge"><i class="fa-brands fa-google-play"></i> Google Play</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">PeerHub</div>
+  <p class="footer-tag">Convert crypto to cash, pay your bills, and spend with a virtual dollar card &mdash; all in one place.</p>
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="#">About us</a><a href="#">Careers</a><a href="#">Press</a>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <a href="#">Convert</a><a href="#">Pay bills</a><a href="#">Virtual card</a>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <a href="#">Help centre</a><a href="#">Live rates</a><a href="#">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="#">hello@peerhub.com</a><a href="#">+234 000 0000</a>
+    </div>
+  </div>
+  <div class="footer-social">
+    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+  </div>
+  <div class="footer-bottom">&copy; 2026 PeerHub. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
