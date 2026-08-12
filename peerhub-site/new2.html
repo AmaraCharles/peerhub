@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PeerHub is the simple, secure way to exchange crypto, move money, and build with digital assets.">
+  <title>PeerHub — Crypto exchange, made simple</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* PRIMARY BRAND TYPEFACE — Neurial Grotesk (PeerHub Brand Guidelines, Sec. 03)
+       Licensed font (Fenotype), not on a public CDN, so it can't be embedded
+       automatically. Drop the licensed .woff2 files at the paths below and the
+       page switches over immediately. Until then everything falls back to
+       Inter, the guideline's approved alternate typeface. */
+    @font-face{font-family:'Neurial Grotesk';font-weight:300;font-style:normal;font-display:swap;
+      src:url('assets/fonts/NeurialGrotesk-Light.woff2') format('woff2');}
+    @font-face{font-family:'Neurial Grotesk';font-weight:400;font-style:normal;font-display:swap;
+      src:url('assets/fonts/NeurialGrotesk-Regular.woff2') format('woff2');}
+    @font-face{font-family:'Neurial Grotesk';font-weight:500;font-style:normal;font-display:swap;
+      src:url('assets/fonts/NeurialGrotesk-Medium.woff2') format('woff2');}
+    @font-face{font-family:'Neurial Grotesk';font-weight:700;font-style:normal;font-display:swap;
+      src:url('assets/fonts/NeurialGrotesk-Bold.woff2') format('woff2');}
+    :root{
+      --ink:#16152f;
+      --navy:#1c1969;
+      --blue:#3333ff;
+      --blue-dark:#2222cc;
+      --purple:#7c3aed;
+      --lavender:#ecebff;
+      --lavender-2:#f5f4ff;
+      --cyan:#00d7e6;
+      --cyan-soft:#e5fbfb;
+      --yellow:#ffb31a;
+      --green:#1aa979;
+      --coral:#ff715f;
+      --muted:#72758c;
+      --line:#e8e8f1;
+      --white:#fff;
+      --shadow:0 24px 70px rgba(47,38,129,.12);
+      --radius:24px;
+      --container:min(1180px, calc(100% - 48px));
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;overflow-x:hidden;background:var(--white);color:var(--ink);font-family:'Neurial Grotesk',Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+    body:has(#menu-toggle:checked),body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    img,svg{display:block;max-width:100%}
+    .container{width:var(--container);margin-inline:auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--navy);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 6px rgba(0,215,230,.13)}
+    .section-label{margin-bottom:15px;color:var(--purple);font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+    .section-title{max-width:660px;margin:0;color:var(--navy);font-size:clamp(36px,5vw,66px);font-weight:800;letter-spacing:-.065em;line-height:.98}
+    .section-copy{max-width:500px;margin:20px 0 0;color:var(--muted);font-size:16px;line-height:1.75}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:47px;padding:0 20px;border:1px solid transparent;border-radius:11px;font-size:13px;font-weight:800;transition:transform .2s,background .2s,box-shadow .2s}
+    .button:hover{transform:translateY(-2px)}
+    .button-primary{color:#fff;background:var(--blue);box-shadow:0 12px 25px rgba(51,51,255,.22)}
+    .button-primary:hover{background:var(--blue-dark);box-shadow:0 16px 32px rgba(51,51,255,.28)}
+    .button-ghost{color:var(--navy);background:rgba(255,255,255,.6);border-color:rgba(28,25,105,.14)}
+    .button-ghost:hover{background:#fff;border-color:rgba(51,51,255,.3)}
+    .arrow{font-size:16px;transition:transform .2s}
+    .button:hover .arrow{transform:translateX(4px)}
+
+    /* Header */
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);border-bottom:1px solid rgba(232,232,241,.8);backdrop-filter:blur(16px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+    .brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-size:18px;font-weight:900;letter-spacing:-.06em}
+    .brand-logo-img{height:26px;width:auto;display:block}
+    .footer-logo-img{filter:brightness(0) invert(1)}
+    .brand-mark{width:27px;height:27px;display:grid;place-items:center;border-radius:9px;color:var(--white);background:var(--blue);box-shadow:0 7px 14px rgba(51,51,255,.22)}
+    .brand-mark svg{width:15px}
+    .nav-links{display:flex;align-items:center;gap:29px;margin-left:auto;margin-right:32px;color:#4f5268;font-size:13px;font-weight:650}
+    .nav-links .mobile-menu-cta{display:none}
+    .nav-links a{transition:color .2s}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-cta{min-height:40px;padding-inline:16px}
+    #menu-toggle{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+    .menu-button{display:none;width:42px;height:42px;place-items:center;border:1px solid var(--line);border-radius:11px;background:#fff}
+    .menu-button span,.menu-button span::before,.menu-button span::after{width:19px;height:2px;border-radius:9px;background:var(--navy);transition:transform .25s,opacity .25s}
+    .menu-button span{position:relative}
+    .menu-button span::before,.menu-button span::after{content:"";position:absolute;left:0}
+    .menu-button span::before{top:-6px}.menu-button span::after{top:6px}
+    #menu-toggle:checked + .menu-button span{background:transparent}
+    #menu-toggle:checked + .menu-button span::before{top:0;transform:rotate(45deg)}
+    #menu-toggle:checked + .menu-button span::after{top:0;transform:rotate(-45deg)}
+
+    /* Hero */
+    .hero{position:relative;min-height:690px;display:grid;align-items:center;overflow:hidden;background:linear-gradient(116deg,#d9d4ff 0%,#e9e7ff 42%,#f7f7ff 72%,#fff 100%)}
+    .hero-watermark{position:absolute;z-index:1;left:-6%;bottom:-14%;font-size:min(42vw,560px);line-height:1;color:var(--blue);opacity:.06;pointer-events:none;user-select:none}
+    .marquee-wrap{padding:34px 0;overflow:hidden;background:#fff;border-bottom:1px solid #f0f0f5}
+    .marquee-track{display:flex;white-space:nowrap;width:max-content;animation:marquee 22s linear infinite}
+    .marquee-text{font-size:clamp(28px,4.4vw,52px);font-weight:800;letter-spacing:-.04em;color:#e8e8f1;padding-right:48px;flex-shrink:0}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .hero::before{content:"";position:absolute;right:-10vw;top:-24vw;width:62vw;height:62vw;border-radius:50%;background:radial-gradient(circle,rgba(0,215,230,.16),rgba(124,58,237,.08) 38%,transparent 68%);filter:blur(5px)}
+    .hero::after{content:"";position:absolute;right:4%;bottom:-45%;width:48vw;height:48vw;border:1px solid rgba(59,33,246,.11);border-radius:50%;box-shadow:0 0 0 52px rgba(59,33,246,.035),0 0 0 104px rgba(59,33,246,.025);pointer-events:none}
+    .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.86fr) minmax(480px,1.14fr);align-items:center;gap:5vw;padding:64px 0 76px}
+    .hero-copy{position:relative;z-index:4}
+    .hero h1{max-width:555px;margin:22px 0 22px;color:var(--navy);font-size:clamp(48px,6.3vw,88px);font-weight:850;letter-spacing:-.075em;line-height:.92}
+    .hero h1 em{color:var(--blue);font-style:normal}
+    .hero-lede{max-width:430px;margin:0;color:rgba(28,25,105,.68);font-size:16px;line-height:1.75}
+    .hero-actions{display:flex;align-items:center;gap:12px;margin-top:29px;flex-wrap:wrap}
+    .proof{display:flex;align-items:center;gap:10px;margin-top:23px;color:rgba(28,25,105,.54);font-size:12px}
+    .proof-avatars{display:flex}
+    .proof-avatars span{width:25px;height:25px;display:grid;place-items:center;margin-left:-6px;border:2px solid #e5e1ff;border-radius:50%;color:#fff;background:var(--navy);font-size:9px;font-weight:800}
+    .proof-avatars span:first-child{margin-left:0;background:var(--blue)}
+    .proof-avatars span:nth-child(3){background:var(--yellow);color:var(--navy)}
+    .proof-avatars span:nth-child(4){background:var(--cyan);color:var(--navy)}
+
+    /* Animated exchange artwork */
+    .hero-art{position:relative;height:510px;min-width:0}
+    .art-orbit{position:absolute;left:50%;top:50%;border:1px solid rgba(59,33,246,.16);border-radius:50%;transform:translate(-50%,-50%) rotate(-16deg)}
+    .art-orbit.one{width:92%;height:72%;animation:orbit-tilt 12s ease-in-out infinite}
+    .art-orbit.two{width:72%;height:93%;border-color:rgba(0,215,230,.17);transform:translate(-50%,-50%) rotate(35deg);animation:orbit-tilt-reverse 15s ease-in-out infinite}
+    .art-orbit.three{width:53%;height:65%;border-color:rgba(124,58,237,.12);transform:translate(-50%,-50%) rotate(-54deg)}
+    @keyframes orbit-tilt{0%,100%{transform:translate(-50%,-50%) rotate(-16deg)}50%{transform:translate(-50%,-50%) rotate(2deg)}}
+    @keyframes orbit-tilt-reverse{0%,100%{transform:translate(-50%,-50%) rotate(35deg)}50%{transform:translate(-50%,-50%) rotate(17deg)}}
+    /* 3D coin treatment — shared by hero coins, asset dots, and integration marks:
+       an inset highlight + shadow for sphere depth, plus a glossy specular blob. */
+    .hero-coin,.asset-dot,.integration-mark{position:relative;overflow:hidden;
+      box-shadow:inset 0 -5px 9px rgba(0,0,0,.3),inset 0 3px 6px rgba(255,255,255,.4),0 10px 20px rgba(20,15,50,.22)}
+    .hero-coin::after,.asset-dot::after,.integration-mark::after{content:"";position:absolute;top:7%;left:16%;
+      width:56%;height:42%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,255,255,.75),rgba(255,255,255,0) 72%);
+      pointer-events:none}
+    .integration-mark{border-radius:50%!important}
+    .hero-coin{position:absolute;z-index:3;width:54px;height:54px;display:grid;place-items:center;border-radius:50%;color:#fff;font-size:21px;font-weight:900;animation:coin-float 5s ease-in-out infinite}
+    .hero-coin.btc{top:8%;left:24%;background:#f7931a}.hero-coin.eth{top:5%;right:20%;background:#627eea;animation-delay:-1.5s}
+    .hero-coin.usdt{right:4%;top:43%;background:#26a17b;font-size:18px;animation-delay:-2.9s}
+    .hero-coin.usdc{right:19%;bottom:6%;background:#2775ca;font-size:18px;animation-delay:-.8s}
+    .hero-coin.sol{left:11%;bottom:17%;background:#6949ff;font-size:16px;animation-delay:-3.6s}
+    .hero-coin.bnb{left:2%;top:45%;background:#f0b90b;font-size:17px;animation-delay:-2.1s}
+    @keyframes coin-float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-11px) rotate(5deg)}}
+    .exchange-panel{position:absolute;z-index:5;left:50%;top:50%;width:min(365px,65%);padding:22px;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.95);border-radius:23px;background:rgba(255,255,255,.9);box-shadow:0 26px 70px rgba(59,33,246,.17),0 2px 8px rgba(28,25,105,.06);backdrop-filter:blur(18px)}
+    .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}
+    .panel-title{color:var(--navy);font-size:15px;font-weight:850}.live{display:flex;align-items:center;gap:6px;color:var(--green);font-size:10px;font-weight:800}
+    .live i{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(26,169,121,.12)}
+    .exchange-field{display:grid;grid-template-columns:1fr auto;gap:5px;padding:13px 14px;border:1px solid #e8e8f5;border-radius:13px;background:#f8f8ff}
+    .field-label{grid-column:1/-1;color:#9b9db2;font-size:10px}.field-amount{align-self:center;color:var(--navy);font-size:23px;font-weight:850;letter-spacing:-.06em}
+    .field-asset{display:flex;align-items:center;gap:7px;align-self:center;color:var(--navy);font-size:12px;font-weight:800}
+    .asset-dot{width:24px;height:24px;display:grid;place-items:center;border-radius:50%;color:#fff;font-size:11px;font-weight:900}
+    .asset-btc{background:#f7931a}.asset-ngn{background:#008751}
+    .field-asset small{color:#9b9db2;font-size:10px}
+    .swap-button{position:relative;z-index:2;width:31px;height:31px;display:grid;place-items:center;margin:-15px auto;border:4px solid #fff;border-radius:50%;color:#fff;background:var(--blue);font-size:10px;box-shadow:0 6px 13px rgba(51,51,255,.23);transition:transform .3s}
+    .swap-button:hover{transform:rotate(180deg)}
+    .rate-row{display:flex;justify-content:space-between;gap:9px;padding:15px 2px 12px;color:#878aa0;font-size:10px}.rate-row .locked{color:var(--green)}
+    .panel-submit{width:100%;min-height:43px;border:0;border-radius:11px;color:#fff;background:var(--blue);font-size:12px;font-weight:850;transition:background .2s,transform .2s}
+    .panel-submit:hover{background:var(--blue-dark);transform:translateY(-2px)}
+    .art-tag{position:absolute;z-index:6;display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid rgba(255,255,255,.9);border-radius:11px;color:var(--navy);background:rgba(255,255,255,.82);box-shadow:0 12px 25px rgba(59,33,246,.1);font-size:11px;font-weight:800}
+    .art-tag i{color:var(--blue)}.tag-left{left:0;bottom:13%}.tag-right{right:0;top:14%}
+
+    /* Content sections */
+    .logo-bar{padding:29px 0;border-bottom:1px solid #f0f0f5;background:#fff}
+    .logo-bar-inner{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+    .logo-bar-label{color:#a4a5b4;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+    .logos{display:flex;align-items:center;gap:clamp(18px,4vw,48px);color:#7d7f91;font-size:14px;font-weight:850;letter-spacing:-.04em;opacity:.7}
+    .logo-word{white-space:nowrap}.logo-word.serif{font-family:Georgia,serif;font-style:italic}.logo-word.mono{font-family:monospace}
+    .security{position:relative;overflow:hidden;padding:120px 0;background:#fff}
+    .security-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(42px,8vw,110px)}
+    .security-art{position:relative;min-height:410px;display:grid;place-items:center}
+    .security-glow{position:absolute;width:85%;height:85%;border-radius:50%;background:radial-gradient(circle,rgba(0,215,230,.19),rgba(124,58,237,.08) 49%,transparent 70%);filter:blur(7px)}
+    .security-phone-img{position:relative;z-index:2;width:min(300px,76%);filter:drop-shadow(0 30px 60px rgba(28,25,105,.24));animation:device-float 7s ease-in-out infinite}
+    @keyframes device-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    .security-balance-card{position:absolute;z-index:4;left:2%;bottom:6%;width:min(230px,60%);padding:18px 16px;
+      border-radius:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      box-shadow:0 20px 50px rgba(28,25,105,.16)}
+    .device-title{color:var(--navy);font-size:11px;font-weight:850}.device-balance{margin:10px 0 14px;color:var(--navy);font-size:22px;font-weight:900;letter-spacing:-.05em}
+    .device-chart{height:56px;margin-bottom:14px;border-bottom:2px solid rgba(51,51,255,.15);background:linear-gradient(150deg,transparent 46%,rgba(51,51,255,.15) 47%,transparent 49%),linear-gradient(28deg,transparent 48%,rgba(0,215,230,.55) 49%,transparent 51%)}
+    .device-list{display:grid;gap:7px}.device-row{display:flex;align-items:center;gap:8px;padding:8px;border-radius:9px;background:#f6f5ff;color:var(--navy);font-size:9.5px;font-weight:750}.device-row b{margin-left:auto;color:var(--green)}
+    .security-float{position:absolute;top:11%;right:6%;display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:11px;color:var(--navy);background:#fff;box-shadow:0 13px 28px rgba(28,25,105,.12);font-size:10px;font-weight:800}.security-float i{color:var(--green)}
+    .feature-list{display:grid;gap:17px;margin:28px 0 0;padding:0;list-style:none}.feature-list li{display:flex;gap:12px;align-items:flex-start;color:#565970;font-size:14px;line-height:1.55}.feature-list i{width:21px;height:21px;display:grid;place-items:center;flex:0 0 auto;margin-top:1px;border-radius:50%;color:var(--blue);background:var(--lavender);font-size:10px}
+    .use-cases{padding:115px 0 126px;background:linear-gradient(180deg,#f7f7ff 0%,#e8fbfb 100%)}
+    .center-heading{text-align:center}.center-heading .section-copy{margin-inline:auto}.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:54px}
+    .case-card{min-height:190px;padding:24px;border:1px solid rgba(255,255,255,.85);border-radius:18px;background:rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(28,25,105,.05);transition:transform .25s,box-shadow .25s,background .25s}.case-card:hover{transform:translateY(-7px);background:#fff;box-shadow:0 22px 40px rgba(28,25,105,.1)}
+    .case-icon{width:38px;height:38px;display:grid;place-items:center;margin-bottom:27px;border-radius:12px;color:var(--blue);background:var(--lavender);font-size:16px}.case-card:nth-child(2) .case-icon{color:#008751;background:#e4f7ee}.case-card:nth-child(3) .case-icon{color:#d37d00;background:#fff3d9}.case-card:nth-child(4) .case-icon{color:#bd4a4a;background:#ffebe9}.case-card:nth-child(5) .case-icon{color:var(--purple);background:#f0e6ff}.case-card:nth-child(6) .case-icon{color:#00869a;background:#e1fafa}
+    .case-card h3{margin:0 0 8px;color:var(--navy);font-size:15px;letter-spacing:-.035em}.case-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+    .builder{padding:120px 0;background:#fff}.builder-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:72px}.builder-copy{order:2}
+    .builder-art{position:relative;min-height:340px;overflow:hidden;border-radius:25px;background:linear-gradient(145deg,#e9e7ff,#f5ffff)}.builder-art::before{content:"";position:absolute;inset:-30% 24% 18% -20%;border:1px solid rgba(51,51,255,.14);border-radius:50%;transform:rotate(-23deg);box-shadow:0 0 0 36px rgba(51,51,255,.035),0 0 0 72px rgba(51,51,255,.035)}
+    .code-window{position:absolute;left:12%;top:17%;width:66%;padding:20px;border:1px solid rgba(255,255,255,.95);border-radius:16px;background:rgba(255,255,255,.85);box-shadow:0 18px 45px rgba(28,25,105,.12);transform:rotate(4deg)}.code-dots{display:flex;gap:5px;margin-bottom:21px}.code-dots i{width:6px;height:6px;border-radius:50%;background:var(--coral)}.code-dots i:nth-child(2){background:var(--yellow)}.code-dots i:nth-child(3){background:var(--green)}.code-line{height:7px;margin:10px 0;border-radius:4px;background:#d9d7fc}.code-line.short{width:44%}.code-line.blue{width:76%;background:#b7bcff}.code-line.cyan{width:58%;background:#b6f3ef}.code-pill{display:inline-block;margin-top:12px;padding:8px 11px;border-radius:7px;color:#fff;background:var(--blue);font-size:9px;font-weight:800}
+    .builder h2{max-width:480px;margin:0;color:var(--navy);font-size:clamp(35px,4vw,55px);letter-spacing:-.065em;line-height:1}.builder .section-copy{max-width:420px}
+    .integrations{padding:105px 0 120px;background:var(--lavender-2)}.integration-head{display:flex;align-items:end;justify-content:space-between;gap:25px}.integration-head .section-copy{margin-top:0}.integration-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}.integration{display:flex;align-items:center;gap:10px;padding:17px 18px;border:1px solid #e6e4fb;border-radius:13px;color:var(--navy);background:#fff;font-size:13px;font-weight:800;box-shadow:0 8px 18px rgba(28,25,105,.035)}.integration-mark{width:27px;height:27px;display:grid;place-items:center;border-radius:8px;color:#fff;background:#f7931a;font-size:11px}.integration:nth-child(2) .integration-mark{background:#627eea}.integration:nth-child(3) .integration-mark{background:#26a17b}.integration:nth-child(4) .integration-mark{background:#2775ca}.integration:nth-child(5) .integration-mark{background:#f0b90b}.integration:nth-child(6) .integration-mark{background:#008751}.integration:nth-child(7) .integration-mark{background:var(--blue)}
+    .pricing{padding:120px 0;background:#fff}.price-card{max-width:760px;margin:50px auto 0;padding:38px 42px;border:1px solid #dbdcfa;border-radius:24px;background:linear-gradient(130deg,#f5f4ff,#e9fbfb);box-shadow:0 20px 55px rgba(28,25,105,.07)}.price-card-top{display:flex;align-items:start;justify-content:space-between;gap:25px}.price-card h3{margin:0;color:var(--navy);font-size:21px}.price{color:var(--blue);font-size:52px;font-weight:900;letter-spacing:-.08em;line-height:1}.price small{color:var(--muted);font-size:13px;font-weight:600;letter-spacing:0}.price-card p{max-width:530px;color:var(--muted);font-size:14px}.price-list{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin:28px 0 28px;padding:0;list-style:none}.price-list li{display:flex;align-items:center;gap:8px;color:#565970;font-size:12px}.price-list i{color:var(--green)}
+    .faq{padding:92px 0;background:var(--lavender-2)}.faq-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:75px}.faq-list{display:grid;gap:10px}.faq-list details{padding:19px 21px;border:1px solid var(--line);border-radius:13px;background:#fff}.faq-list summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;color:var(--navy);font-size:14px;font-weight:800;list-style:none}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary span{transition:transform .2s}.faq-list details[open] summary span{transform:rotate(45deg)}.faq-list p{margin:12px 0 0;color:var(--muted);font-size:13px;line-height:1.7}
+    .site-footer{padding:52px 0 27px;color:#c0c2df;background:var(--navy)}.footer-top{display:flex;justify-content:space-between;gap:45px}.site-footer .brand{color:#fff}.footer-tag{max-width:300px;margin:17px 0 0;color:#aeb1d0;font-size:12px;line-height:1.7}.footer-links{display:flex;gap:55px}.footer-links div{display:grid;align-content:start;gap:10px}.footer-links strong{color:#fff;font-size:11px;letter-spacing:.12em;text-transform:uppercase}.footer-links a{font-size:12px;transition:color .2s}.footer-links a:hover{color:#fff}.footer-bottom{display:flex;justify-content:space-between;gap:20px;margin-top:50px;padding-top:19px;border-top:1px solid rgba(255,255,255,.12);color:#8589ae;font-size:11px}
+
+    /* Scroll reveal and modal */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.75,.2,1)}.reveal.is-visible{opacity:1;transform:none}.reveal.delay-1{transition-delay:.1s}.reveal.delay-2{transition-delay:.2s}.reveal.delay-3{transition-delay:.3s}
+    dialog{width:min(440px,calc(100% - 34px));padding:0;border:0;border-radius:20px;color:var(--navy);background:#fff;box-shadow:0 30px 100px rgba(16,14,62,.28)}dialog::backdrop{background:rgba(16,14,62,.36);backdrop-filter:blur(5px)}.dialog-inner{padding:30px}.dialog-close{float:right;width:30px;height:30px;border:0;border-radius:50%;color:var(--muted);background:var(--lavender);font-size:18px}.dialog-inner h2{margin:24px 0 8px;font-size:28px;letter-spacing:-.06em}.dialog-inner p{margin:0 0 22px;color:var(--muted);font-size:13px;line-height:1.65}.email-form{display:grid;gap:10px}.email-form label{color:var(--navy);font-size:11px;font-weight:800}.email-form input{height:46px;padding:0 13px;border:1px solid var(--line);border-radius:10px;outline:0;color:var(--navy);background:#fafaff}.email-form input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(51,51,255,.1)}.form-message{min-height:18px;margin:0;color:var(--green);font-size:12px;font-weight:700}
+
+    @media (max-width:980px){
+      :root{--container:min(100% - 40px,720px)}
+      .nav-links{gap:18px;margin-right:18px}.hero-grid{grid-template-columns:1fr minmax(380px,.9fr);gap:20px}.hero h1{font-size:clamp(47px,7vw,68px)}.hero-art{height:440px}.exchange-panel{width:72%}.hero-coin{width:45px;height:45px;font-size:17px}.art-tag{display:none}.security-grid,.builder-grid{gap:45px}.integration-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:720px){
+      :root{--container:calc(100% - 32px)}
+      .nav{height:66px}.nav-cta{display:none}.menu-button{display:grid;position:relative;z-index:5}.nav-links{position:absolute;top:66px;left:0;right:0;display:grid;gap:0;margin:0;padding:10px 16px 18px;border-bottom:1px solid var(--line);background:#fff;box-shadow:0 20px 35px rgba(28,25,105,.1);transform:translateY(-130%);transition:transform .35s ease;z-index:3}.nav-links a{padding:14px 8px;border-bottom:1px solid #f1f1f6}.nav-links a:last-child{border:0}.nav-links .mobile-menu-cta{display:flex;margin-top:12px;color:#fff;border:0}
+      #menu-toggle:checked ~ .nav-links{transform:translateY(0)}
+      .hero{min-height:0}.hero-grid{grid-template-columns:1fr;padding:74px 0 58px}.hero h1{max-width:580px;font-size:clamp(48px,14vw,74px)}.hero-lede{font-size:15px}.hero-art{height:390px;order:2;margin:10px -10px 0}.exchange-panel{width:min(370px,73%);padding:17px}.hero-coin{width:42px;height:42px;font-size:16px}.hero-coin.btc{left:18%}.hero-coin.eth{right:15%}.hero-coin.sol{left:8%}.hero-coin.bnb{left:1%}.hero-coin.usdc{right:13%}.hero-coin.usdt{right:0}.proof{margin-bottom:0}
+      .logo-bar-inner{display:grid;gap:17px}.logos{justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px}
+      .security,.builder,.pricing{padding:76px 0}.security-grid,.builder-grid,.faq-grid{grid-template-columns:1fr;gap:45px}.security-art{min-height:360px}.security-copy{order:-1}.builder-copy{order:-1}.builder-art{min-height:290px}.integration-head{display:block}.integration-head .section-copy{margin-top:18px}.integration-grid{grid-template-columns:repeat(2,1fr);margin-top:32px}.integration{padding:14px 11px;font-size:11px}
+      .use-cases{padding:76px 0 82px}.case-grid{grid-template-columns:1fr 1fr;gap:11px;margin-top:34px}.case-card{min-height:175px;padding:17px}.case-icon{margin-bottom:17px}.case-card h3{font-size:13px}.case-card p{font-size:11px}
+      .price-card{padding:26px 20px}.price-card-top{display:block}.price{margin-top:18px}.price-list{gap:11px}.price-list li{font-size:11px}.faq{padding:75px 0}.footer-top{display:grid;gap:35px}.footer-links{gap:40px}.footer-bottom{display:grid;gap:8px;margin-top:35px}
+    }
+    @media (max-width:420px){
+      .hero-actions{display:grid}.hero-actions .button{width:100%}.hero-art{height:345px;margin-inline:-24px}.exchange-panel{width:77%}.field-amount{font-size:18px}.field-asset{font-size:10px}.logos{font-size:11px}.case-grid{grid-template-columns:1fr}.case-card{min-height:140px}.price-list{grid-template-columns:1fr}.footer-links{gap:24px}
+    }
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav container">
+      <a class="brand" href="#top" aria-label="PeerHub home">
+        <img src="assets/logo/colour.png" alt="PeerHub" class="brand-logo-img">
+      </a>
+      <input id="menu-toggle" type="checkbox" aria-label="Toggle navigation">
+      <label class="menu-button" for="menu-toggle" aria-label="Open navigation menu"><span></span></label>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="convert.html">Convert</a>
+        <a href="bills.html">Pay Bills</a>
+        <a href="card.html">Virtual Card</a>
+        <a href="help.html">Help</a>
+        <a class="mobile-menu-cta button button-primary" href="#waitlist">Join the waitlist <span class="arrow">→</span></a>
+      </nav>
+      <a class="button button-primary nav-cta" href="#waitlist">Join the waitlist <span class="arrow">→</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <i class="fa-brands fa-bitcoin hero-watermark" aria-hidden="true"></i>
+      <div class="hero-grid container">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Money, simplified</span>
+          <h1>Crypto to cash, <em>instantly.</em></h1>
+          <p class="hero-lede">Convert crypto to fiat and back, pay every utility bill, and spend with a virtual dollar card &mdash; or just chat with our WhatsApp AI.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#waitlist" data-open-waitlist>Join the waitlist <span class="arrow">→</span></a>
+          </div>
+          <div class="proof">
+            <div class="proof-avatars"><span>A</span><span>K</span><span>M</span><span>J</span></div>
+            Join 50,000+ others already on the waitlist
+          </div>
+        </div>
+
+        <div class="hero-art reveal delay-2" aria-label="Animated crypto exchange illustration">
+          <div class="art-orbit one"></div><div class="art-orbit two"></div><div class="art-orbit three"></div>
+          <div class="hero-coin btc" aria-label="Bitcoin">₿</div>
+          <div class="hero-coin eth" aria-label="Ethereum">◆</div>
+          <div class="hero-coin usdt" aria-label="Tether">T</div>
+          <div class="hero-coin usdc" aria-label="USD Coin">$</div>
+          <div class="hero-coin sol" aria-label="Solana">S</div>
+          <div class="hero-coin bnb" aria-label="BNB">B</div>
+          <div class="exchange-panel" id="exchange">
+            <div class="panel-head"><span class="panel-title">Quick exchange</span><span class="live"><i></i> Live rate</span></div>
+            <div class="exchange-field">
+              <span class="field-label">You send</span><strong class="field-amount" id="from-amount">0.10</strong>
+              <span class="field-asset"><span class="asset-dot asset-btc">₿</span><span id="from-asset">BTC</span><small>⌄</small></span>
+            </div>
+            <button class="swap-button" id="swap-button" type="button" aria-label="Swap currencies">↓</button>
+            <div class="exchange-field">
+              <span class="field-label">You receive</span><strong class="field-amount" id="to-amount">₦9,842,100</strong>
+              <span class="field-asset"><span class="asset-dot asset-ngn">₦</span><span id="to-asset">NGN</span><small>⌄</small></span>
+            </div>
+            <div class="rate-row"><span>1 BTC = ₦98,421,000</span><span class="locked">● Rate locked</span></div>
+            <button class="panel-submit" type="button" data-open-waitlist>Join the waitlist →</button>
+          </div>
+          <div class="art-tag tag-left"><i>ϟ</i> Fast settlement</div>
+          <div class="art-tag tag-right"><i>◈</i> Protected funds</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span class="marquee-text">Crypto to cash &middot; Cash to crypto &middot; Bill payments &middot; Virtual dollar card &middot; WhatsApp AI &middot; Real-time rates &middot;&nbsp;</span>
+        <span class="marquee-text">Crypto to cash &middot; Cash to crypto &middot; Bill payments &middot; Virtual dollar card &middot; WhatsApp AI &middot; Real-time rates &middot;&nbsp;</span>
+      </div>
+    </div>
+
+    <section class="logo-bar">
+      <div class="logo-bar-inner container reveal">
+        <span class="logo-bar-label">Convert to and from</span>
+        <div class="logos"><span class="logo-word">Bitcoin</span><span class="logo-word">Ethereum</span><span class="logo-word">USDT</span><span class="logo-word">USDC</span><span class="logo-word">BNB</span><span class="logo-word">Naira</span><span class="logo-word">US Dollar</span></div>
+      </div>
+    </section>
+
+    <section class="security" id="security">
+      <div class="security-grid container">
+        <div class="security-art reveal">
+          <div class="security-glow"></div>
+          <img class="security-phone-img"
+            src="https://cdn.prod.website-files.com/6360022338a81bd6fdbb1145/67f8f68b6a43a328b669a59c_4632949cb6e5e84e75bc4b053891115f_handWithPhone.avif"
+            alt="PeerHub app on a phone">
+          <div class="security-balance-card">
+            <div class="device-title">Your PeerHub balance</div>
+            <div class="device-balance">₦2,840,500</div>
+            <div class="device-chart"></div>
+            <div class="device-list">
+              <div class="device-row"><span class="asset-dot asset-btc">₿</span> Bitcoin <b>+12.4%</b></div>
+              <div class="device-row"><span class="asset-dot asset-ngn">₦</span> Naira <b>₦1,680</b></div>
+              <div class="device-row"><span class="asset-dot" style="background:#627eea">◆</span> Ethereum <b>+4.8%</b></div>
+            </div>
+          </div>
+          <div class="security-float"><i>✓</i> Account protected</div>
+        </div>
+        <div class="security-copy reveal delay-1">
+          <div class="section-label">Convert</div>
+          <h2 class="section-title">Convert crypto to cash &mdash; and back.</h2>
+          <p class="section-copy">Buy and sell BTC, USDT, ETH and more at real market rates. Convert to naira or dollars and settle straight to your wallet or bank.</p>
+          <ul class="feature-list">
+            <li><i>✓</i><span><strong>Two-way, real-time conversion</strong><br>Crypto to fiat or fiat to crypto &mdash; swap either direction in seconds.</span></li>
+            <li><i>✓</i><span><strong>Clear every time</strong><br>Every conversion shows the exact rate and fee upfront, with no hidden markups.</span></li>
+            <li><i>✓</i><span><strong>Built for real life</strong><br>Move from crypto to cash, bills, and card spending in seconds.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="use-cases" id="use-cases">
+      <div class="center-heading container reveal">
+        <div class="section-label">What you get</div>
+        <h2 class="section-title" style="margin-inline:auto">Everything you need, in one app.</h2>
+        <p class="section-copy">From your first conversion to paying a bill, PeerHub gives your crypto and cash a place in everyday life.</p>
+      </div>
+      <div class="case-grid container">
+        <article class="case-card reveal"><div class="case-icon">↕</div><h3>Convert crypto to cash</h3><p>Buy and sell BTC, USDT, ETH and more at real market rates. Convert to naira or dollars and settle straight to your wallet or bank.</p></article>
+        <article class="case-card reveal delay-1"><div class="case-icon">◈</div><h3>Two-way, real-time rates</h3><p>Crypto to fiat or fiat to crypto &mdash; swap either direction in seconds, with the exact rate and fee shown upfront.</p></article>
+        <article class="case-card reveal delay-2"><div class="case-icon">▣</div><h3>Virtual dollar card</h3><p>Fund it instantly from your balance and spend online anywhere Visa is accepted &mdash; subscriptions, ads, shopping, all of it.</p></article>
+        <article class="case-card reveal"><div class="case-icon">ϟ</div><h3>Pay every bill, instantly</h3><p>Electricity, airtime, data, and cable subscriptions &mdash; paid directly from your balance and confirmed in seconds.</p></article>
+        <article class="case-card reveal delay-1"><div class="case-icon">✆</div><h3>Chat with our WhatsApp AI</h3><p>Convert currency, pay a bill, or send money &mdash; just message PeerHub on WhatsApp and let the AI handle it.</p></article>
+        <article class="case-card reveal delay-2"><div class="case-icon">◌</div><h3>Track your money</h3><p>See every wallet, bill, and card transaction in one clear view.</p></article>
+      </div>
+    </section>
+
+    <section class="builder" id="whatsapp">
+      <div class="builder-grid container">
+        <div class="builder-art reveal">
+          <div class="code-window">
+            <div class="code-dots"><i></i><i></i><i></i></div>
+            <div class="code-line blue"></div><div class="code-line short"></div><div class="code-line cyan"></div><div class="code-line blue short"></div><span class="code-pill">Message sent</span>
+          </div>
+        </div>
+        <div class="builder-copy reveal delay-1">
+          <div class="section-label">WhatsApp AI</div>
+          <h2>Chat with our WhatsApp AI.</h2>
+          <p class="section-copy">Convert currency, pay a bill, or send money &mdash; just message PeerHub on WhatsApp and let the AI handle it.</p>
+          <a class="button button-primary" href="#waitlist" data-open-waitlist style="margin-top:25px">Join the waitlist <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="integrations" id="integrations">
+      <div class="integration-head container reveal">
+        <div><div class="section-label">Supported currencies</div><h2 class="section-title">Convert to and from.</h2></div>
+        <p class="section-copy">Crypto, stablecoins, and local currency &mdash; all in one balance.</p>
+      </div>
+      <div class="integration-grid container">
+        <div class="integration reveal"><span class="integration-mark">₿</span>Bitcoin</div>
+        <div class="integration reveal delay-1"><span class="integration-mark">◆</span>Ethereum</div>
+        <div class="integration reveal delay-2"><span class="integration-mark">T</span>USDT</div>
+        <div class="integration reveal delay-3"><span class="integration-mark">◎</span>USDC</div>
+        <div class="integration reveal"><span class="integration-mark">B</span>BNB</div>
+        <div class="integration reveal delay-1"><span class="integration-mark">₦</span>Naira</div>
+        <div class="integration reveal delay-2"><span class="integration-mark">$</span>US Dollar</div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="center-heading container reveal"><div class="section-label">Social Proof</div><h2 class="section-title" style="margin-inline:auto">Trusted by thousands, one conversion at a time.</h2><p class="section-copy">Real people already moving crypto, paying bills, and spending smarter with PeerHub.</p></div>
+      <div class="price-card reveal delay-1">
+        <div class="price-card-top"><div><h3>On the waitlist</h3><p>People already lined up for early access.</p></div><div class="price">50K<small>+</small></div></div>
+        <ul class="price-list"><li><i>✓</i> Avg. conversion time under 10s</li><li><i>✓</i> WhatsApp AI support, 24/7</li><li><i>✓</i> Crypto to cash, both ways</li><li><i>✓</i> Bill payments included</li></ul>
+        <button class="button button-primary" type="button" data-open-waitlist>Join the waitlist <span class="arrow">→</span></button>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="faq-grid container">
+        <div class="reveal"><div class="section-label">Support</div><h2 class="section-title">Frequently asked questions.</h2><p class="section-copy">Everything about converting, paying bills, your card, and chatting with our WhatsApp AI. Still stuck? Just ask in the app.</p></div>
+        <div class="faq-list reveal delay-1">
+          <details open><summary>What is PeerHub? <span>+</span></summary><p>PeerHub is an app that lets you convert crypto to fiat and back, pay your utility bills, and spend with a virtual dollar card &mdash; all in one place.</p></details>
+          <details><summary>How does crypto-to-fiat conversion work? <span>+</span></summary><p>Add crypto to your PeerHub balance and convert it to naira or dollars at the live rate &mdash; no hidden markups. You can also go the other way and convert your fiat balance back into crypto.</p></details>
+          <details><summary>What bills can I pay on PeerHub? <span>+</span></summary><p>Electricity, airtime, mobile data, and cable TV subscriptions &mdash; paid straight from your PeerHub balance, crypto or fiat.</p></details>
+          <details><summary>What is the virtual dollar card? <span>+</span></summary><p>It&rsquo;s a virtual USD card you fund instantly from your PeerHub balance, for subscriptions, online shopping, ads, and anything else that accepts Visa or Mastercard.</p></details>
+          <details><summary>How do I fund my virtual card? <span>+</span></summary><p>Convert crypto or fiat straight into your card balance from the app &mdash; it&rsquo;s ready to spend immediately, no waiting on approvals.</p></details>
+          <details><summary>What can the WhatsApp AI actually do? <span>+</span></summary><p>Message PeerHub on WhatsApp and the AI can convert currency, pay a bill, check your balance, or send money for you &mdash; no need to open the app.</p></details>
+          <details><summary>Is my money and my crypto safe on PeerHub? <span>+</span></summary><p>Yes. Every transaction is encrypted, and all users are verified before they can convert, pay bills, or spend.</p></details>
+          <details><summary>How do I get started? <span>+</span></summary><p>Join the waitlist with your email and we&rsquo;ll let you know the moment PeerHub is ready for you.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top container">
+      <div><a class="brand" href="#top"><img src="assets/logo/colour.png" alt="PeerHub" class="brand-logo-img footer-logo-img"></a><p class="footer-tag">Convert crypto to cash, pay your bills, and spend with a virtual dollar card &mdash; or just chat with our WhatsApp AI.</p></div>
+      <div class="footer-links"><div><strong>Features</strong><a href="convert.html">Convert</a><a href="bills.html">Pay Bills</a><a href="card.html">Virtual Card</a><a href="#whatsapp">WhatsApp AI</a></div><div><strong>Legal</strong><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="#waitlist">Join waitlist</a></div></div>
+    </div>
+    <div class="footer-bottom container"><span>&copy; 2026 &mdash; PeerHub</span><span>Cryptocurrency prices are volatile &mdash; convert responsibly.</span></div>
+  </footer>
+
+  <dialog id="waitlist">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+      <span class="eyebrow">PeerHub early access</span>
+      <h2>Be first to move money differently.</h2>
+      <p>Leave your email and we’ll let you know when PeerHub is ready for you.</p>
+      <form class="email-form" id="waitlist-form">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+        <button class="button button-primary" type="submit">Join the waitlist <span class="arrow">→</span></button>
+        <p class="form-message" id="form-message" aria-live="polite"></p>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries, io) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealItems.forEach((item) => observer.observe(item));
+
+    const menuToggle = document.getElementById("menu-toggle");
+    document.querySelectorAll(".nav-links a").forEach((link) => link.addEventListener("click", () => {
+      menuToggle.checked = false;
+    }));
+
+    const swapButton = document.getElementById("swap-button");
+    const fromAmount = document.getElementById("from-amount");
+    const toAmount = document.getElementById("to-amount");
+    const fromAsset = document.getElementById("from-asset");
+    const toAsset = document.getElementById("to-asset");
+    let swapped = false;
+    swapButton.addEventListener("click", () => {
+      swapped = !swapped;
+      fromAmount.textContent = swapped ? "₦9,842,100" : "0.10";
+      toAmount.textContent = swapped ? "0.10" : "₦9,842,100";
+      fromAsset.textContent = swapped ? "NGN" : "BTC";
+      toAsset.textContent = swapped ? "BTC" : "NGN";
+      swapButton.textContent = swapped ? "↑" : "↓";
+    });
+
+    const dialog = document.getElementById("waitlist");
+    const openDialog = () => {
+      dialog.showModal();
+      document.body.classList.add("modal-open");
+    };
+    document.querySelectorAll("[data-open-waitlist], [href='#waitlist']").forEach((trigger) => trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openDialog();
+    }));
+    dialog.querySelector(".dialog-close").addEventListener("click", () => {
+      dialog.close();
+      document.body.classList.remove("modal-open");
+    });
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+        document.body.classList.remove("modal-open");
+      }
+    });
+    dialog.addEventListener("close", () => document.body.classList.remove("modal-open"));
+    document.getElementById("waitlist-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      document.getElementById("form-message").textContent = "You’re on the list — we’ll be in touch.";
+      event.target.reset();
+    });
+  </script>
+</body>
+</html>
