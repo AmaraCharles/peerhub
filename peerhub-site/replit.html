@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PeerHub brings crypto, bills, cards, and everyday money into one simple app.">
+  <title>PeerHub — Your money, without the complexity</title>
+  <style>
+    :root{
+      --ink:#10102b;
+      --muted:#6f7181;
+      --purple:#5032df;
+      --purple-2:#846ef1;
+      --purple-soft:#eeeaff;
+      --green:#15af76;
+      --line:#ececf3;
+      --surface:#fff;
+      --container:min(1160px,calc(100% - 56px));
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;overflow-x:hidden;color:var(--ink);background:#fff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:var(--container);margin-inline:auto}
+
+    .site-header{position:relative;z-index:20;background:#fff}
+    .nav{display:flex;align-items:center;height:77px}
+    .brand{display:flex;align-items:center;gap:9px;font-size:18px;font-weight:850;letter-spacing:-.07em}
+    .brand-mark{position:relative;width:24px;height:24px;display:grid;place-items:center;color:var(--purple)}
+    .brand-mark::before{content:"";width:12px;height:15px;border:3px solid currentColor;border-left-width:4px;border-radius:8px 9px 8px 8px;transform:rotate(-27deg)}
+    .brand-mark::after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:currentColor;transform:translate(1px,-2px)}
+    .nav-links{display:flex;align-items:center;gap:34px;margin-left:auto;color:#28283b;font-size:11px;font-weight:650}
+    .nav-links a{transition:color .2s}.nav-links a:hover{color:var(--purple)}
+    .nav-login{margin-left:43px}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:39px;padding:0 17px;border:0;border-radius:8px;color:#fff;background:var(--purple);box-shadow:0 10px 20px rgba(80,50,223,.2);font-size:10px;font-weight:800;transition:transform .2s,background .2s,box-shadow .2s}
+    .button:hover{transform:translateY(-2px);background:#4026bd;box-shadow:0 13px 24px rgba(80,50,223,.26)}
+    .button span{font-size:14px;line-height:0}
+    #menu-toggle{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+    .menu-button{display:none;width:39px;height:39px;place-items:center;margin-left:auto;border:1px solid var(--line);border-radius:9px;background:#fff}
+    .menu-button span,.menu-button span::before,.menu-button span::after{width:18px;height:2px;border-radius:4px;background:var(--ink);transition:transform .2s,opacity .2s}
+    .menu-button span{position:relative}
+    .menu-button span::before,.menu-button span::after{content:"";position:absolute;left:0}
+    .menu-button span::before{top:-5px}.menu-button span::after{top:5px}
+    #menu-toggle:checked + .menu-button span{background:transparent}
+    #menu-toggle:checked + .menu-button span::before{top:0;transform:rotate(45deg)}
+    #menu-toggle:checked + .menu-button span::after{top:0;transform:rotate(-45deg)}
+
+    .hero{position:relative;overflow:hidden;min-height:540px;background:#fff}
+    .hero::before{content:"";position:absolute;right:-4%;top:32px;width:50%;height:430px;border-radius:52% 48% 48% 52%;background:radial-gradient(circle at 40% 47%,#f3f0ff 0 27%,#eeeafe 49%,rgba(242,240,255,0) 72%)}
+    .hero::after{content:"";position:absolute;right:-9%;bottom:-82px;width:44%;height:205px;border-radius:50%;background:radial-gradient(ellipse,#d9fff3,rgba(255,255,255,0) 68%);opacity:.72}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:.87fr 1.13fr;align-items:center;gap:44px;min-height:540px;padding:38px 0 48px}
+    .hero-copy{padding-left:13px}
+    .pill{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;border-radius:99px;color:#73758a;background:#f4f4f8;font-size:9px;line-height:1}
+    .pill::before{content:"";width:5px;height:5px;border-radius:50%;background:#79ceac}
+    .hero h1{max-width:410px;margin:21px 0 18px;font-size:clamp(45px,5.5vw,74px);font-weight:850;letter-spacing:-.09em;line-height:.91}
+    .hero h1 em{display:block;color:var(--purple);font-style:normal}
+    .hero-copy>p{max-width:275px;margin:0;color:#4f5160;font-size:12px;line-height:1.65}
+    .hero-actions{display:flex;align-items:center;gap:14px;margin-top:22px}
+    .demo-link{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-size:10px;font-weight:750}
+    .play{width:24px;height:24px;display:grid;place-items:center;border:1px solid #d9d8ea;border-radius:50%;color:var(--purple);font-size:9px;box-shadow:0 2px 5px rgba(37,27,112,.08)}
+    .proof{display:flex;align-items:center;gap:10px;margin-top:23px;color:#767887;font-size:9px}
+    .avatars{display:flex;padding-left:4px}.avatars i{width:25px;height:25px;display:grid;place-items:center;margin-left:-5px;border:2px solid #fff;border-radius:50%;color:#fff;background:linear-gradient(145deg,#6c3f29,#e9bd97);font-style:normal;font-size:8px;font-weight:800}.avatars i:nth-child(2){background:linear-gradient(145deg,#211c1c,#a8664a)}.avatars i:nth-child(3){background:linear-gradient(145deg,#4b2b21,#db9169)}.avatars i:nth-child(4){background:linear-gradient(145deg,#171c25,#718094)}
+    .rating{display:block;margin-top:2px;color:#d6a917;font-size:9px}.rating b{color:#747585;font-weight:600}
+
+    .hero-art{position:relative;height:425px;min-width:0}
+    .person-glow{position:absolute;left:18%;top:13%;width:62%;height:77%;border-radius:50%;background:radial-gradient(circle,#e7e0ff 0 44%,rgba(230,224,255,0) 70%)}
+    .person{position:absolute;left:18%;bottom:6%;width:47%;height:82%;filter:drop-shadow(0 18px 16px rgba(80,44,180,.11))}
+    .person svg{width:100%;height:100%;overflow:visible}
+    .money-card{position:absolute;z-index:4;left:33%;bottom:3%;display:flex;flex-direction:column;justify-content:space-between;width:215px;height:126px;padding:18px 17px;border-radius:12px;color:#fff;background:linear-gradient(135deg,#5338e0 3%,#4926bd 100%);box-shadow:0 22px 33px rgba(74,40,190,.28);transform:rotate(8deg)}
+    .money-card small{font-size:10px;font-weight:650;letter-spacing:-.02em}.card-chip{width:27px;height:19px;border-radius:5px;background:linear-gradient(135deg,#c8c6d0,#6f6d7e)}.card-nfc{position:absolute;top:44px;left:51px;font-size:13px;transform:rotate(90deg);opacity:.75}.card-bottom{display:flex;align-items:end;justify-content:space-between}.card-number{font-size:12px;letter-spacing:.19em}.mastercard{position:relative;width:31px;height:18px}.mastercard::before,.mastercard::after{content:"";position:absolute;top:1px;width:17px;height:17px;border-radius:50%}.mastercard::before{left:0;background:#f13b28}.mastercard::after{right:0;background:#f5a322;mix-blend-mode:screen}
+    .float-chip{position:absolute;z-index:5;right:0;display:grid;grid-template-columns:27px 1fr auto;align-items:center;gap:9px;width:192px;min-height:50px;padding:8px 11px;border:1px solid #f0eff6;border-radius:10px;background:rgba(255,255,255,.92);box-shadow:0 11px 24px rgba(33,27,102,.1);font-size:8px}
+    .float-chip strong{font-size:8px}.float-chip small{display:block;color:#9697a4;font-size:7px;margin-top:2px}.float-chip b{font-size:8px;font-weight:750}.float-chip em{display:block;margin-top:2px;color:#29ae79;font-size:7px;font-style:normal;text-align:right}
+    .chip-icon{width:25px;height:25px;display:grid;place-items:center;border-radius:8px;color:#fff;background:#f7a91d;font-size:12px;font-weight:900}.chip-icon.electric{color:#20af76;background:#e5fff5}.chip-icon.airtime{color:#633dde;background:#f0edff}
+    .float-chip.bitcoin{top:23%;right:2%}.float-chip.electricity{top:43%;right:-1%}.float-chip.airtime{top:63%;right:0}
+    .green-orb{position:absolute;right:-2%;bottom:8%;width:65px;height:65px;border-radius:50%;background:radial-gradient(circle at 35% 32%,#f4ffff,#bbf8e9 50%,#9be6d6);box-shadow:0 15px 26px rgba(79,206,171,.18);filter:blur(.4px)}
+
+    .hub{position:relative;overflow:hidden;min-height:310px;display:grid;place-items:center;text-align:center;background:linear-gradient(115deg,#fff 0%,#fff 46%,#f7f5ff 100%)}
+    .hub::before{content:"";position:absolute;left:-15%;bottom:-58%;width:50%;height:125%;border-radius:50%;background:radial-gradient(ellipse,#dcfaf7,rgba(255,255,255,0) 67%)}
+    .hub::after{content:"";position:absolute;right:-18%;top:-65%;width:56%;height:135%;border:1px solid rgba(113,91,230,.08);border-radius:50%;box-shadow:0 0 0 38px rgba(113,91,230,.025),0 0 0 76px rgba(113,91,230,.02);transform:rotate(-15deg)}
+    .hub-copy{position:relative;z-index:1;padding:64px 0 56px}.hub h2{max-width:410px;margin:0 auto;font-size:clamp(31px,4vw,47px);font-weight:850;letter-spacing:-.075em;line-height:.98}.hub p{max-width:300px;margin:28px auto 0;color:#77798a;font-size:10px;line-height:1.65}
+
+    .card-section{position:relative;overflow:hidden;padding:65px 0 76px;background:#fff}
+    .card-section::before{content:"";position:absolute;right:-9%;top:-10%;width:53%;height:115%;border-radius:50%;background:radial-gradient(ellipse,#f4f0ff 0 41%,rgba(244,240,255,0) 70%);transform:rotate(14deg)}
+    .card-grid{position:relative;z-index:1;display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:70px}
+    .eyebrow{margin-bottom:11px;color:#715be4;font-size:9px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+    .card-copy h2{max-width:305px;margin:0;font-size:clamp(30px,3.7vw,48px);font-weight:850;letter-spacing:-.08em;line-height:.98}.card-copy h2 em{display:block;color:var(--purple-2);font-style:normal}
+    .card-copy p{max-width:280px;margin:15px 0 0;color:#77798a;font-size:10px;line-height:1.65}.text-link{display:inline-flex;align-items:center;gap:6px;margin-top:17px;color:var(--purple);font-size:10px;font-weight:800}.text-link span{font-size:14px}
+    .card-stage{position:relative;min-height:285px;display:grid;place-items:center}
+    .card-stage::before{content:"";position:absolute;width:82%;height:78%;border-radius:50%;background:radial-gradient(ellipse,#e3dcff,#f5f3ff 61%,transparent 72%);transform:rotate(10deg)}
+    .virtual-card{position:relative;z-index:1;width:min(345px,83%);aspect-ratio:1.57;padding:24px 28px;border-radius:20px;color:#fff;background:linear-gradient(135deg,#5e40ea 0%,#4929c9 84%);box-shadow:0 25px 35px rgba(70,40,188,.25);transform:rotate(-8deg)}
+    .virtual-card .vc-brand{font-size:14px;font-weight:750;letter-spacing:-.05em}.vc-contact{position:absolute;top:45px;right:31px;font-size:16px;opacity:.68;transform:rotate(90deg)}.vc-chip{position:absolute;left:29px;top:65px;width:39px;height:27px;border-radius:7px;background:linear-gradient(135deg,#d1d0d8,#6c6a80)}.vc-numbers{position:absolute;left:29px;bottom:48px;letter-spacing:.23em;font-size:13px}.vc-brand-bottom{position:absolute;left:29px;bottom:21px;font-size:8px;opacity:.85}.visa{position:absolute;right:25px;bottom:19px;font-size:22px;font-weight:900;font-style:italic}.vc-mastercard{position:absolute;right:45px;top:25px}
+    .vc-mastercard::before,.vc-mastercard::after{content:"";position:absolute;width:26px;height:26px;border-radius:50%}.vc-mastercard::before{right:15px;background:#f04428}.vc-mastercard::after{right:0;background:#f8a41e;mix-blend-mode:screen}
+
+    .assistant-section{position:relative;overflow:hidden;padding:20px 0 75px;background:#fff}
+    .assistant-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:66px}
+    .woman-frame{position:relative;overflow:hidden;min-height:298px;border-radius:13px;background:linear-gradient(145deg,#d5b7a2,#f1e5dc 60%,#c4b5d3)}
+    .woman-frame::before{content:"";position:absolute;left:39%;top:-8%;width:28%;height:82%;border-radius:50% 50% 43% 43%;background:#3d251d;box-shadow:-28px 11px 0 -5px #3d251d,25px 2px 0 -5px #3d251d}
+    .woman-frame::after{content:"";position:absolute;left:31%;bottom:-19%;width:48%;height:66%;border-radius:48% 48% 0 0;background:linear-gradient(145deg,#f3cfba,#d4977d 65%,#ad6f67)}
+    .woman-phone{position:absolute;z-index:3;right:28%;bottom:19%;width:23px;height:45px;border:2px solid #2c2435;border-radius:5px;background:linear-gradient(145deg,#606775,#242432);transform:rotate(22deg)}
+    .lamp{position:absolute;right:12%;top:17%;width:58px;height:58px;border-radius:50%;background:#fbf2d7;box-shadow:0 0 35px 14px rgba(255,237,182,.34)}.lamp::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:100px;background:#c6b9ae}
+    .message{position:absolute;z-index:5;left:18px;bottom:18px;display:flex;align-items:center;gap:8px;min-width:188px;padding:9px 11px;border-radius:8px;color:#313344;background:rgba(255,255,255,.95);box-shadow:0 11px 18px rgba(35,28,87,.15);font-size:8px}.whatsapp{width:24px;height:24px;display:grid;place-items:center;border-radius:50%;color:#fff;background:#19bd78;font-size:14px}.message b{display:block;font-size:8px}.message small{display:block;margin-top:2px;color:#9293a0;font-size:7px}.message time{margin-left:auto;color:#9293a0;font-size:7px}
+    .assistant-copy{padding-right:22px}.assistant-copy .eyebrow{color:#38b58d}.assistant-copy h2{max-width:290px;margin:0;font-size:clamp(30px,3.6vw,47px);font-weight:850;letter-spacing:-.08em;line-height:1}.assistant-copy h2 em{color:#12ae78;font-style:normal}.assistant-copy p{max-width:275px;margin:16px 0 0;color:#77798a;font-size:10px;line-height:1.65}.whatsapp-button{display:inline-flex;align-items:center;gap:7px;min-height:31px;margin-top:19px;padding:0 13px;border-radius:7px;color:#fff;background:#18b879;font-size:9px;font-weight:800;box-shadow:0 9px 18px rgba(24,184,121,.18)}.whatsapp-button span{font-size:13px}
+
+    @media (max-width:900px){
+      :root{--container:min(100% - 42px,650px)}
+      .hero-grid{grid-template-columns:1fr;gap:0;padding-top:45px}.hero-copy{padding-left:0}.hero-art{max-width:590px;margin:0 auto;width:100%}.float-chip{right:4%}.money-card{left:34%}.card-grid,.assistant-grid{gap:42px}
+    }
+    @media (max-width:650px){
+      :root{--container:calc(100% - 32px)}
+      .nav{height:65px}.menu-button{display:grid;position:relative;z-index:4}.nav-login{margin-left:0}
+      .nav-links{position:absolute;top:65px;left:0;right:0;display:grid;gap:0;margin:0;padding:10px 16px 16px;border-bottom:1px solid var(--line);background:#fff;box-shadow:0 18px 27px rgba(28,27,77,.11);transform:translateY(-140%);transition:transform .3s ease;z-index:3}
+      .nav-links a{padding:13px 4px;border-bottom:1px solid #f0f0f5}.nav-links .nav-login{border-bottom:1px solid #f0f0f5}.nav-links a:last-child{border:0}.nav-links .button{margin-top:8px}
+      #menu-toggle:checked ~ .nav-links{transform:translateY(0)}.nav>.nav-cta{display:none}
+      .hero{min-height:0}.hero-grid{padding:50px 0 22px}.hero h1{font-size:clamp(45px,13vw,67px)}.hero-copy>p{font-size:11px}.hero-art{height:365px;margin-top:8px}.person{left:10%;width:55%}.money-card{left:30%;width:190px;height:112px;padding:14px 15px}.float-chip{width:164px}.float-chip.bitcoin{top:22%}.float-chip.electricity{top:42%}.float-chip.airtime{top:62%}.green-orb{right:-1%;width:53px;height:53px}
+      .hub{min-height:270px}.hub-copy{padding:53px 0 48px}.hub h2{font-size:34px}.hub p{margin-top:23px}
+      .card-section{padding:56px 0 34px}.card-grid,.assistant-grid{grid-template-columns:1fr;gap:34px}.card-copy{order:1}.card-stage{order:2;min-height:240px}.virtual-card{width:min(330px,84%)}.assistant-section{padding-top:10px}.assistant-copy{padding:0}.assistant-copy h2{font-size:36px}.woman-frame{min-height:260px;order:2}.assistant-copy{order:1}
+    }
+    @media (max-width:390px){
+      .hero-art{height:330px}.float-chip{width:146px;right:0;font-size:7px}.float-chip.bitcoin{top:21%}.float-chip.electricity{top:42%}.float-chip.airtime{top:63%}.money-card{left:25%;width:178px}.person{left:4%;width:58%}.virtual-card{padding:20px 22px}.vc-numbers{left:24px;font-size:11px}.vc-chip{left:24px}.vc-brand-bottom{left:24px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav container">
+      <a class="brand" href="#top" aria-label="PeerHub home"><span class="brand-mark" aria-hidden="true"></span>PeerHub</a>
+      <input id="menu-toggle" type="checkbox" aria-label="Toggle navigation">
+      <label class="menu-button" for="menu-toggle" aria-label="Open navigation menu"><span></span></label>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#card">Card</a>
+        <a href="#assistant">Bills</a>
+        <a href="#top">About</a>
+        <a class="nav-login" href="#top">Log in</a>
+        <a class="button" href="#card">Get started <span>→</span></a>
+      </nav>
+      <a class="button nav-cta" href="#card">Get started <span>→</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-grid container">
+        <div class="hero-copy">
+          <span class="pill">All-in-one finance</span>
+          <h1>Your money,<br>without the <em>complexity.</em></h1>
+          <p>Buy crypto. Pay bills.<br>Spend anywhere.</p>
+          <div class="hero-actions">
+            <a class="button" href="#card">Get started <span>→</span></a>
+            <a class="demo-link" href="#hub"><span class="play">▶</span>Watch demo</a>
+          </div>
+          <div class="proof">
+            <div class="avatars"><i>J</i><i>A</i><i>M</i><i>K</i></div>
+            <div>Trusted by 500K+ people<br><span class="rating">★ <b>4.8/5</b></span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="PeerHub card and finance illustration">
+          <div class="person-glow"></div>
+          <div class="person" aria-hidden="true">
+            <svg viewBox="0 0 360 430" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="shirt" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#a893a9"/><stop offset="1" stop-color="#765d78"/></linearGradient>
+                <linearGradient id="skin" x1="0" x2="1"><stop stop-color="#a75d3e"/><stop offset="1" stop-color="#f0b28b"/></linearGradient>
+                <linearGradient id="phone" x1="0" x2="1"><stop stop-color="#23232d"/><stop offset="1" stop-color="#59596c"/></linearGradient>
+              </defs>
+              <path d="M104 430c7-80 16-135 56-176 29-30 80-37 120-12 36 23 49 96 60 188Z" fill="url(#shirt)"/>
+              <path d="M125 210c-7-53 2-112 52-136 55-27 112 10 116 69 3 50-24 105-79 119-41 10-83-12-89-52Z" fill="url(#skin)"/>
+              <path d="M119 108c-3-40 18-83 65-97 49-15 104 11 119 57-16-9-31-18-51-17-25 1-40 16-61 16-27 0-50-10-72 41Z" fill="#20191e"/>
+              <path d="M130 74c8-41 47-73 91-69 35 2 67 22 80 54-27-20-52-28-72-19-26 11-60 2-99 34Z" fill="#261b22"/>
+              <path d="M204 187c16 8 34 7 47-1" fill="none" stroke="#6b322a" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="177" cy="132" r="4" fill="#28202b"/><circle cx="244" cy="128" r="4" fill="#28202b"/>
+              <path d="M175 112c9-7 19-8 29-3M228 108c11-5 22-3 29 4" fill="none" stroke="#302027" stroke-width="6" stroke-linecap="round"/>
+              <path d="M114 254c-23 35-39 82-30 112 8 23 40 21 56-2l39-76Z" fill="url(#skin)"/>
+              <path d="M207 289c-31-23-74-35-92-14-14 18 9 44 37 53l68 27Z" fill="url(#skin)"/>
+              <rect x="165" y="225" width="34" height="67" rx="5" fill="url(#phone)" transform="rotate(19 165 225)"/><rect x="171" y="232" width="21" height="42" rx="2" fill="#151827" transform="rotate(19 171 232)"/>
+              <path d="M255 244c24 14 36 33 50 61 11 23-10 42-28 21l-35-43Z" fill="url(#skin)"/>
+            </svg>
+          </div>
+          <div class="money-card" aria-label="PeerHub virtual card">
+            <small>PeerHub</small><span class="card-chip"></span><span class="card-nfc">⌁</span>
+            <div class="card-bottom"><span class="card-number">◌◌◌◌</span><span class="mastercard"></span></div>
+          </div>
+          <div class="float-chip bitcoin"><span class="chip-icon">₿</span><span><strong>Bitcoin</strong><small>BTC</small></span><span><b>$63,280.50</b><em>+2.45%</em></span></div>
+          <div class="float-chip electricity"><span class="chip-icon electric">ϟ</span><span><strong>Electricity Bill</strong><small>Paid successfully</small></span><span><b>$120.00</b></span></div>
+          <div class="float-chip airtime"><span class="chip-icon airtime">▯</span><span><strong>Airtime Top-up</strong><small>Successful</small></span><span><b>$5.50</b></span></div>
+          <div class="green-orb"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hub" id="hub">
+      <div class="hub-copy">
+        <h2>One hub for everything<br>you do with money.</h2>
+        <p>Exchange crypto, pay bills, send money<br>and spend globally. All from one app.</p>
+      </div>
+    </section>
+
+    <section class="card-section" id="card">
+      <div class="card-grid container">
+        <div class="card-copy">
+          <div class="eyebrow">Virtual cards</div>
+          <h2>Create a virtual card.<em>Use it instantly.</em></h2>
+          <p>Shop online, pay subscriptions, and manage your limits with complete security and control.</p>
+          <a class="text-link" href="#assistant">Create your card <span>→</span></a>
+        </div>
+        <div class="card-stage" aria-label="PeerHub Visa virtual card">
+          <div class="virtual-card">
+            <div class="vc-brand">PeerHub</div><div class="vc-contact">⌁</div><div class="vc-chip"></div><div class="vc-mastercard"></div>
+            <div class="vc-numbers">•••• •••• •••• 4288</div><div class="vc-brand-bottom">Debit</div><div class="visa">VISA</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="assistant-section" id="assistant">
+      <div class="assistant-grid container">
+        <div class="woman-frame" aria-label="Customer using PeerHub on her phone">
+          <div class="lamp"></div><div class="woman-phone"></div>
+          <div class="message"><span class="whatsapp">◔</span><span><b>Payment of $120.00<br>was successful</b><small>✓ Payment received</small></span><time>10:30 AM</time></div>
+        </div>
+        <div class="assistant-copy">
+          <div class="eyebrow">AI assistant</div>
+          <h2>Transact effortlessly<br>on <em>WhatsApp.</em></h2>
+          <p>Our AI assistant is here 24/7 to help you buy crypto, pay bills and send money — right from your WhatsApp.</p>
+          <a class="whatsapp-button" href="#top"><span>◔</span>Chat on WhatsApp →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
