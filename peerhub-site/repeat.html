@@ -1,9 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="PeerHub brings crypto, bills, cards, and everyday money into one simple app.">
+  <meta name="theme-color" content="#17155c">
+  <meta name="color-scheme" content="light">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PeerHub — Your money, without the complexity">
+  <meta property="og:description" content="Buy crypto, pay every bill, send money, and spend with a virtual card — from one calm, secure app.">
+  <script>document.documentElement.classList.remove('no-js')</script>
   <title>PeerHub — Your money, without the complexity</title>
   <style>
     :root{
@@ -166,28 +172,285 @@
     @media (max-width:390px){
       .hero-art{height:330px}.float-chip{width:146px;right:0;font-size:8px}.float-chip.bitcoin{top:21%}.float-chip.electricity{top:42%}.float-chip.airtime{top:63%}.person{left:1%;width:66%}.virtual-card{padding:20px 22px}.vc-numbers{left:24px;font-size:11px}.vc-chip{left:24px}.vc-brand-bottom{left:24px}
     }
+
+    /* ══════════════════════════════════════════════════════════════
+       REFINEMENT LAYER — appended so it wins on specificity ties.
+       Grouped by intent; each block notes the problem it solves.
+       ══════════════════════════════════════════════════════════════ */
+
+    :root{
+      --section-y:clamp(64px,7.5vw,104px);   /* one vertical rhythm for every section */
+      --focus:#5032df;
+      --muted-strong:#5b5d70;                /* AA-compliant replacement for the pale greys */
+      --radius-lg:18px;
+    }
+
+    html{scroll-padding-top:136px}           /* anchors clear the sticky header + ticker */
+
+    ::selection{color:#fff;background:var(--purple)}
+
+    /* keyboard focus was invisible everywhere */
+    a:focus-visible,button:focus-visible,summary:focus-visible,
+    .menu-button:focus-visible,[tabindex]:focus-visible{
+      outline:2px solid var(--focus);outline-offset:3px;border-radius:6px
+    }
+
+    /* the burger moved after the drawer in the DOM, so the original
+       adjacent-sibling selectors no longer matched it */
+    #menu-toggle:checked~.menu-button span{background:transparent}
+    #menu-toggle:checked~.menu-button span::before{top:0;transform:rotate(45deg)}
+    #menu-toggle:checked~.menu-button span::after{top:0;transform:rotate(-45deg)}
+
+    /* the header CTA now lives outside the drawer, so it must show at
+       every width (it was display:none above 650px) */
+    .nav-cta{display:inline-flex;margin-left:20px}
+
+    .skip-link{position:absolute;left:12px;top:-60px;z-index:60;padding:10px 16px;border-radius:8px;
+      color:#fff;background:var(--purple);font-size:13px;font-weight:700;transition:top .2s}
+    .skip-link:focus{top:12px}
+
+    /* no-JS safety net: the whole page was opacity:0 until the observer ran */
+    .no-js .reveal,.no-js .load-reveal{opacity:1!important;transform:none!important}
+
+    /* ── Sticky header ─────────────────────────────────────────── */
+    .site-header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.82);
+      backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
+      border-bottom:1px solid transparent;transition:border-color .25s,box-shadow .25s}
+    .site-header.is-stuck{border-bottom-color:#eeedf6;box-shadow:0 8px 24px rgba(28,27,77,.05)}
+    .market-ticker{position:sticky;top:77px;z-index:39}   /* desktop only — released below */
+
+    /* ── Type system: one scale, balanced rags ─────────────────── */
+    h1,h2{text-wrap:balance}
+    .hero h1{font-weight:700;letter-spacing:-.038em}
+    .hub h2,.crypto-head h2,.utility-copy h2,.card-copy h2,.assistant-copy h2,.faq-copy h2{font-weight:650}
+    /* the hub heading was 74px — larger than the hero, so the page had two focal points */
+    .hub h2{max-width:15ch;font-size:clamp(34px,4.6vw,56px)}
+    .hub p{max-width:56ch;color:var(--muted-strong)}
+    /* these max-widths were tight enough to strand single words on
+       their own line ("on", "Use it") — widened so balance can work */
+    .assistant-copy h2{max-width:min(100%,470px)}
+    .card-copy h2{max-width:min(100%,460px)}
+    .faq-copy h2{max-width:min(100%,430px)}
+    .utility-copy h2{max-width:min(100%,420px)}
+    .hub-copy{padding:var(--section-y) 0}
+
+    /* ── Contrast: these all failed AA at their size ───────────── */
+    .pill{color:#5f6175;background:#f2f2f7}
+    .ticker-item small{color:#6c6e80}
+    .ticker-item{color:#3a3c50}
+    .float-chip small{color:#6f7183}
+    .crypto-asset p{color:#c2c1e6}
+    .asset-symbol{color:#d4d3ec}
+    .crypto-head p{color:#d6d5ee}
+    .hero-copy>p,.utility-copy p,.card-copy p,.assistant-copy p,.faq-copy p,.faq-list p{color:var(--muted-strong)}
+    .utility-list li{color:#4d4f61}
+    .footer-bottom{color:#a9a8d2}
+    .footer-tag,.footer-links a{color:#c3c2e2}
+    .bill-row small{color:#7c7e90}
+    .utility-balance small{color:#6f7183}
+    .message small,.message time{color:#7a7b8c}
+
+    /* ── Controls: real tap targets ────────────────────────────── */
+    .button{min-height:46px;padding:0 22px;border-radius:10px;font-size:13.5px}
+    .button:active{transform:translateY(0);background:#3a22ac}
+    .whatsapp-button{min-height:46px;padding:0 20px;border-radius:10px;font-size:13px}
+    .text-link{min-height:32px;font-size:13px}
+    .demo-link{min-height:44px}
+
+    /* ── Ticker: seamless loop + edge fade ─────────────────────── */
+    .ticker-track{gap:0}
+    .ticker-item{padding-right:22px}
+    .ticker-window{-webkit-mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
+    .ticker-track:hover{animation-play-state:paused}
+
+    /* ── Hero art: chips were overflowing the viewport ─────────── */
+    .float-chip{width:min(232px,52%);min-height:0;padding:11px 13px;gap:9px;
+      grid-template-columns:29px minmax(0,1fr) auto;align-items:center;border-radius:12px}
+    .float-chip>span{min-width:0}
+    .float-chip strong{display:block;line-height:1.25}
+    .float-chip small,.float-chip b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+    .float-chip b{text-align:right}
+
+    /* ── Cards & panels: consistent radii, softer depth ────────── */
+    .crypto-asset{border-radius:var(--radius-lg);transition:transform .25s var(--ease-out),background .25s}
+    .crypto-asset:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
+    .utility-panel{border-radius:var(--radius-lg)}
+    .bill-row{border-radius:11px;transition:border-color .2s,box-shadow .2s}
+    .bill-row:hover{border-color:#ded9fa;box-shadow:0 6px 14px rgba(53,40,151,.06)}
+    .faq-list details{border-radius:12px;padding:19px 20px}
+
+    /* ── Virtual card: it carried a Mastercard mark AND a Visa
+       wordmark. Visa kept, chip and numbers rebuilt. ──────────── */
+    .virtual-card{padding:26px 28px;border-radius:22px;overflow:hidden;
+      background:linear-gradient(135deg,#6a4bf0 0%,#5232dd 46%,#3f22b8 100%);
+      box-shadow:0 30px 50px -18px rgba(52,28,150,.55)}
+    .vc-sheen{position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(118deg,rgba(255,255,255,.26) 0%,rgba(255,255,255,.04) 38%,rgba(255,255,255,.14) 55%,rgba(255,255,255,0) 78%)}
+    .vc-brand{font-size:15px;letter-spacing:-.03em}
+    .vc-chip{left:28px;top:68px;width:44px;height:33px;border-radius:8px;
+      background:linear-gradient(135deg,#ffe6a6,#d9ad4d 52%,#fff0c6);box-shadow:inset 0 0 0 1px rgba(120,85,10,.25)}
+    .vc-chip::before,.vc-chip::after{content:"";position:absolute;background:rgba(140,100,20,.4)}
+    .vc-chip::before{left:0;right:0;top:50%;height:1px}
+    .vc-chip::after{top:0;bottom:0;left:50%;width:1px}
+    .vc-contact{top:66px;right:30px;left:auto;display:flex;align-items:center;gap:3px;transform:none;opacity:.9}
+    .vc-contact i{display:block;width:4px;border-right:2px solid rgba(255,255,255,.85);border-radius:0 50% 50% 0}
+    .vc-contact i:nth-child(1){height:9px}
+    .vc-contact i:nth-child(2){height:15px}
+    .vc-contact i:nth-child(3){height:21px}
+    .vc-numbers{left:28px;right:28px;bottom:52px;display:flex;gap:14px;letter-spacing:.12em;
+      font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+    .vc-numbers span:last-child{letter-spacing:.06em}
+    .vc-brand-bottom{left:28px;bottom:24px;font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+    .visa{right:28px;bottom:20px;font-size:23px}
+    .vc-mastercard{display:none}
+
+    /* ── Photo frames: object-fit was contain, so photos
+       letterboxed against a grey box instead of filling ───────── */
+    .woman-frame{min-height:0;aspect-ratio:4/3.1;border-radius:var(--radius-lg);
+      background:linear-gradient(150deg,#efecff,#e6fbf5);box-shadow:0 24px 50px -22px rgba(40,28,120,.35)}
+    .woman-photo{width:100%;height:100%;min-height:0;object-fit:cover;object-position:center top}
+    .message{left:16px;bottom:16px;padding:11px 13px;border-radius:11px;font-size:10px;
+      box-shadow:0 14px 26px rgba(35,28,87,.18)}
+    .message b{font-size:10.5px}.message small{font-size:9px}.message time{font-size:9px}
+
+    /* ── Section rhythm + a surface change between the two
+       consecutive white sections ──────────────────────────────── */
+    .crypto-section{padding:var(--section-y) 0}
+    .utility-section{padding:var(--section-y) 0}
+    .card-section{padding:var(--section-y) 0}
+    .faq-section{padding:var(--section-y) 0}
+    .assistant-section{padding:var(--section-y) 0;background:linear-gradient(180deg,#fff 0%,#f7fdfb 42%,#f4fbf9 100%)}
+    .assistant-section::before{content:"";position:absolute;left:-14%;top:-40%;width:52%;height:130%;
+      border:1px solid rgba(24,184,121,.09);border-radius:50%;transform:rotate(18deg)}
+    .assistant-grid{position:relative;z-index:1}
+
+    /* ── Footer: the logo is a PNG, so `color` never recoloured it ─ */
+    .site-footer .brand-mark img{filter:brightness(0) invert(1)}
+    .socials a{width:38px;height:38px;transition:background .2s,border-color .2s}
+    .socials a:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3)}
+
+    /* ══════════════  ≤900px  ══════════════ */
+    @media (max-width:900px){
+      html{scroll-padding-top:88px}
+      /* two stacked sticky bars eat too much of a small screen */
+      .market-ticker{position:relative;top:auto}
+      .hero-art{height:auto;aspect-ratio:1/.92;max-width:560px}
+      .person{height:100%}
+    }
+
+    /* ══════════════  ≤650px — phones  ══════════════ */
+    @media (max-width:650px){
+      html{scroll-padding-top:78px}
+
+      /* header: logo · CTA · burger, in that visual order */
+      .nav{height:64px;gap:10px}
+      .nav-cta{display:inline-flex;margin-left:auto;min-height:40px;padding:0 15px;font-size:12.5px}
+      .menu-button{margin-left:0;flex:0 0 auto}
+
+      /* drawer: the header CTA is always visible now, so the
+         duplicate button inside the menu is gone */
+      .nav-links{top:64px;padding:6px 18px 20px;box-shadow:0 24px 40px rgba(28,27,77,.14)}
+      .nav-links a{padding:15px 2px;font-size:15px}
+      .nav-links .button{display:none}
+      .nav-scrim{position:fixed;inset:0;z-index:2;background:rgba(16,16,43,.4);opacity:0;visibility:hidden;
+        transition:opacity .3s,visibility .3s}
+      body:has(#menu-toggle:checked) .nav-scrim{opacity:1;visibility:visible}
+      body:has(#menu-toggle:checked){overflow:hidden}
+
+      /* hero */
+      .hero-grid{padding:34px 0 26px}
+      .hero h1{font-size:clamp(40px,11.6vw,58px)}
+      .hero-copy>p{max-width:46ch;font-size:16px;line-height:1.65}
+      .hero-actions{gap:14px;margin-top:26px}
+      .hero-actions .button{min-height:50px;flex:1 1 auto;justify-content:center}
+      .hero-art{aspect-ratio:1/1.04;max-width:420px;margin-top:10px}
+      .person{left:0;width:62%;height:100%}
+      .float-chip{width:min(216px,58vw);right:0;font-size:10.5px;padding:10px 11px;gap:8px;
+        grid-template-columns:26px minmax(0,1fr) auto}
+      .float-chip small{font-size:9.5px}
+      .chip-icon{width:26px;height:26px;font-size:12px}
+      .float-chip.bitcoin{top:14%}
+      .float-chip.electricity{top:40%}
+      .float-chip.airtime{top:66%}
+      .green-orb{right:2%;bottom:4%;width:46px;height:46px}
+
+      /* hub heading was running past the container edge */
+      .hub{min-height:0}
+      .hub h2{font-size:clamp(30px,8.6vw,38px);max-width:none}
+      .hub p{font-size:15px;line-height:1.7}
+
+      /* asset tiles: a 2×2 grid at 14px padding was cramped —
+         now a snap carousel with a peek at the next card */
+      .crypto-assets{display:flex;grid-template-columns:none;gap:12px;width:100vw;max-width:100vw;
+        margin-left:calc(50% - 50vw);padding:4px 16px 6px;overflow-x:auto;scroll-snap-type:x mandatory;
+        scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain}
+      .crypto-assets::-webkit-scrollbar{display:none}
+      .crypto-asset{flex:0 0 68%;scroll-snap-align:center;padding:18px}
+      .crypto-asset:hover{transform:none}
+      .crypto-asset h3{font-size:17px}
+      .crypto-asset p{font-size:13px}
+      .asset-price{font-size:15px}
+      .crypto-head{margin-bottom:24px}
+      .crypto-head h2{font-size:clamp(30px,8.4vw,40px)}
+      .crypto-head p{font-size:15px}
+
+      .utility-copy h2,.faq-copy h2,.assistant-copy h2,.card-copy h2{font-size:clamp(29px,8.2vw,38px);max-width:none}
+      .utility-copy p,.card-copy p,.assistant-copy p,.faq-copy p{max-width:none;font-size:15px}
+      .utility-panel{padding:18px}
+      .utility-list li{font-size:14.5px}
+
+      .card-stage{min-height:0;padding:14px 0}
+      .virtual-card{width:min(320px,88%);padding:22px 24px;transform:rotate(-6deg)}
+      .vc-numbers{left:24px;right:24px;bottom:46px;gap:10px;font-size:12.5px}
+      .vc-chip{left:24px;top:60px}
+      .vc-contact{top:58px;right:26px}
+      .vc-brand-bottom{left:24px;bottom:20px}
+      .visa{right:24px;font-size:20px}
+
+      .woman-frame{aspect-ratio:4/3.4}
+      .message{min-width:0;max-width:82%}
+
+      .faq-list summary{font-size:14.5px;gap:14px}
+      .faq-list p{font-size:13.5px}
+
+      .footer-grid{gap:32px 24px}
+      .socials{margin-top:20px}
+    }
+
+    @media (max-width:390px){
+      .hero h1{font-size:38px}
+      .float-chip{width:min(180px,56vw);font-size:10px}
+      .nav-cta{padding:0 12px;font-size:12px}
+      .crypto-asset{flex:0 0 76%}
+    }
+
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}
       .reveal,.load-reveal{transform:none!important}
+      .ticker-track{animation:none!important}
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
+  <label class="nav-scrim" for="menu-toggle" aria-hidden="true"></label>
+
   <header class="site-header">
     <div class="nav container">
       <a class="brand load-reveal" data-load-index="0" href="#top" aria-label="PeerHub home"><span class="brand-mark" aria-hidden="true"><img src="data:image/png;base64,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" alt=""></span>PeerHub</a>
       <input id="menu-toggle" type="checkbox" aria-label="Toggle navigation">
-      <label class="menu-button" for="menu-toggle" aria-label="Open navigation menu"><span></span></label>
-      <nav class="nav-links" aria-label="Main navigation">
+      <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
         <a href="#hub">Features</a>
         <a href="#card">Card</a>
         <a href="#bills">Bills</a>
         <a href="#faq">FAQ</a>
         <a href="#top">About</a>
         <a class="nav-login" href="#top">Log in</a>
-        <a class="button" href="#card">Join Waitlist <span>→</span></a>
       </nav>
       <a class="button nav-cta load-reveal" data-load-index="1" href="#card">Join Waitlist <span>→</span></a>
+      <label class="menu-button" for="menu-toggle" role="button" tabindex="0" aria-controls="primary-nav"
+        aria-expanded="false" aria-label="Open navigation menu"><span></span></label>
     </div>
   </header>
 
@@ -216,7 +479,7 @@
       <div class="hero-grid container">
         <div class="hero-copy">
           <span class="pill load-reveal" data-load-index="2">All-in-one finance</span>
-          <h1 class="load-reveal" data-load-index="3">Crypto,<br>to cash <em>instantly.</em></h1>
+          <h1 class="load-reveal" data-load-index="3">Crypto, to cash <em>instantly.</em></h1>
           <p class="load-reveal" data-load-index="4">Buy crypto, pay every bill, send money to anyone, and spend with a virtual card — all from one calm, secure app that keeps your money moving without the runaround.</p>
           <div class="hero-actions load-reveal" data-load-index="5">
             <a class="button" href="#card">Join Waitlist <span>→</span></a>
@@ -229,7 +492,8 @@
         </div>
         <div class="hero-art" aria-label="PeerHub card and finance illustration">
           <div class="person-glow"></div>
-          <img class="person load-reveal" data-load-index="3" src="./Man_holding_smartphone_202608130908.png" alt="Man holding a smartphone with the PeerHub app">
+          <img class="person load-reveal" data-load-index="3" width="900" height="1200" loading="eager" decoding="async"
+            src="./Man_holding_smartphone_202608130908.png" alt="Man holding a smartphone with the PeerHub app">
           <div class="float-chip bitcoin load-reveal" data-load-index="5"><span class="chip-icon">₿</span><span><strong>Bitcoin</strong><small>BTC</small></span><span><b>$63,280.50</b><em>+2.45%</em></span></div>
           <div class="float-chip electricity load-reveal" data-load-index="6"><span class="chip-icon electric">ϟ</span><span><strong>Electricity Bill</strong><small>Paid successfully</small></span><span><b>$120.00</b></span></div>
           <div class="float-chip airtime load-reveal" data-load-index="7"><span class="chip-icon airtime">▯</span><span><strong>Airtime Top-up</strong><small>Successful</small></span><span><b>$5.50</b></span></div>
@@ -240,7 +504,7 @@
 
     <section class="hub" id="hub">
       <div class="hub-copy">
-        <h2 class="reveal" data-reveal-index="0">One hub for everything<br>you do with money.</h2>
+        <h2 class="reveal" data-reveal-index="0">One hub for everything you do with money.</h2>
         <p class="reveal" data-reveal-index="1">Exchange crypto, pay bills, send money and spend globally — all from one app that replaces the five or six you're juggling now. No switching apps, no repeating your details, no waiting around for confirmations.</p>
       </div>
     </section>
@@ -292,8 +556,12 @@
         </div>
         <div class="card-stage reveal" data-reveal-index="1" aria-label="PeerHub Visa virtual card">
           <div class="virtual-card">
-            <div class="vc-brand">PeerHub</div><div class="vc-contact">⌁</div><div class="vc-chip"></div><div class="vc-mastercard"></div>
-            <div class="vc-numbers">•••• •••• •••• 4288</div><div class="vc-brand-bottom">Debit</div><div class="visa">VISA</div>
+            <span class="vc-sheen" aria-hidden="true"></span>
+            <div class="vc-brand">PeerHub</div>
+            <div class="vc-contact" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="vc-chip" aria-hidden="true"></div>
+            <div class="vc-numbers"><span>••••</span><span>••••</span><span>••••</span><span>4288</span></div>
+            <div class="vc-brand-bottom">Debit</div><div class="visa">VISA</div>
           </div>
         </div>
       </div>
@@ -302,12 +570,15 @@
     <section class="assistant-section" id="assistant">
       <div class="assistant-grid container">
         <div class="woman-frame reveal" data-reveal-index="0">
-          <img class="woman-photo" height="300px" src="./Woman_holding_smartphone_with_no…_202608130908.jpeg" alt="Woman using PeerHub on her smartphone">
+          <img class="woman-photo" width="1200" height="900" loading="lazy" decoding="async"
+            src="./Woman_holding_smartphone_with_no…_202608130908.jpeg"
+            onerror="this.onerror=null;this.src='./Woman_holding_smartphone_202608130908.jpeg'"
+            alt="Woman using PeerHub on her smartphone">
           <div class="message"><span class="whatsapp">◔</span><span><b>Payment of $120.00<br>was successful</b><small>✓ Payment received</small></span><time>10:30 AM</time></div>
         </div>
         <div class="assistant-copy">
           <div class="eyebrow reveal" data-reveal-index="1">AI assistant</div>
-          <h2 class="reveal" data-reveal-index="2">Transact effortlessly<br>on <em>WhatsApp.</em></h2>
+          <h2 class="reveal" data-reveal-index="2">Transact effortlessly on <em>WhatsApp.</em></h2>
           <p class="reveal" data-reveal-index="3">Our AI assistant is here 24/7 to help you buy crypto, pay bills and send money — right from the WhatsApp chat you already use every day. No new app to learn, no extra login.</p>
           <a class="whatsapp-button reveal" data-reveal-index="4" href="#top"><span>◔</span>Chat on WhatsApp →</a>
         </div>
@@ -322,39 +593,39 @@
           <p>Quick answers about your money, your card, and the everyday payments you can make with PeerHub. Can't find what you're after? Message us on WhatsApp and we'll sort it out.</p>
         </div>
         <div class="faq-list">
-          <details class="reveal" data-reveal-index="1" open>
+          <details name="faq" class="reveal" data-reveal-index="1" open>
             <summary>What can I use PeerHub for? <span>+</span></summary>
             <p>Buy and hold crypto, pay utility bills, send money, and spend with a PeerHub virtual card from one account. It's built to replace the handful of separate apps most people use for everyday money.</p>
           </details>
-          <details class="reveal" data-reveal-index="2">
+          <details name="faq" class="reveal" data-reveal-index="2">
             <summary>How quickly are bill payments processed? <span>+</span></summary>
             <p>Most supported payments are confirmed in seconds. You receive an in-app confirmation as soon as the provider accepts the payment, so you're never left guessing whether it went through.</p>
           </details>
-          <details class="reveal" data-reveal-index="3">
+          <details name="faq" class="reveal" data-reveal-index="3">
             <summary>Can I use the virtual card online? <span>+</span></summary>
             <p>Yes. Use your virtual card for online shopping and subscriptions, while keeping control of your limits and spending. You can freeze it, adjust limits, or top it up instantly from the app.</p>
           </details>
-          <details class="reveal" data-reveal-index="4">
+          <details name="faq" class="reveal" data-reveal-index="4">
             <summary>How does the WhatsApp assistant work? <span>+</span></summary>
             <p>Ask the assistant to help with supported crypto, bill, and transfer tasks directly from the WhatsApp conversation you already use. It's available around the clock and picks up right where you left off.</p>
           </details>
-          <details class="reveal" data-reveal-index="5">
+          <details name="faq" class="reveal" data-reveal-index="5">
             <summary>Is my money and crypto safe with PeerHub? <span>+</span></summary>
             <p>Yes. Funds are held with regulated partners, transactions are encrypted end-to-end, and every account is protected with multi-factor authentication. Card and crypto activity can also be monitored and frozen instantly from the app.</p>
           </details>
-          <details class="reveal" data-reveal-index="6">
+          <details name="faq" class="reveal" data-reveal-index="6">
             <summary>Which countries and currencies does PeerHub support? <span>+</span></summary>
             <p>PeerHub currently supports a growing list of countries and local currencies alongside major cryptocurrencies and stablecoins. Open the app and check your region's settings for the exact list available to you.</p>
           </details>
-          <details class="reveal" data-reveal-index="7">
+          <details name="faq" class="reveal" data-reveal-index="7">
             <summary>Do I need to verify my identity to use PeerHub? <span>+</span></summary>
             <p>Yes. A quick identity check is required to keep your account and funds secure and to comply with local regulations. Most verifications take just a few minutes and unlock full access to crypto, bills, and card features.</p>
           </details>
-          <details class="reveal" data-reveal-index="8">
+          <details name="faq" class="reveal" data-reveal-index="8">
             <summary>What fees does PeerHub charge? <span>+</span></summary>
             <p>PeerHub keeps fees simple and transparent — you'll always see the exact cost before you confirm a crypto trade, bill payment, or transfer, with no hidden charges added afterward.</p>
           </details>
-          <details class="reveal" data-reveal-index="9">
+          <details name="faq" class="reveal" data-reveal-index="9">
             <summary>What if I need help outside the WhatsApp assistant? <span>+</span></summary>
             <p>Our support team is reachable in-app and by email for anything the assistant can't resolve, including account and card issues. Most enquiries get a response within a few hours.</p>
           </details>
@@ -398,6 +669,37 @@
         document.addEventListener('DOMContentLoaded', triggerLoad);
       } else {
         triggerLoad();
+      }
+
+      // ── Sticky-header shadow state ──
+      var header = document.querySelector('.site-header');
+      if (header) {
+        var onScroll = function () {
+          header.classList.toggle('is-stuck', window.scrollY > 8);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+
+      // ── Menu: keep aria in sync, close on navigate or Escape ──
+      var toggle = document.getElementById('menu-toggle');
+      var burger = document.querySelector('.menu-button');
+      if (toggle && burger) {
+        var syncMenu = function () {
+          burger.setAttribute('aria-expanded', toggle.checked ? 'true' : 'false');
+          burger.setAttribute('aria-label', toggle.checked ? 'Close navigation menu' : 'Open navigation menu');
+        };
+        toggle.addEventListener('change', syncMenu);
+        syncMenu();
+        burger.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.checked = !toggle.checked; syncMenu(); }
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && toggle.checked) { toggle.checked = false; syncMenu(); }
+        });
+        document.querySelectorAll('.nav-links a').forEach(function (link) {
+          link.addEventListener('click', function () { toggle.checked = false; syncMenu(); });
+        });
       }
 
       // ── Scroll-reveal observer (PeerHub reveal.js contract) ──
