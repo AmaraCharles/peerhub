@@ -500,6 +500,7 @@
 
         /* --- artwork --- */
         .hero-visual {
+            --coin: clamp(34px, 9.6vw, 56px);
             position: relative;
             margin: 26px -16px 0;
             padding: 0 4px
@@ -508,41 +509,278 @@
         .hero-visual img.hero-photo {
             position: relative;
             z-index: 3;
-            width: 100%
+            width: 68%;
+            margin-inline: auto
         }
 
-        .hero-ring {
+        /* --- orbiting coins ------------------------------------------------
+           Each coin lives in a .hero-track: an invisible square that is
+           tilted and squashed (scale 1 k) into an ellipse, so a plain
+           rotation inside it traces that ellipse. The coin then undoes the
+           track's transform — rotate(-angle) scaleY(1/k) rotate(-tilt) — so
+           it stays perfectly round and upright the whole way around, and
+           scales a little as it swings near/far. The track's z-index flips
+           at the halfway points, which is what makes a coin pass behind the
+           phone on the far side and in front of it on the near side. */
+        .hero-track {
             position: absolute;
-            z-index: 1;
-            border: 1px solid var(--hero-ring);
-            border-radius: 50%;
+            left: 50%;
+            top: 46%;
+            width: var(--d);
+            aspect-ratio: 1;
+            translate: -50% -50%;
+            rotate: var(--tilt);
+            scale: 1 var(--k);
             pointer-events: none
         }
 
-        .hero-ring.one {
-            top: 14%;
-            left: -14%;
-            width: 128%;
-            height: 66%;
-            transform: rotate(-13deg)
+        .hero-track.ring {
+            border: 1px solid var(--hero-ring);
+            border-radius: 50%
         }
 
-        .hero-ring.two {
-            top: 26%;
-            left: -6%;
-            width: 112%;
-            height: 50%;
-            opacity: .8;
-            transform: rotate(10deg)
+        .hero-orbiter {
+            position: absolute;
+            inset: 0;
+            rotate: var(--phase)
         }
 
-        .hero-ring.three {
-            top: 6%;
-            left: 2%;
-            width: 104%;
-            height: 78%;
-            opacity: .5;
-            transform: rotate(-4deg)
+        .hero-coin {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: var(--coin);
+            height: var(--coin);
+            margin: calc(var(--coin) / -2) 0 0 calc(var(--coin) / -2);
+            border-radius: 50%;
+            object-fit: cover;
+            filter: drop-shadow(0 10px 16px rgba(20, 15, 50, .28));
+            transform: rotate(calc(-1 * var(--phase))) scaleY(var(--unsquash)) rotate(calc(-1 * var(--tilt)))
+        }
+
+        @keyframes hero-orbit {
+            from {
+                rotate: 0deg
+            }
+
+            to {
+                rotate: 360deg
+            }
+        }
+
+        @keyframes hero-orbit-rev {
+            from {
+                rotate: 0deg
+            }
+
+            to {
+                rotate: -360deg
+            }
+        }
+
+        /* z-order flip: behind the phone on the far half, in front on the near half */
+        @keyframes hero-depth {
+
+            0%,
+            24.99% {
+                z-index: 1
+            }
+
+            25%,
+            74.99% {
+                z-index: 5
+            }
+
+            75%,
+            100% {
+                z-index: 1
+            }
+        }
+
+        @keyframes hero-depth-rev {
+
+            0%,
+            24.99% {
+                z-index: 1
+            }
+
+            25%,
+            74.99% {
+                z-index: 5
+            }
+
+            75%,
+            100% {
+                z-index: 1
+            }
+        }
+        @keyframes hero-coin-a {
+
+            0% {
+                transform: rotate(0deg) scaleY(1.6129) rotate(14deg) scale(.84)
+            }
+
+            25% {
+                transform: rotate(-90deg) scaleY(1.6129) rotate(14deg) scale(.95)
+            }
+
+            50% {
+                transform: rotate(-180deg) scaleY(1.6129) rotate(14deg) scale(1.06)
+            }
+
+            75% {
+                transform: rotate(-270deg) scaleY(1.6129) rotate(14deg) scale(.95)
+            }
+
+            100% {
+                transform: rotate(-360deg) scaleY(1.6129) rotate(14deg) scale(.84)
+            }
+        }
+        @keyframes hero-coin-b {
+
+            0% {
+                transform: rotate(0deg) scaleY(1.8182) rotate(-12deg) scale(.84)
+            }
+
+            25% {
+                transform: rotate(90deg) scaleY(1.8182) rotate(-12deg) scale(.95)
+            }
+
+            50% {
+                transform: rotate(180deg) scaleY(1.8182) rotate(-12deg) scale(1.06)
+            }
+
+            75% {
+                transform: rotate(270deg) scaleY(1.8182) rotate(-12deg) scale(.95)
+            }
+
+            100% {
+                transform: rotate(360deg) scaleY(1.8182) rotate(-12deg) scale(.84)
+            }
+        }
+        @keyframes hero-coin-c {
+
+            0% {
+                transform: rotate(0deg) scaleY(1.2821) rotate(5deg) scale(.84)
+            }
+
+            25% {
+                transform: rotate(-90deg) scaleY(1.2821) rotate(5deg) scale(.95)
+            }
+
+            50% {
+                transform: rotate(-180deg) scaleY(1.2821) rotate(5deg) scale(1.06)
+            }
+
+            75% {
+                transform: rotate(-270deg) scaleY(1.2821) rotate(5deg) scale(.95)
+            }
+
+            100% {
+                transform: rotate(-360deg) scaleY(1.2821) rotate(5deg) scale(.84)
+            }
+        }
+        .hero-track.c1 {
+            --d: 88%;
+            --tilt: -14deg;
+            --k: 0.62;
+            --unsquash: 1.6129;
+            --phase: 20deg;
+            z-index: 1;
+            animation: hero-depth 26s linear -1.4444s infinite
+        }
+
+        .hero-track.c1 .hero-orbiter {
+            animation: hero-orbit 26s linear -1.4444s infinite
+        }
+
+        .hero-track.c1 .hero-coin {
+            animation: hero-coin-a 26s linear -1.4444s infinite
+        }
+        .hero-track.c4 {
+            --d: 88%;
+            --tilt: -14deg;
+            --k: 0.62;
+            --unsquash: 1.6129;
+            --phase: 200deg;
+            z-index: 5;
+            animation: hero-depth 26s linear -14.4444s infinite
+        }
+
+        .hero-track.c4 .hero-orbiter {
+            animation: hero-orbit 26s linear -14.4444s infinite
+        }
+
+        .hero-track.c4 .hero-coin {
+            animation: hero-coin-a 26s linear -14.4444s infinite
+        }
+        .hero-track.c2 {
+            --d: 72%;
+            --tilt: 12deg;
+            --k: 0.55;
+            --unsquash: 1.8182;
+            --phase: -110deg;
+            z-index: 5;
+            animation: hero-depth 20s linear -6.1111s infinite
+        }
+
+        .hero-track.c2 .hero-orbiter {
+            animation: hero-orbit-rev 20s linear -6.1111s infinite
+        }
+
+        .hero-track.c2 .hero-coin {
+            animation: hero-coin-b 20s linear -6.1111s infinite
+        }
+        .hero-track.c5 {
+            --d: 72%;
+            --tilt: 12deg;
+            --k: 0.55;
+            --unsquash: 1.8182;
+            --phase: -290deg;
+            z-index: 1;
+            animation: hero-depth 20s linear -16.1111s infinite
+        }
+
+        .hero-track.c5 .hero-orbiter {
+            animation: hero-orbit-rev 20s linear -16.1111s infinite
+        }
+
+        .hero-track.c5 .hero-coin {
+            animation: hero-coin-b 20s linear -16.1111s infinite
+        }
+        .hero-track.c3 {
+            --d: 80%;
+            --tilt: -5deg;
+            --k: 0.78;
+            --unsquash: 1.2821;
+            --phase: 245deg;
+            z-index: 5;
+            animation: hero-depth 32s linear -21.7778s infinite
+        }
+
+        .hero-track.c3 .hero-orbiter {
+            animation: hero-orbit 32s linear -21.7778s infinite
+        }
+
+        .hero-track.c3 .hero-coin {
+            animation: hero-coin-c 32s linear -21.7778s infinite
+        }
+        .hero-track.c6 {
+            --d: 80%;
+            --tilt: -5deg;
+            --k: 0.78;
+            --unsquash: 1.2821;
+            --phase: 65deg;
+            z-index: 1;
+            animation: hero-depth 32s linear -5.7778s infinite
+        }
+
+        .hero-track.c6 .hero-orbiter {
+            animation: hero-orbit 32s linear -5.7778s infinite
+        }
+
+        .hero-track.c6 .hero-coin {
+            animation: hero-coin-c 32s linear -5.7778s infinite
         }
 
         .hero-node {
@@ -581,7 +819,7 @@
 
         .hero-scroll {
             position: absolute;
-            z-index: 4;
+            z-index: 6;
             left: 47%;
             bottom: 11%;
             transform: translateX(-50%);
@@ -743,6 +981,10 @@
                 max-width: 620px;
                 margin: 0 0 0 auto;
                 padding: 0
+            }
+
+            .hero-visual img.hero-photo {
+                width: 74%
             }
 
             .hero-scroll {
@@ -1140,7 +1382,7 @@
         }
 
         .case-utility-img {
-            width: min(110px, 65%);
+            width: min(128px, 70%);
             filter: drop-shadow(0 14px 26px rgba(28, 25, 105, .2));
             animation: device-float 6s ease-in-out infinite;
             animation-delay: -2s
@@ -1178,99 +1420,93 @@
 
         .builder-art {
             position: relative;
-            min-height: 340px;
+            min-height: 460px;
+            display: grid;
+            place-items: center;
+            padding: 42px 18px;
             overflow: hidden;
             border-radius: 25px;
-            background: linear-gradient(145deg, #e9e7ff, #f5ffff)
+            background: linear-gradient(155deg, #e7f7ee 0%, #f1f5ff 52%, #f5f4ff 100%)
         }
 
+        /* soft WhatsApp-green halo behind the device */
         .builder-art::before {
             content: "";
             position: absolute;
-            inset: -30% 24% 18% -20%;
-            border: 1px solid rgba(51, 51, 255, .14);
+            width: 78%;
+            aspect-ratio: 1;
             border-radius: 50%;
-            transform: rotate(-23deg);
-            box-shadow: 0 0 0 36px rgba(51, 51, 255, .035), 0 0 0 72px rgba(51, 51, 255, .035)
+            background: radial-gradient(circle, rgba(37, 211, 102, .18), rgba(51, 51, 255, .07) 52%, transparent 72%);
+            filter: blur(6px)
+        }
+
+        /* concentric rings, pulled clear of the device */
+        .builder-art::after {
+            content: "";
+            position: absolute;
+            width: 54%;
+            aspect-ratio: 1;
+            border: 1px solid rgba(26, 169, 121, .16);
+            border-radius: 50%;
+            box-shadow: 0 0 0 30px rgba(26, 169, 121, .04), 0 0 0 60px rgba(26, 169, 121, .03)
         }
 
         .builder-phone-img {
-            position: absolute;
-            z-index: 2;
-            left: 50%;
-            top: 54%;
-            width: min(230px, 62%);
-            transform: translate(-50%, -50%);
-            filter: drop-shadow(0 30px 60px rgba(28, 25, 105, .24));
-            animation: device-float-centered 7s ease-in-out infinite
-        }
-
-        .code-window {
-            position: absolute;
+            position: relative;
             z-index: 3;
-            left: auto;
-            right: 6%;
-            top: 8%;
-            width: min(210px, 46%);
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, .95);
-            border-radius: 16px;
-            background: rgba(255, 255, 255, .85);
-            box-shadow: 0 18px 45px rgba(28, 25, 105, .12);
-            transform: rotate(4deg)
+            width: min(280px, 62%);
+            filter: drop-shadow(0 30px 60px rgba(28, 25, 105, .22));
+            animation: device-float 7s ease-in-out infinite
         }
 
-        .code-dots {
+        /* chat cues — sized and placed to sit beside the phone, never over its screen */
+        .chat-bubble {
+            position: absolute;
+            z-index: 4;
             display: flex;
-            gap: 5px;
-            margin-bottom: 21px
+            align-items: center;
+            gap: 8px;
+            max-width: 40%;
+            padding: 11px 13px;
+            border-radius: 14px;
+            color: var(--navy);
+            font-size: 11px;
+            font-weight: 800;
+            line-height: 1.35;
+            box-shadow: 0 14px 30px rgba(28, 25, 105, .12)
         }
 
-        .code-dots i {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--coral)
+        .chat-bubble.in {
+            left: 4%;
+            top: 8%;
+            border-bottom-left-radius: 4px;
+            background: rgba(255, 255, 255, .94);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px)
         }
 
-        .code-dots i:nth-child(2) {
-            background: var(--yellow)
+        .chat-bubble.out {
+            right: 4%;
+            bottom: 8%;
+            border-bottom-right-radius: 4px;
+            color: #0d5138;
+            background: #d8f6e4
         }
 
-        .code-dots i:nth-child(3) {
-            background: var(--green)
-        }
-
-        .code-line {
+        .chat-bubble .dot {
+            width: 7px;
             height: 7px;
-            margin: 10px 0;
-            border-radius: 4px;
-            background: #d9d7fc
+            flex: none;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 0 4px rgba(26, 169, 121, .16)
         }
 
-        .code-line.short {
-            width: 44%
-        }
-
-        .code-line.blue {
-            width: 76%;
-            background: #b7bcff
-        }
-
-        .code-line.cyan {
-            width: 58%;
-            background: #b6f3ef
-        }
-
-        .code-pill {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 8px 11px;
-            border-radius: 7px;
-            color: #fff;
-            background: var(--blue);
-            font-size: 9px;
-            font-weight: 800
+        .chat-bubble .ticks {
+            margin-left: 2px;
+            color: #2f9e6b;
+            font-size: 10px;
+            letter-spacing: -2px
         }
 
         .builder h2 {
@@ -1773,7 +2009,28 @@
             }
 
             .builder-art {
-                min-height: 290px
+                min-height: 380px;
+                padding: 34px 12px
+            }
+
+            .builder-phone-img {
+                width: min(230px, 56%)
+            }
+
+            .chat-bubble {
+                max-width: 34%;
+                padding: 9px 10px;
+                font-size: 9.5px
+            }
+
+            .chat-bubble.in {
+                left: 2%;
+                top: 5%
+            }
+
+            .chat-bubble.out {
+                right: 2%;
+                bottom: 5%
             }
 
             .integration-head {
@@ -1828,7 +2085,7 @@
             }
 
             .case-utility-img {
-                width: min(90px, 62%)
+                width: min(104px, 66%)
             }
 
             .case-card h3 {
@@ -1901,6 +2158,191 @@
             }
         }
 
+
+        /* ============================================================
+           MOBILE POLISH — everything below is phone-only.
+           Fewer competing elements, more air, larger reading sizes.
+           ============================================================ */
+        .mobile-cta {
+            display: none
+        }
+
+        @media (max-width:720px) {
+
+            /* the header now sits on the same surface as the hero,
+               so the page opens as one sheet instead of a white seam */
+            .site-header {
+                background: rgba(247, 246, 254, .86)
+            }
+
+            /* hero runs full-bleed — the inset card treatment stays on
+               the content sections below it */
+            main>section.hero {
+                margin-inline: 0;
+                border-radius: 0
+            }
+
+            .hero-inner {
+                padding-inline: 6px
+            }
+
+            /* the sticky CTA now owns the bottom of the hero — two cues there
+               competed with each other */
+            .hero-scroll {
+                display: none
+            }
+
+            /* the big pale scrolling words read as filler at this size —
+               same marquee, restyled as a fine tracked ticker */
+            .marquee-wrap {
+                padding: 20px 0
+            }
+
+            .marquee-text {
+                padding-right: 30px;
+                color: #b7b8cc;
+                font-size: 11.5px;
+                font-weight: 800;
+                letter-spacing: .2em;
+                text-transform: uppercase
+            }
+
+            /* the currency strip repeats the Supported-currencies section
+               verbatim — one of them has to go on a small screen */
+            .logo-bar {
+                display: none
+            }
+
+            /* one card per row: the two-up grid forced 11px type */
+            .case-grid {
+                grid-template-columns: 1fr;
+                gap: 13px;
+                margin-top: 38px
+            }
+
+            .case-card {
+                min-height: 0;
+                padding: 24px
+            }
+
+            .case-visual {
+                min-height: 100px;
+                margin-bottom: 18px
+            }
+
+            .case-coin-img {
+                width: 56px;
+                height: 56px
+            }
+
+            .case-card-img {
+                width: min(165px, 60%)
+            }
+
+            .case-utility-img {
+                width: min(124px, 50%)
+            }
+
+            .case-card h3 {
+                margin-bottom: 9px;
+                font-size: 15px
+            }
+
+            .case-card p {
+                font-size: 12.5px;
+                line-height: 1.7
+            }
+
+            /* photo reads as a framed shot rather than a floating rectangle,
+               and the balance card no longer covers most of it */
+            .security-art {
+                min-height: 380px
+            }
+
+            .security-phone-img {
+                width: min(260px, 64%);
+                border-radius: 26px
+            }
+
+            .security-balance-card {
+                left: 0;
+                bottom: 0;
+                width: min(196px, 53%);
+                padding: 15px 14px
+            }
+
+            .security-float {
+                top: 4%;
+                right: 0
+            }
+
+            .price-list li,
+            .feature-list li {
+                font-size: 12.5px
+            }
+
+            .ticker-item {
+                font-size: 11.5px
+            }
+
+            /* a little more air between sections */
+            .security,
+            .builder,
+            .pricing {
+                padding: 86px 0
+            }
+
+            .use-cases {
+                padding: 86px 0 92px
+            }
+
+            .faq {
+                padding: 86px 0
+            }
+
+            .faq-list details {
+                padding: 20px
+            }
+
+            /* persistent call to action — the header CTA is hidden on phones,
+               so there was nothing to tap between the hero and the footer */
+            .mobile-cta {
+                display: block;
+                position: fixed;
+                z-index: 45;
+                transform: translateY(125%);
+                transition: transform .4s cubic-bezier(.4, 0, .2, 1);
+                left: 0;
+                right: 0;
+                bottom: 0;
+                padding: 11px 16px calc(11px + env(safe-area-inset-bottom, 0px));
+                background: rgba(255, 255, 255, .82);
+                backdrop-filter: blur(18px) saturate(150%);
+                -webkit-backdrop-filter: blur(18px) saturate(150%);
+                border-top: 1px solid rgba(232, 232, 241, .9)
+            }
+
+            .mobile-cta.is-on {
+                transform: none
+            }
+
+            .mobile-cta .button {
+                width: 100%;
+                min-height: 52px;
+                font-size: 14px
+            }
+
+            body {
+                padding-bottom: 86px
+            }
+
+            /* get out of the way when the menu or a dialog is open */
+            body:has(#menu-toggle:checked) .mobile-cta,
+            body.modal-open .mobile-cta {
+                display: none
+            }
+        }
+
         @media (prefers-reduced-motion:reduce) {
 
             *,
@@ -1952,14 +2394,23 @@
                 </div>
 
                 <div class="hero-visual reveal delay-2">
-                    <span class="hero-ring one" aria-hidden="true"></span>
-                    <span class="hero-ring two" aria-hidden="true"></span>
-                    <span class="hero-ring three" aria-hidden="true"></span>
+                    <span class="hero-track c1 ring" aria-hidden="true"><span class="hero-orbiter"><img
+                                class="hero-coin" src="coins/coin1.png" alt=""></span></span>
+                    <span class="hero-track c4" aria-hidden="true"><span class="hero-orbiter"><img
+                                class="hero-coin" src="coins/coin4.png" alt=""></span></span>
+                    <span class="hero-track c2 ring" aria-hidden="true"><span class="hero-orbiter"><img
+                                class="hero-coin" src="coins/coin2.png" alt=""></span></span>
+                    <span class="hero-track c5" aria-hidden="true"><span class="hero-orbiter"><img
+                                class="hero-coin" src="coins/coin5.png" alt=""></span></span>
+                    <span class="hero-track c3 ring" aria-hidden="true"><span class="hero-orbiter"><img
+                                class="hero-coin" src="coins/coin3.png" alt=""></span></span>
+                    <span class="hero-track c6" aria-hidden="true"><span class="hero-orbiter"><img
+                                class="hero-coin" src="coins/coin6.png" alt=""></span></span>
                     <span class="hero-node n1" aria-hidden="true"></span>
                     <span class="hero-node n2" aria-hidden="true"></span>
                     <span class="hero-node n3" aria-hidden="true"></span>
                     <span class="hero-node n4" aria-hidden="true"></span>
-                    <img class="hero-photo" src="images/hero-phone.png"
+                    <img class="hero-photo" src="images/sanshand.png"
                         alt="The PeerHub app open on a phone, with Bitcoin, Ethereum and PeerHub tokens floating around it">
                     <a class="hero-scroll" href="#security">Scroll to explore <i class="hero-chevs"
                             aria-hidden="true"><i></i><i></i></i></a>
@@ -2068,12 +2519,8 @@
                 <div class="builder-art reveal">
                     <img src="./images/whatsapp.png" alt="Phone showing a PeerHub WhatsApp chat"
                         class="builder-phone-img">
-                    <div class="code-window">
-                        <div class="code-dots"><i></i><i></i><i></i></div>
-                        <div class="code-line blue"></div>
-                        <div class="code-line short"></div>
-                        <div class="code-line cyan"></div>
-                        <div class="code-line blue short"></div><span class="code-pill">Message sent</span>
+                    <div class="chat-bubble in"><span class="dot"></span>PeerHub AI &middot; online</div>
+                    <div class="chat-bubble out">Paid &#8358;12,000 electricity <span class="ticks">&#10003;&#10003;</span>
                     </div>
                 </div>
                 <div class="builder-copy reveal delay-1">
@@ -2271,6 +2718,11 @@
                 volatile &mdash; convert responsibly.</span></div>
     </footer>
 
+    <div class="mobile-cta">
+        <a class="button button-primary" href="#waitlist" data-open-waitlist>Join the waitlist <span
+                class="arrow">→</span></a>
+    </div>
+
     <dialog id="waitlist">
         <div class="dialog-inner">
             <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
@@ -2298,6 +2750,14 @@
             });
         }, { threshold: 0.12 });
         revealItems.forEach((item) => observer.observe(item));
+
+        const mobileCta = document.querySelector(".mobile-cta");
+        const heroSection = document.getElementById("top");
+        if (mobileCta && heroSection) {
+            new IntersectionObserver(([entry]) => {
+                mobileCta.classList.toggle("is-on", !entry.isIntersecting);
+            }, { threshold: 0 }).observe(heroSection);
+        }
 
         const menuToggle = document.getElementById("menu-toggle");
         document.querySelectorAll(".nav-links a").forEach((link) => link.addEventListener("click", () => {
